@@ -2,20 +2,84 @@
   "intents": [
     {
       "tag": "greeting",
-      "patterns": ["hello", "hi there", "nice to meet you", "hey"],
-      "responses": ["Hello there!", "Hi, how can i help you?"]
+      "patterns": [
+        "hello!",
+        "hi there",
+        "nice to meet you",
+        "hey",
+        "Good day",
+        "hola",
+        "wassup"
+      ],
+      "responses": [
+        "Hello there!",
+        "Hi, how can i help you?",
+        "Hello! How may I assist you today?"
+      ]
     },
     {
       "tag": "goodbye",
       "patterns": [
         "Bye",
         "See you later",
-        "Goodbye",
+        "Goodbye!",
         "Get lost",
         "Till next time",
         "bbye"
       ],
       "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."]
+    },
+    {
+      "tag": "ucvision",
+      "patterns": [
+        "university of cebu vision",
+        "uc vision",
+        "vision",
+        "what is the vision of uc?",
+        "how about the vision of uc?"
+      ],
+      "responses": [
+        "Democratize quality education.\nBe the visionary and industry leader.\nGive hope and transform lives."
+      ]
+    },
+    {
+      "tag": "ucmission",
+      "patterns": [
+        "university of cebu mission",
+        "uc mission",
+        "mission",
+        "what is the mission of uc?",
+        "how about the mission of uc?"
+      ],
+      "responses": [
+        "The University offers affordable and quality education responsive to the demands of local and international communities. The University commits:\n1. To serve as an active catalyst in providing efficient and effective delivery of educational services;\n2. To pursue excellence in instruction, research and community service towards social and economic development as well as environmental sustainability;\n3. To acquire, disseminate and utilize appropriate technology to enhance the University’s educational services; and\n4. To foster an organizational culture that nurtures employee productivity and engagement."
+      ]
+    },
+    {
+      "tag": "ucgoal",
+      "patterns": [
+        "university of cebu goals",
+        "uc goals",
+        "goals",
+        "what are the goals of uc?",
+        "how about the goals of uc?"
+      ],
+      "responses": [
+        "1. To offer programs that are relevant, holistic and compliant with institutional, regulatory, industry and accreditation standards that will develop life-long learners;\n2. To develop social awareness, responsibility and accountability among stakeholders anchored on instruction, research, and production;\n3. To complement the academic programs with holistic and integrated student personnel services;\n4. To develop a pool of qualified, professional and motivated faculty in the areas of instruction, research and community extension;\n5. To ensure effective administration and supervision of instructional and learning resources in support of the academic programs;\n6. To provide an environment that is safe, functional, and conducive to teaching, learning and working; and\n7. To ensure collaborative, sustainable, efficient, and effective operations in meeting the needs of the institution and its stakeholders."
+      ]
+    },
+    {
+      "tag": "uccorevalue",
+      "patterns": [
+        "university of cebu core values",
+        "uc core values",
+        "core values",
+        "what are the core values of uc?",
+        "how about the core values of uc?"
+      ],
+      "responses": [
+        "The University believes in these core values: 1. INNOVATION Be the visionary and industry leader.\n2. CAMARADERIE Living in the spirit of harmony and approachability.\n3. ALIGNMENT All activities are geared towards core values and priorities.\n4. RESPECT Always a professional, mindful of God, University, community and self.\n5. EXCELLENCE To be great at whatever it is we do and go for the best."
+      ]
     }
   ]
 }

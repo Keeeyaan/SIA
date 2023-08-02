@@ -13,8 +13,26 @@
       ],
       "responses": [
         "Hello there!",
-        "Hi, how can i help you?",
+        "Hello, how can i help you?",
         "Hello! How may I assist you today?"
+      ]
+    },
+    {
+      "tag": "gratitude",
+      "patterns": [
+        "Thanks!",
+        "Thank you!",
+        "That's helpful",
+        "Awesome, thanks!",
+        "Thanks for helping me!"
+      ],
+      "responses": [
+        "You're welcome. Feel free to ask questions again if you have.",
+        "No problem. Please let me know if you have questions.",
+        "My pleasure.",
+        "Glad to help. Please do not hesitate to ask questions.",
+        "Sure!",
+        "Happy I could be of help."
       ]
     },
     {

@@ -80,6 +80,20 @@
       "responses": [
         "The University believes in these core values: 1. INNOVATION Be the visionary and industry leader.\n2. CAMARADERIE Living in the spirit of harmony and approachability.\n3. ALIGNMENT All activities are geared towards core values and priorities.\n4. RESPECT Always a professional, mindful of God, University, community and self.\n5. EXCELLENCE To be great at whatever it is we do and go for the best."
       ]
+    },
+    {
+      "tag": "ucowner",
+      "patterns": [
+        "who is the owner of UC?",
+        "owner of university of cebu",
+        "founder of uc?",
+        "who owns university of cebu?",
+        "university of cebu owner"
+      ],
+      "responses": [
+        "UC is an educational institution in Cebu City, Philippines founded in 1964 by Atty. Augusto W. Go.",
+        "University of cebu is owned by Atty. Augusto W. Go."
+      ]
     }
   ]
 }

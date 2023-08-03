@@ -27,11 +27,10 @@
         "Thanks for helping me!"
       ],
       "responses": [
-        "You're welcome. Feel free to ask questions again if you have.",
+        "You're welcome. Feel free to ask question anytime.",
         "No problem. Please let me know if you have questions.",
         "My pleasure.",
         "Glad to help. Please do not hesitate to ask questions.",
-        "Sure!",
         "Happy I could be of help."
       ]
     },
@@ -110,7 +109,26 @@
       ],
       "responses": [
         "UC is an educational institution in Cebu City, Philippines founded in 1964 by Atty. Augusto W. Go.",
-        "University of cebu is owned by Atty. Augusto W. Go."
+        "University of Cebu is owned by Atty. Augusto W. Go."
+      ]
+    },
+    {
+      "tag": "ucaddress",
+      "patterns": [
+        "What is the school's physical address?",
+        "What is the address of the University of Cebu Main?",
+        "What is the street address of the school?",
+        "Where is the school located?",
+        "What is the school's address?",
+        "School address",
+        "Where can I find the University of Cebu Main? I need the address.",
+        "I'd like to know the address of the University of Cebu's main campus, please."
+      ],
+      "responses": [
+        "University of Cebu Main is located at Sanciangko St, Cebu City, 6000 Cebu.",
+        "You can find the main campus of the University of Cebu at Sanciangko St, Cebu City.",
+        "The address for the main campus of the University of Cebu is Sanciangko St, Cebu City.",
+        "The main location of the University of Cebu is at Sanciangko St, Cebu City."
       ]
     }
   ]

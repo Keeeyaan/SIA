@@ -18,13 +18,14 @@
       ]
     },
     {
-      "tag": "gratitude",
+      "tag": "thanks",
       "patterns": [
-        "Thanks!",
-        "Thank you!",
+        "Thanks",
+        "Thank you",
         "That's helpful",
-        "Awesome, thanks!",
-        "Thanks for helping me!"
+        "Awesome, thanks",
+        "Thanks for the help",
+        "Thank you for helping me"
       ],
       "responses": [
         "You're welcome. Feel free to ask question anytime.",
@@ -45,6 +46,24 @@
         "bbye"
       ],
       "responses": ["See you!", "Have a nice day", "Bye! Come back again soon."]
+    },
+
+    {
+      "tag": "about",
+      "patterns": ["Who are you?", "What are you?", "Who you are?"],
+      "responses": [
+        "I'm Sia, your bot assistant.",
+        "I'm Sia, an Artificial Intelligent bot."
+      ]
+    },
+    {
+      "tag": "name",
+      "patterns": [
+        "what is your name?",
+        "what should i call you?",
+        "whats your name?"
+      ],
+      "responses": ["You can call me Sia.", "I'm Sia!", "Just call me as Sia."]
     },
     {
       "tag": "ucvision",

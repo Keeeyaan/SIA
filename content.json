@@ -50,7 +50,7 @@
   
       {
         "tag": "about",
-        "patterns": ["Who are you?", "What are you?", "Who you are?"],
+        "patterns": ["Who are you?", "What are you?", "Who you are?","What is your name?"],
         "responses": [
           "I'm Sia, your bot assistant.",
           "I'm Sia, an Artificial Intelligent bot."
@@ -152,7 +152,7 @@
         ]
       },
       {
-        "tag": "ucadmissionnewstudent",
+        "tag": "ucadmissionns",
         "patterns": [
           "How to enroll as a new student?",
           "How to apply for admission as a new student?",
@@ -161,11 +161,11 @@
           "New student admission"
         ],
         "responses": [
-          "1. NEW STUDENTS. New students are high school graduates enrolling in\nthe University for the first time.\n1.1 At the time of enrollment, a new student must submit his/her\nhigh school report card (Form 138), duly certified by the principal,\nhis/her NSO birth certificate, as well as his/her Certificate of Good\nMoral Character from his/her principal or guidance counselor.\n1.2 Only a graduate of a recognized high school shall be considered\nfor enrollment as a new student.\n1.3 For Maritime courses, the following Department of Health (DOH)\nmedical requirements are annually required: urine, stool, CBC, X-\nray, psychological, eye sight (Ishihara for BSMT and Lantern or any\nother color perception test for BSMARE), and hearing examination\n(per CMO #13, Series 2005); and Hepatitis B Screening."
+            "Here's how you can apply as a new student!\n\n1. At the time of enrollment, a new student must submit his/her\nhigh school report card (Form 138), duly certified by the principal,\nhis/her NSO birth certificate, as well as his/her Certificate of Good\nMoral Character from his/her principal or guidance counselor.\n2. Only a graduate of a recognized high school shall be considered\nfor enrollment as a new student.\n3. For Maritime courses, the following Department of Health (DOH)\nmedical requirements are annually required: urine, stool, CBC, X-\nray, psychological, eye sight (Ishihara for BSMT and Lantern or any\nother color perception test for BSMARE), and hearing examination\n(per CMO #13, Series 2005); and Hepatitis B Screening."
         ]
       },
       {
-        "tag": "ucadmissiontransfereestudent",
+        "tag": "ucadmissionts",
         "patterns": [
           "How to enroll as a transferee?",
           "How to apply for admission as a transferee?",
@@ -174,11 +174,11 @@
           "Transferee student admission"
         ],
         "responses": [
-          "2. TRANSFER STUDENTS. Transferees are those who wish to enroll in the\nUniversity after having been enrolled in collegiate or technical courses\nin another institution. Transfer students are also those former college\nstudents returning to the University after having enrolled in other\neducational institutions.\n2.1 At the time of enrollment, a transferee must submit the following\ncredentials:\n2.1.1 Certificate of transfer credential from the school last attended;\n2.1.2 Statement of good moral character signed by an adviser\nand certified by the school dean/head and/or the\nstudent affairs director; and\n2.1.3 Informative copy of his/her TOR, which includes the\ndescriptive title of the subjects taken, the number of\nunits and the grades earned.\n2.2 A transferee should have at least 30 units to complete, a grade\npoint average (GPA) of at least 2.5 in all subjects already taken,\nand no more than 2 failures to be admitted. He/she should have\nat least one-year residence in the University prior to graduation.\n2.3 A department may choose to give a validating examination to a\ntransferee whose GPA is below 2.5. Entrance exams administered\nby the Guidance Office is a requirement for the transferee’s\nadmission to the University."
+            "Here's how you can apply as a transferee!\n\n1. At the time of enrollment, a transferee must submit the following credentials:\n\t1.1 Certificate of transfer credential from the school last attended;\n\t1.2 Statement of good moral character signed by an adviser and certified\n\tby the school dean/head and/or the student affairs director; and\n\t1.3 Informative copy of his/her TOR, which includes the descriptive\n\ttitle of the subjects taken, the number of units and the grades earned.\n2. A transferee should have at least 30 units to complete, a grade\npoint average (GPA) of at least 2.5 in all subjects already taken,\nand no more than 2 failures to be admitted. He/she should have\nat least one-year residence in the University prior to graduation.\n3. A department may choose to give a validating examination to a\ntransferee whose GPA is below 2.5. Entrance exams administered\nby the Guidance Office is a requirement for the transferee’s\nadmission to the University."
         ]
       },
       {
-        "tag": "ucadmissionreturneestudent",
+        "tag": "ucadmissionrs",
         "patterns": [
           "How to enroll as a returnee?",
           "How to apply for admission as a returnee?",
@@ -187,11 +187,11 @@
           "Returnee student admission"
         ],
         "responses": [
-          "3. RETURNEE STUDENTS. Returnee students are those previously\nenrolled in the University either in the immediately preceding\nsemester or after having stopped without enrolling elsewhere.\n3.1 If in any one semester or summer session, a student failed in one-\nthird of the units for which he/she is registered, he/she may not\nenroll in the same program without the written recommendation\nof the college Dean. If the student failed the second time, he/she\nmay enroll in another program if accepted by the Dean of the new\nprogram. If the student failed in similar manner for the third time,\nhe/she shall be disqualified from registration in the University.\n3.2 The disciplinary rules and regulations of the Commission on\nHigher Education (CHEd) and the University govern the non-\nacademic reasons for the non-readmission of a student."
+            "Here's how you can apply as a returnee!\n\n1. If in any one semester or summer session, a student failed in one-\nthird of the units for which he/she is registered, he/she may not\nenroll in the same program without the written recommendation\nof the college Dean. If the student failed the second time, he/she\nmay enroll in another program if accepted by the Dean of the new\nprogram. If the student failed in similar manner for the third time,\nhe/she shall be disqualified from registration in the University.\n2. The disciplinary rules and regulations of the Commission on\nHigher Education (CHEd) and the University govern the non-\nacademic reasons for the non-readmission of a student."
         ]
       },
       {
-        "tag": "ucadmissionalienstudent",
+        "tag": "ucadmissionas",
         "patterns": [
           "How to enroll as an alien?",
           "How to enroll as a naturalized filipino?",
@@ -210,11 +210,11 @@
           "Foreign name student admission"
         ],
         "responses": [
-          "4. ALIENS, NATURALIZED FILIPINOS, AND STUDENTS WITH FOREIGN NAMES\n4.1 Philippine-born alien students must submit a photocopy of their\nAlien Certificate of Registration (ACR) and Native-Born Certificate\nof Registration (NBCR), certified against the original by the CHEd\nRegional Office.\n4.2 Children of naturalized Filipino citizens must submit a copy of\nIdentification Certificate issued by the Commissioner of\nImmigration and certified against the original by the CHEd\nRegional Office.\n4.3 Filipino citizens whose family names are of foreign origin must\nsubmit their birth certificates issued by the Local Civil Registrar.\nForeign-born alien students must submit a photocopy of their\nACR, certified against the original by the CHEd Regional Office."
+            "Here's how you can apply if you are an alien, naturalized filipino\nor a student with foreign name!\n\n1. Philippine-born alien students must submit a photocopy of their\nAlien Certificate of Registration (ACR) and Native-Born Certificate\nof Registration (NBCR), certified against the original by the CHEd\nRegional Office.\n2. Children of naturalized Filipino citizens must submit a copy of\nIdentification Certificate issued by the Commissioner of\nImmigration and certified against the original by the CHEd\nRegional Office.\n3. Filipino citizens whose family names are of foreign origin must\nsubmit their birth certificates issued by the Local Civil Registrar.\nForeign-born alien students must submit a photocopy of their\nACR, certified against the original by the CHEd Regional Office."
         ]
       },
       {
-        "tag": "ucadmissionforeignstudent",
+        "tag": "ucadmissionfs",
         "patterns": [
           "How to enroll as a foreigner?",
           "How to apply for admission as a foreigner?",
@@ -223,11 +223,11 @@
           "Foreign student admission"
         ],
         "responses": [
-          "5. FOREIGN STUDENTS\n5.1 For overseas students, who are still abroad, they may apply for\nadmission in writing with the University Registrar and submit the\nfollowing admission requirements:\n5.1.1 Six (6) copies of the duly accomplished Personal History\nStatements (PHS) signed in English and in his/her\nnational alphabet. PHS form is available at the Philippine\nForeign Services Post (PFSP) in the applicant’s home\ncountry;\n5.1.2 Six (6) copies of the original Transcript of Scholastic\nRecords duly authenticated by the PFSP in the student’s\ncountry of origin or legal residence;\n5.1.3 Six (6) copies of the notarized Affidavit of Adequate\nFinancial Support (AAFS) including bank accounts or\nnotarized Notice of Grant for institutional scholars to\ncover expenses for the student’s accommodation and\nsubsistence as well as school dues or other incidental\nexpenses;\n5.1.4 Six (6) copies of the data page of the applicant’s passport\nshowing the date and place of birth, duly authenticated\nby the PFSP in the applicant’s country of origin or legal\nresidence; and\n5.1.5 Remittance of Acceptance Fee of US$ 120.00 to cover the\nissuance of Notice of Acceptance (NOA), handling and\nmailing of the above documents to the Philippine\nDepartment of Foreign Affairs (DFA) and mailing of a\ncopy of NOA to the applicant.\n5.1.6 The DFA needs the above-mentioned documents to\nprocess the issuance of a Student Visa.\n5.2 For foreign students, who are already in the Philippines under any\nvisa category, may apply in the Bureau of Immigration (BoI) for\nthe change/conversion of his/her admission status to that of a\nstudent under Section 9(f) of the Philippine Immigration Act of\n1940, as amended pursuant to Executive Order No. 285. Requirements:\n5.2.1 Written endorsement from the University Registrar;\n5.2.2 NOA;\n5.2.3 Six (6) copies of the notarized proof of AAFS to cover\nexpenses for the student’s accommodation andsubsistence as well as school dues and other incidental\nexpenses;\n5.2.4 Six (6) copies of the original Transcript of Scholastic\nRecords, duly authenticated by the PFSP in the student’s\ncountry of origin or legal residence;\n5.2.5 Six (6) copies of the Police Clearance Certificate issued by\nthe national police authorities in the student’s country of\norigin or legal residence, duly authenticated by the PFSP\nhaving consular jurisdiction over the place for a student\nwho resided in the Philippine for less than 59 days.\nHowever, for students who resided in the Philippines for\nmore than 59 days at the time he/she applies for said\nchange/conversion of his/her admission status to that of\na student, he/she shall also be required to submit the\nNational Bureau of Investigation (NBI) clearance;\n5.2.6 Six (6) copies of the Quarantine Medical Examination\nCertificate issued by the National Quarantine Office;\n5.2.7 Six (6) copies of student’s PHS, signed by the student\nwith a 2x2-inch recently taken photograph;\n5.2.8 Six (6) copies of the data page of the applicant’s passport\nand the stamp of the latest arrival; the passport itself\nshall be presented for verification; and\n5.2.9 Remittance of Acceptance Fee of US$ 120.00 to cover the\nissuance of NOA, handling, and mailing of the above\ndocuments to the BoI, Manila.\n5.3 For foreign students who wish to transfer from one Philippine\nhigher educational institution (HEI) to another, the requirements\nare:\n5.3.1 NOA from accepting school;\n5.3.2 Letter of No Objection issued by the BoI; and\n5.3.3 Certificate of Transfer Credentials and Certificate of Good\nMoral Character issued by the previous school.\n5.4 Scheduling of Processing of Student Visa:\n5.4.1 For first semester applicants: January 1 to April 15\n5.4.2 For second semester applicants: June 1 to September 15\n5.4.3 For summer classes applicants: December 1 to January 31\n5.5 In accordance with the regulations of CHEd and other government\nagencies supervising foreign students, no foreign student may be\nallowed to enroll unless he/she can submit a valid permit to study\nand a student’s visa to the Foreign Students Section of the\nUniversity Registrar."
+            "Here's how you can apply as a foreign student!\n\n1. For overseas students, who are still abroad, they may apply for\nadmission in writing with the University Registrar and submit the\nfollowing admission requirements:\n\t1.1 Six (6) copies of the duly accomplished Personal History\n\tStatements (PHS) signed in English and in his/her\n\tnational alphabet. PHS form is available at the Philippine\n\tForeign Services Post (PFSP) in the applicant’s home\n\tcountry;\n\t1.2 Six (6) copies of the original Transcript of Scholastic\n\tRecords duly authenticated by the PFSP in the student’s\n\tcountry of origin or legal residence;\n\t1.3 Six (6) copies of the notarized Affidavit of Adequate\n\tFinancial Support (AAFS) including bank accounts or\n\tnotarized Notice of Grant for institutional scholars to\n\tcover expenses for the student’s accommodation and\n\tsubsistence as well as school dues or other incidental\n\texpenses;\n\t1.4 Six (6) copies of the data page of the applicant’s passport\n\tshowing the date and place of birth, duly authenticated\n\tby the PFSP in the applicant’s country of origin or legal\n\tresidence; and\n\t1.5 Remittance of Acceptance Fee of US$ 120.00 to cover the\n\tissuance of Notice of Acceptance (NOA), handling and\n\tmailing of the above documents to the Philippine\n\tDepartment of Foreign Affairs (DFA) and mailing of a\n\tcopy of NOA to the applicant.\n\t1.6 The DFA needs the above-mentioned documents to\n\tprocess the issuance of a Student Visa.\n2. For foreign students, who are already in the Philippines under any\nvisa category, may apply in the Bureau of Immigration (BoI) for\nthe change/conversion of his/her admission status to that of a\nstudent under Section 9(f) of the Philippine Immigration Act of\n1940, as amended pursuant to Executive Order No. 285.\nRequirements:\n\t2.1 Written endorsement from the University Registrar;\n\t2.2 NOA;\n\t2.3 Six (6) copies of the notarized proof of AAFS to cover\n\texpenses for the student’s accommodation and subsistence as well as\n\tschool dues and other incidental expenses.\n\t2.4 Six (6) copies of the original Transcript of Scholastic\n\tRecords, duly authenticated by the PFSP in the student’s\n\tcountry of origin or legal residence;\n\t2.5 Six (6) copies of the Police Clearance Certificate issued by\n\tthe national police authorities in the student’s country of\n\torigin or legal residence, duly authenticated by the PFSP\n\thaving consular jurisdiction over the place for a student\n\twho resided in the Philippine for less than 59 days.\n\tHowever, for students who resided in the Philippines for\n\tmore than 59 days at the time he/she applies for said\n\tchange/conversion of his/her admission status to that of\n\ta student, he/she shall also be required to submit the\n\tNational Bureau of Investigation (NBI) clearance;\n\t2.6 Six (6) copies of the Quarantine Medical Examination\n\tCertificate issued by the National Quarantine Office;\n\t2.7 Six (6) copies of student’s PHS, signed by the student\n\twith a 2x2-inch recently taken photograph;\n\t2.8 Six (6) copies of the data page of the applicant’s passport\n\tand the stamp of the latest arrival; the passport itself\n\tshall be presented for verification; and\n\t2.9 Remittance of Acceptance Fee of US$ 120.00 to cover the\n\tissuance of NOA, handling, and mailing of the above\n\tdocuments to the BoI, Manila.\n3. For foreign students who wish to transfer from one Philippine\nhigher educational institution (HEI) to another, the requirements\nare:\n\t3.1 NOA from accepting school;\n\t3.2 Letter of No Objection issued by the BoI; and\n\t3.3 Certificate of Transfer Credentials and Certificate of Good\n\tMoral Character issued by the previous school.\n4. Scheduling of Processing of Student Visa:\n\t4.1 For first semester applicants: January 1 to April 15\n\t4.2 For second semester applicants: June 1 to September 15\n\t4.3 For summer classes applicants: December 1 to January 31\n5. In accordance with the regulations of CHEd and other government\nagencies supervising foreign students, no foreign student may be\nallowed to enroll unless he/she can submit a valid permit to study\nand a student’s visa to the Foreign Students Section of the\nUniversity Registrar."
         ]
       },
       {
-        "tag": "ucadmissionspecialstudent",
+        "tag": "ucadmissionss",
         "patterns": [
           "How to enroll as a special student?",
           "How to apply for admission as a special student?",
@@ -236,11 +236,11 @@
           "Special student admission"
         ],
         "responses": [
-          "6. SPECIAL STUDENTS. Special students are those who are not entitled to\nreceive official credit for work, which they desire to take because they\ndo not satisfy the requirements for admission to the courses or\nsubjects or for any other reason. Special students may be admitted at\nany time to the course they wish to attend provided that:\n6.1 They receive approval from the Dean and/or department\nChairperson for each of the course they intend to participate in;\n6.2 They sign an agreement that they waive the right to receive and\nto demand credit for the work done [Section VIII, par. 144,\nManual of Regulations for Private School (MORPS), 1970, 7th\nedition] and that they pay in full the fees at the time of\nenrollment; and\n6.3 Special students are not eligible for any honors or privileges."
-]
+            "Here's how you can apply as a special student!\n\n1. They receive approval from the Dean and/or department\nChairperson for each of the course they intend to participate in;\n2. They sign an agreement that they waive the right to receive and\nto demand credit for the work done [Section VIII, par. 144,\nManual of Regulations for Private School (MORPS), 1970, 7th\nedition] and that they pay in full the fees at the time of\nenrollment; and\n3. Special students are not eligible for any honors or privileges."
+        ]
       },
       {
-        "tag": "ucadmissiongraduatestudent",
+        "tag": "ucadmissiongrs",
         "patterns": [
           "How to enroll as a graduate student?",
           "How to apply for admission as a graduate student?",
@@ -249,7 +249,7 @@
           "Graduate student admission"
         ],
         "responses": [
-          "7. GRADUATE STUDENTS. Graduates who hold the appropriate bachelor’s\ndegree or its equivalent are eligible for admission to studies leading to\nthe Master’s degree. Prospective graduate students shall submit their\napplication for admission and other requirements to the Graduate\nSchool Office within a reasonable period before the opening of each\nterm."
+            "Here's how you can apply as a graduate student!\n\nGraduates who hold the appropriate bachelor’s\ndegree or its equivalent are eligible for admission to studies leading to\nthe Master’s degree. Prospective graduate students shall submit their\napplication for admission and other requirements to the Graduate\nSchool Office within a reasonable period before the opening of each\nterm."
         ]
       },
       {
@@ -261,11 +261,11 @@
           "Programs offered"
         ],
         "responses": [
-          "Academic Programs:\n1. College of Arts\n2. College of Business and Accountancy\n3. College of Criminology\n4. College of Computer Engineering\n5. College of Information and Computer Studies\n6. College of Customs Administration\n7. College of Engineering\n8. College of Education\n9. College of Hotel and Restaurant Management\n10. College of Law\n11. College of Maritime Education\n12. College of Nursing\n13. College of Tourism\n14. School of Midwifery\n15. Graduate School"
+          "Here are the academic programs offered in UC!\n\n1. College of Arts\n2. College of Business and Accountancy\n3. College of Criminology\n4. College of Computer Engineering\n5. College of Information and Computer Studies\n6. College of Customs Administration\n7. College of Engineering\n8. College of Education\n9. College of Hotel and Restaurant Management\n10. College of Law\n11. College of Maritime Education\n12. College of Nursing\n13. College of Tourism\n14. School of Midwifery\n15. Graduate School"
         ]
       },
       {
-        "tag": "uccollegeofarts",
+        "tag": "uccoa",
         "patterns": [
           "What can you major in college of arts?",
           "College of arts",
@@ -273,11 +273,11 @@
           "COA majors"
         ],
         "responses": [
-          "1.1 Bachelor of Arts major in: 1.1.1 English\n1.1.2. Psychology\n1.1.3. Political Science"
+          "These are the majors available for Bachelor of Arts!\n\n1. English\n2. Psychology\n3. Political Science"
         ]
       },
       {
-        "tag": "uccollegeofbusinessandaccountancy",
+        "tag": "ucbsba",
         "patterns": [
           "What can you major in college of business and accountancy?",
           "College of business and accountancy",
@@ -285,11 +285,11 @@
           "BSBA majors"
         ],
         "responses": [
-          "2.1 Bachelor of Science in Business Administration major in:\n 2.1.1 Financial Management\n2.1.2 Human Resource Development Management\n2.1.3 Management Accounting\n 2.1.4 Marketing Management\n2.1.5 Office Administration\n2.1.5.1 Associate in Office Administration\n2.2 Bachelor of Science in Real Estate Management\n2.3 Bachelor of Science in Accountancy\n2.4 Bachelor of Science in Accounting Technology\n2.4.1 Associate in Accounting Technology"
+          "These are the majors available in Bachelor of Science in Business Administration!\n\n1. Financial Management\n2. Human Resource Development Management\n3. Management Accounting\n4. Marketing Management\n5. Office Administration\n5.1. Associate in Office Administration\n2. Bachelor of Science in Real Estate Management\n3. Bachelor of Science in Accountancy\n4. Bachelor of Science in Accounting Technology\n4.1. Associate in Accounting Technology"
         ]
       },
       {
-        "tag": "uccollegeofcriminology",
+        "tag": "ucbscrim",
         "patterns": [
           "What can you major in college of criminology?",
           "College of criminology",
@@ -297,11 +297,11 @@
           "BSCrim majors"
         ],
         "responses": [
-            "3.1 Bachelor of Science in Criminology"
+            "Bachelor of Science in Criminology is the only available major."
         ]
       },
       {
-        "tag": "uccollegeofcomputerengineering",
+        "tag": "uccomeng",
         "patterns": [
           "What can you major in college of computer engineering?",
           "College of engineering",
@@ -309,11 +309,11 @@
           "BS Com Eng majors"
         ],
         "responses": [
-          "4.1 Bachelor of Science in Computer Engineering\n4.1.1 Associate in Computer Engineering"
+          "Bachelor of Science in Computer Engineering and Associate in Computer Engineering are the only majors available."
         ]
       },
       {
-        "tag": "ucinformationandcomputerstudies",
+        "tag": "ucbscs",
         "patterns": [
           "What can you major in college of information and computer studies?",
           "College of information and computer studies",
@@ -324,11 +324,11 @@
           "BSIT majors"
         ],
         "responses": [
-          "5.1 Bachelor of Science in Information Technology\n5.2 Bachelor of Science in Information System\n5.2.1 Associate in Information System\n5.3 Associate in Computer Technology (Programming)\n5.4 Associate in Computer Technology major in Animation"
+          "These are the available majors for BSIT and BSCS!\n\n1. Bachelor of Science in Information Technology\n2. Bachelor of Science in Information System\n2.1 Associate in Information System\n3. Associate in Computer Technology (Programming)\n4. Associate in Computer Technology major in Animation"
         ]
       },
       {
-        "tag": "uccollegeofcustomsadministration",
+        "tag": "ucbsca",
         "patterns": [
           "What can you major in college of customs administration?",
           "College of customs administration",
@@ -336,11 +336,11 @@
           "BSCA majors"
         ],
         "responses": [
-          "6.1 Bachelor of Science in Customs Administration"
+          "Bachelor of Science in Customs Administration is the only available major."
         ]
       },
       {
-        "tag": "uccollegeofengineering",
+        "tag": "uccoe",
         "patterns": [
           "What can you major in college of engineering?",
           "College of engineering",
@@ -348,11 +348,11 @@
           "COE majors"
         ],
         "responses": [
-          "7.1 Bachelor of Science in Civil Engineering\n7.2 Bachelor of Science in Electrical Engineering\n7.3 Bachelor of Science in Electronics and Communications Engineering\n7.4 Bachelor of Science in Industrial Engineering\n7.5 Bachelor of Science in Mechanical Engineering\n7.6 Bachelor of Science in Naval Architecture and Marine Engineering"
+          "These are the majors available for Bachelor of Science in Engineering!\n\n1. Bachelor of Science in Civil Engineering\n2. Bachelor of Science in Electrical Engineering\n3. Bachelor of Science in Electronics and Communications Engineering\n4. Bachelor of Science in Industrial Engineering\n5. Bachelor of Science in Mechanical Engineering\n6. Bachelor of Science in Naval Architecture and Marine Engineering"
         ]
       },
       {
-        "tag": "uccollegeofeducation",
+        "tag": "uccoed",
         "patterns": [
           "What can you major in college of education?",
           "College of education",
@@ -360,11 +360,11 @@
           "COEd majors"
         ],
         "responses": [
-          "8.1 Bachelor of Elementary Education\n8.1.1 General Education\n8.1.2 Special Education\n8.2 Bachelor of Secondary Education major in:\n8.2.1 Biological Science\n8.2.2 English\n8.2.3 Filipino\n8.2.4 MAPEH\n8.2.5 Mathematics\n8.2.6 Physical Science\n8.2.7 Social Science"
+          "These are the available majors for Bachelor of Science in Education!\n\n1. Bachelor of Elementary Education\n1.1 General Education\n1.2 Special Education\n2. Bachelor of Secondary Education major in:\n2.1 Biological Science\n2.2 English\n2.3 Filipino\n2.4 MAPEH\n2.5 Mathematics\n2.6 Physical Science\n2.7 Social Science"
         ]
       },
       {
-        "tag": "uccollegeofhotelandrestaurantmanagement",
+        "tag": "ucbshrm",
         "patterns": [
           "What can you major in college of hotel and restaurant management?",
           "College of hotel and restaurant management",
@@ -372,73 +372,160 @@
           "BS HRM majors"
         ],
         "responses": [
-          "9.1 Bachelor of Science in Hotel and Restaurant Management\n9.1.1 Associate in Hotel and Restaurant Management"
+          "These are the only available majors for Bachelor of Science in\nHotel and Restaurant Management!\n\n1. Bachelor of Science in Hotel and Restaurant Management\n1.1 Associate in Hotel and Restaurant Management"
         ]
       },
       {
-        "tag": "uccollegeoflaw",
+        "tag": "uccl",
         "patterns": [
           "What can you major in college of law?",
           "College of Law",
           "CL majors"
         ],
         "responses": [
-          "10.1 Juris Doctor"
+          "Juris Doctor is the only available major"
         ]
       },
       {
-        "tag": "uccollegeofmaritimeeducation",
+        "tag": "ucbsmare",
         "patterns": [
           "What can you major in college of maritime education?",
           "College of maritime education",
           "BSMarE majors"
         ],
         "responses": [
-          "11.1 Bachelor of Science in Marine Engineering\n11.2 Bachelor of Science in Marine Transportation\n11.3 Catering and Stewarding Services"
+          "These are the available for Bachelor of Science in Maritime Education!\n\n1. Bachelor of Science in Marine Engineering\n2. Bachelor of Science in Marine Transportation\n3. Catering and Stewarding Services"
         ]
       },
       {
-        "tag": "uccollegeofnursing",
+        "tag": "uccon",
         "patterns": [
           "What can you major in college of nursing?",
           "College of nursing",
           "CON majors"
         ],
         "responses": [
-          "12.1 Bachelor of Science in Nursing\n12.2 Health Care Services"
+          "Bachelor of Science in Nursing and Health Care Services are the only majors available."
         ]
       },
       {
-        "tag": "uccollegeoftourism",
+        "tag": "uccot",
         "patterns": [
           "What can you major in college of tourism?",
           "College of tourism",
           "COT majors"
         ],
         "responses": [
-          "13.1 Bachelor of Science in Tourism"
+          "Bachelor of Science in Tourism is the only major available."
         ]
       },
       {
-        "tag": "ucschoolofmidwifery",
+        "tag": "ucsom",
         "patterns": [
           "What can you major in School of midwifery?",
           "School of midwifery",
           "SOM majors"
         ],
         "responses": [
-          "14.1 Diploma in Midwifery"
+          "Diploma in Midwifery is the only major available."
         ]
       },
       {
-        "tag": "ucgraduateschool",
+        "tag": "ucgrs",
         "patterns": [
           "What can you major in graduate school?",
           "Graduate school",
           "GRS majors"
         ],
         "responses": [
-          "15.1 Doctor of Education major in:\n15.1.1 Educational Leadership and Management\n15.1.2 Institutional Planning\n15.2 Master of Arts in Nursing major in:\n15.2.1 Community Health Nursing\n15.2.2 Maternal and Child Nursing\n15.2.3 Medical-Surgical Nursing\n15.2.4 Nursing Administration\n15.2.5 Psychiatric Nursing\n15.3 Master of Business Administration\n15.3.1 Thesal\n15.3.2 Non-thesal\n15.3.2.1 Financial Management\n15.3.2.2 Hotel and Restaurant Management\n15.3.2.3 Human Resource Management and Development\n15.4 Master of Science in Criminal Justice\n15.5 Master of Science in Elementary Management\n15.6 Master in Science Teaching major in:\n15.6.1 Computer Studies\n15.6.2 Educational Technology\n15.6.3 English Language and Literature\n15.6.4 Filipino\n15.6.5 Makabayan\n15.6.6 Marine and Nautical Sciences\n15.6.7 Mathematics\n15.6.8 Science"
+          "These are the majors available for Graduate School!\n\n1. Doctor of Education major in:\n1.1 Educational Leadership and Management\n1.2 Institutional Planning\n2. Master of Arts in Nursing major in:\n2.1 Community Health Nursing\n2.2 Maternal and Child Nursing\n2.3 Medical-Surgical Nursing\n2.4 Nursing Administration\n2.5 Psychiatric Nursing\n3. Master of Business Administration\n3.1 Thesal\n3.2 Non-thesal\n3.2.1 Financial Management\n3.2.2 Hotel and Restaurant Management\n3.2.3 Human Resource Management and Development\n4. Master of Science in Criminal Justice\n5. Master of Science in Elementary Management\n6. Master in Science Teaching major in:\n6.1 Computer Studies\n6.2 Educational Technology\n6.3 English Language and Literature\n6.4 Filipino\n6.5 Makabayan\n6.6 Marine and Nautical Sciences\n6.7 Mathematics\n6.8 Science"
+        ]
+      },
+      {
+        "tag": "ucsocialmedias",
+        "patterns": [
+          "Does the school have social media accounts?",
+          "What are the school's social media accounts?",
+          "Social media accounts"
+        ],
+        "responses": [
+          "Here are some links to access Univeristy of Cebu's social media accounts:\n\nUC: https://www.facebook.com/universityofcebumaincampus\nUC-MAIN: https://www.facebook.com/UniversityOfCebuWebmasters\nUC-BANILAD: https://www.facebook.com/UCBanilad.Official\nUC-LM: https://www.facebook.com/UCLMOfficial\nUC-METC: https://www.facebook.com/UniversityOfCebuMetcCampus\nUC-SM: https://www.facebook.com/UCschoolofmedicine"
+        ]
+      },
+      {
+        "tag": "uccontactaddress",
+        "patterns": [
+          "What are the contact addresses for uc?",
+          "Are there any contact addresses from uc?",
+          "Does uc have contact addresses?",
+          "Contact addresses"
+        ],
+        "responses": [
+          "Here's a list of contact address for uc:\n\nUC-MAIN (Main Office): (032)255-7777 | info@uc.edu.ph\nUC-MAIN (Registrar): (032) 2539434 | 255-7777 | 4167 | main.collegeregistrar@uc.edu.ph\nUC-BANILAD: (63-32)233-8888\nUC-METC: (63-32)262-8888\nUC-LM: (63-32)345-6666\nUC-SM: (032) 232 1525"
+        ]
+      },
+      {
+        "tag": "ucassessmentslip",
+        "patterns": [
+          "How can I view my assessment slip?",
+          "Assessment slip"
+        ],
+        "responses": [
+          "Here's how you can access your online assessment slip: https://enrollment.uc.edu.ph/college/Payment/PayFeesIndex"
+        ]
+      },
+      {
+        "tag": "ucviewgrades",
+        "patterns": [
+          "How can I view my grades?",
+          "View grades"
+        ],
+        "responses": [
+          "Here's how you can access your grades by school term: https://enrollment.uc.edu.ph/college/Enrollment/MyGrades"
+        ]
+      },
+      {
+        "tag": "ucidregistration",
+        "patterns": [
+          "Where can I register my school ID?",
+          "School ID registration"
+        ],
+        "responses": [
+          "Here's where you can register your school ID: https://enrollment.uc.edu.ph/college/Account/Register"
+        ]
+      },
+      {
+        "tag": "ucpayments",
+        "patterns": [
+          "How can I pay my tuition?",
+          "What are the modes of payment for my tuition?",
+          "Are there any payment guides available?",
+          "Payment guides"
+        ],
+        "responses": [
+          "Here are some ways you can pay your tuition by accessing these links:\n\nhttps://enrollment.uc.edu.ph/college/images/payments.jpg\nhttps://enrollment.uc.edu.ph/college/images/epayments.jpg\nhttps://enrollment.uc.edu.ph/college/images/bdo.jpg"
+        ]
+      },
+      {
+        "tag": "ucpaymentemails",
+        "patterns": [
+          "What are the payment emails available?",
+          "Are there any payment emails?",
+          "Payment emails"
+        ],
+        "responses": [
+          "Here are some payment emails you can refer to:\n\nUC-MAIN: payments2.ucmaincashier@gmail.com\nUC-LM: uclmjhs.payments@gmail.com | uclmshs.payments@gmail.com | uclmcollege.payments@gmail.com\nUC-METC: payments.ucmetccashier@gmail.com | ucmetc_cashier@yahoo.com"
+        ]
+      },
+      {
+        "tag": "uccourseprospectus",
+        "patterns": [
+          "Where can I view a prospectus?",
+          "How do I access my course's prospectus?",
+          "Prospectuses"
+        ],
+        "responses": [
+          "Here's one way of accessing a course's prospectus: https://enrollment.uc.edu.ph/college/Enrollment/Curricula"
         ]
       }
     ]

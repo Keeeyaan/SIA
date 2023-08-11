@@ -250,9 +250,6 @@
         ]
     },
     {
-        "tag": "uc"
-    }
-    {
         "tag": "ucacademicprograms",
         "patterns": [
             "What are the available academic programs in uc main?",

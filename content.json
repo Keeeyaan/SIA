@@ -152,6 +152,7 @@
       ]
     },
     {
+<<<<<<< HEAD
        "tag": "ucadmissionnewstudent",
        "patterns": [
         "How to enroll as a new student?",
@@ -250,6 +251,8 @@
         ]
     },
     {
+=======
+>>>>>>> parent of 02f29c2... Added intents from admissions, social medias, contact addresses and everything in the GENERAL section except Faculties location and facilities.
         "tag": "ucacademicprograms",
         "patterns": [
             "What are the available academic programs in uc main?",
@@ -436,93 +439,6 @@
         ],
         "responses": [
             "15.1 Doctor of Education major in:\n15.1.1 Educational Leadership and Management\n15.1.2 Institutional Planning\n15.2 Master of Arts in Nursing major in:\n15.2.1 Community Health Nursing\n15.2.2 Maternal and Child Nursing\n15.2.3 Medical-Surgical Nursing\n15.2.4 Nursing Administration\n15.2.5 Psychiatric Nursing\n15.3 Master of Business Administration\n15.3.1 Thesal\n15.3.2 Non-thesal\n15.3.2.1 Financial Management\n15.3.2.2 Hotel and Restaurant Management\n15.3.2.3 Human Resource Management and Development\n15.4 Master of Science in Criminal Justice\n15.5 Master of Science in Elementary Management\n15.6 Master in Science Teaching major in:\n15.6.1 Computer Studies\n15.6.2 Educational Technology\n15.6.3 English Language and Literature\n15.6.4 Filipino\n15.6.5 Makabayan\n15.6.6 Marine and Nautical Sciences\n15.6.7 Mathematics\n15.6.8 Science"
-        ]
-    },
-    {
-        "tag": "ucsocialmedias",
-        "patterns": [
-            "Does the school have social media accounts?",
-            "What are the school's social media accounts?",
-            "Social media accounts"
-        ],
-        "responses": [
-            "Here are some links to access Univeristy of Cebu's social media accounts:\n\nUC: https://www.facebook.com/universityofcebumaincampus\nUC-MAIN: https://www.facebook.com/UniversityOfCebuWebmasters\nUC-BANILAD: https://www.facebook.com/UCBanilad.Official\nUC-LM: https://www.facebook.com/UCLMOfficial\nUC-METC: https://www.facebook.com/UniversityOfCebuMetcCampus\nUC-SM: https://www.facebook.com/UCschoolofmedicine"
-        ]
-    },
-    {
-        "tag": "uccontactaddress",
-        "patterns": [
-            "What are the contact addresses for uc?",
-            "Are there any contact addresses from uc?",
-            "Does uc have contact addresses?",
-            "Contact addresses"
-        ],
-        "responses": [
-            "Here's a list of contact address for uc:\n\nUC-MAIN (Main Office): (032)255-7777 | info@uc.edu.ph\nUC-MAIN (Registrar): (032) 2539434 | 255-7777 | 4167 | main.collegeregistrar@uc.edu.ph\nUC-BANILAD: (63-32)233-8888\nUC-METC: (63-32)262-8888\nUC-LM: (63-32)345-6666\nUC-SM: (032) 232 1525"
-        ]
-    },
-    {
-        "tag": "ucassessmentslip",
-        "patterns": [
-            "How can I view my assessment slip?",
-            "Assessment slip"
-        ],
-        "responses": [
-            "Here's how you can access your online assessment slip: https://enrollment.uc.edu.ph/college/Payment/PayFeesIndex"
-        ]
-    },
-    {
-        "tag": "ucviewgrades",
-        "patterns": [
-            "How can I view my grades?",
-            "View grades"
-        ],
-        "responses": [
-            "Here's how you can access your grades by school term: https://enrollment.uc.edu.ph/college/Enrollment/MyGrades"
-        ]
-    },
-    {
-        "tag": "ucidregistration",
-        "patterns": [
-            "Where can I register my school ID?",
-            "School ID registration"
-        ],
-        "responses": [
-            "Here's where you can register your school ID: https://enrollment.uc.edu.ph/college/Account/Register"
-        ]
-    },
-    {
-        "tag": "ucpayments",
-        "patterns": [
-            "How can I pay my tuition?",
-            "What are the modes of payment for my tuition?",
-            "Are there any payment guides available?",
-            "Payment guides"
-        ],
-        "responses": [
-            "Here are some ways you can pay your tuition by accessing these links:\n\nhttps://enrollment.uc.edu.ph/college/images/payments.jpg\nhttps://enrollment.uc.edu.ph/college/images/epayments.jpg\nhttps://enrollment.uc.edu.ph/college/images/bdo.jpg"
-        ]
-    },
-    {
-        "tag": "ucpaymentemails",
-        "patterns": [
-            "What are the payment emails available?",
-            "Are there any payment emails?",
-            "Payment emails"
-        ],
-        "responses": [
-            "Here are some payment emails you can refer to:\n\nUC-MAIN: payments2.ucmaincashier@gmail.com\nUC-LM: uclmjhs.payments@gmail.com | uclmshs.payments@gmail.com | uclmcollege.payments@gmail.com\nUC-METC: payments.ucmetccashier@gmail.com | ucmetc_cashier@yahoo.com"
-        ]
-    },
-    {
-        "tag": "uccourseprospectus",
-        "patterns": [
-            "Where can I view a prospectus?",
-            "How do I access my course's prospectus?",
-            "Prospectuses"
-        ],
-        "responses": [
-            "Here's one way of accessing a course's prospectus: https://enrollment.uc.edu.ph/college/Enrollment/Curricula"
         ]
     }
   ]

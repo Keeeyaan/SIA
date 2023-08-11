@@ -152,6 +152,107 @@
       ]
     },
     {
+       "tag": "ucadmissionnewstudent",
+       "patterns": [
+        "How to enroll as a new student?",
+        "How to apply for admission as a new student?",
+        "What are the admission requirements as a new student?",
+        "What is the admission process like for new students?",
+        "New student admission"
+       ],
+       "responses": [
+        "1. NEW STUDENTS. New students are high school graduates enrolling in\nthe University for the first time.\n1.1 At the time of enrollment, a new student must submit his/her\nhigh school report card (Form 138), duly certified by the principal,\nhis/her NSO birth certificate, as well as his/her Certificate of Good\nMoral Character from his/her principal or guidance counselor.\n1.2 Only a graduate of a recognized high school shall be considered\nfor enrollment as a new student.\n1.3 For Maritime courses, the following Department of Health (DOH)\nmedical requirements are annually required: urine, stool, CBC, X-\nray, psychological, eye sight (Ishihara for BSMT and Lantern or any\nother color perception test for BSMARE), and hearing examination\n(per CMO #13, Series 2005); and Hepatitis B Screening."
+       ]
+    },
+    {
+        "tag": "ucadmissiontransfereestudent",
+        "patterns": [
+            "How to enroll as a transferee?",
+            "How to apply for admission as a transferee?",
+            "What are the admission requirements as a transferee?",
+            "What is the admission process like for transferees?",
+            "Transferee student admission"
+        ],
+        "responses": [
+            "2. TRANSFER STUDENTS. Transferees are those who wish to enroll in the\nUniversity after having been enrolled in collegiate or technical courses\nin another institution. Transfer students are also those former college\nstudents returning to the University after having enrolled in other\neducational institutions.\n2.1 At the time of enrollment, a transferee must submit the following\ncredentials:\n2.1.1 Certificate of transfer credential from the school last attended;\n2.1.2 Statement of good moral character signed by an adviser\nand certified by the school dean/head and/or the\nstudent affairs director; and\n2.1.3 Informative copy of his/her TOR, which includes the\ndescriptive title of the subjects taken, the number of\nunits and the grades earned.\n2.2 A transferee should have at least 30 units to complete, a grade\npoint average (GPA) of at least 2.5 in all subjects already taken,\nand no more than 2 failures to be admitted. He/she should have\nat least one-year residence in the University prior to graduation.\n2.3 A department may choose to give a validating examination to a\ntransferee whose GPA is below 2.5. Entrance exams administered\nby the Guidance Office is a requirement for the transferee’s\nadmission to the University."
+        ]
+    },
+    {
+        "tag": "ucadmissionreturneestudent",
+        "patterns": [
+            "How to enroll as a returnee?",
+            "How to apply for admission as a returnee?",
+            "What are the admission requirements as a returnee?",
+            "What is the admission process like for returnee?",
+            "Returnee student admission"
+        ],
+        "responses": [
+            "3. RETURNEE STUDENTS. Returnee students are those previously\nenrolled in the University either in the immediately preceding\nsemester or after having stopped without enrolling elsewhere.\n3.1 If in any one semester or summer session, a student failed in one-\nthird of the units for which he/she is registered, he/she may not\nenroll in the same program without the written recommendation\nof the college Dean. If the student failed the second time, he/she\nmay enroll in another program if accepted by the Dean of the new\nprogram. If the student failed in similar manner for the third time,\nhe/she shall be disqualified from registration in the University.\n3.2 The disciplinary rules and regulations of the Commission on\nHigher Education (CHEd) and the University govern the non-\nacademic reasons for the non-readmission of a student."
+        ]
+    },
+    {
+        "tag": "ucadmissionalienstudent",
+        "patterns": [
+            "How to enroll as an alien?",
+            "How to enroll as a naturalized filipino?",
+            "How to enroll as a student with foreign name?",
+            "How to apply for admission as an alien?",
+            "How to apply for admission as a naturalized filipino?",
+            "How to apply for admission as a student with foreign name?",
+            "What are the admission requirements as an alien?",
+            "What are the admission requirements as a naturalized filipino?",
+            "What are the admission requirements as a student with foreign name?",
+            "What is the admission process like for aliens?",
+            "What is the admission process like for naturalized filipinos?",
+            "What is the admission process like for students with foreign name?",
+            "Alien student admission",
+            "Naturalized student admission",
+            "Foreign name student admission"
+        ],
+        "responses": [
+            "4. ALIENS, NATURALIZED FILIPINOS, AND STUDENTS WITH FOREIGN NAMES\n4.1 Philippine-born alien students must submit a photocopy of their\nAlien Certificate of Registration (ACR) and Native-Born Certificate\nof Registration (NBCR), certified against the original by the CHEd\nRegional Office.\n4.2 Children of naturalized Filipino citizens must submit a copy of\nIdentification Certificate issued by the Commissioner of\nImmigration and certified against the original by the CHEd\nRegional Office.\n4.3 Filipino citizens whose family names are of foreign origin must\nsubmit their birth certificates issued by the Local Civil Registrar.\nForeign-born alien students must submit a photocopy of their\nACR, certified against the original by the CHEd Regional Office."
+        ]
+    },
+    {
+        "tag": "ucadmissionforeignstudent",
+        "patterns": [
+            "How to enroll as a foreigner?",
+            "How to apply for admission as a foreigner?",
+            "What are the admission requirements as a foreigner?",
+            "What is the admission process like for a foreigner?",
+            "Foreign student admission"
+        ],
+        "responses": [
+            "5. FOREIGN STUDENTS\n5.1 For overseas students, who are still abroad, they may apply for\nadmission in writing with the University Registrar and submit the\nfollowing admission requirements:\n5.1.1 Six (6) copies of the duly accomplished Personal History\nStatements (PHS) signed in English and in his/her\nnational alphabet. PHS form is available at the Philippine\nForeign Services Post (PFSP) in the applicant’s home\ncountry;\n5.1.2 Six (6) copies of the original Transcript of Scholastic\nRecords duly authenticated by the PFSP in the student’s\ncountry of origin or legal residence;\n5.1.3 Six (6) copies of the notarized Affidavit of Adequate\nFinancial Support (AAFS) including bank accounts or\nnotarized Notice of Grant for institutional scholars to\ncover expenses for the student’s accommodation and\nsubsistence as well as school dues or other incidental\nexpenses;\n5.1.4 Six (6) copies of the data page of the applicant’s passport\nshowing the date and place of birth, duly authenticated\nby the PFSP in the applicant’s country of origin or legal\nresidence; and\n5.1.5 Remittance of Acceptance Fee of US$ 120.00 to cover the\nissuance of Notice of Acceptance (NOA), handling and\nmailing of the above documents to the Philippine\nDepartment of Foreign Affairs (DFA) and mailing of a\ncopy of NOA to the applicant.\n5.1.6 The DFA needs the above-mentioned documents to\nprocess the issuance of a Student Visa.\n5.2 For foreign students, who are already in the Philippines under any\nvisa category, may apply in the Bureau of Immigration (BoI) for\nthe change/conversion of his/her admission status to that of a\nstudent under Section 9(f) of the Philippine Immigration Act of\n1940, as amended pursuant to Executive Order No. 285. Requirements:\n5.2.1 Written endorsement from the University Registrar;\n5.2.2 NOA;\n5.2.3 Six (6) copies of the notarized proof of AAFS to cover\nexpenses for the student’s accommodation andsubsistence as well as school dues and other incidental\nexpenses;\n5.2.4 Six (6) copies of the original Transcript of Scholastic\nRecords, duly authenticated by the PFSP in the student’s\ncountry of origin or legal residence;\n5.2.5 Six (6) copies of the Police Clearance Certificate issued by\nthe national police authorities in the student’s country of\norigin or legal residence, duly authenticated by the PFSP\nhaving consular jurisdiction over the place for a student\nwho resided in the Philippine for less than 59 days.\nHowever, for students who resided in the Philippines for\nmore than 59 days at the time he/she applies for said\nchange/conversion of his/her admission status to that of\na student, he/she shall also be required to submit the\nNational Bureau of Investigation (NBI) clearance;\n5.2.6 Six (6) copies of the Quarantine Medical Examination\nCertificate issued by the National Quarantine Office;\n5.2.7 Six (6) copies of student’s PHS, signed by the student\nwith a 2x2-inch recently taken photograph;\n5.2.8 Six (6) copies of the data page of the applicant’s passport\nand the stamp of the latest arrival; the passport itself\nshall be presented for verification; and\n5.2.9 Remittance of Acceptance Fee of US$ 120.00 to cover the\nissuance of NOA, handling, and mailing of the above\ndocuments to the BoI, Manila.\n5.3 For foreign students who wish to transfer from one Philippine\nhigher educational institution (HEI) to another, the requirements\nare:\n5.3.1 NOA from accepting school;\n5.3.2 Letter of No Objection issued by the BoI; and\n5.3.3 Certificate of Transfer Credentials and Certificate of Good\nMoral Character issued by the previous school.\n5.4 Scheduling of Processing of Student Visa:\n5.4.1 For first semester applicants: January 1 to April 15\n5.4.2 For second semester applicants: June 1 to September 15\n5.4.3 For summer classes applicants: December 1 to January 31\n5.5 In accordance with the regulations of CHEd and other government\nagencies supervising foreign students, no foreign student may be\nallowed to enroll unless he/she can submit a valid permit to study\nand a student’s visa to the Foreign Students Section of the\nUniversity Registrar."
+        ]
+    },
+    {
+        "tag": "ucadmissionspecialstudent",
+        "patterns": [
+            "How to enroll as a special student?",
+            "How to apply for admission as a special student?",
+            "What are the admission requirements as a special student?",
+            "What is the admission process like for a special student?",
+            "Special student admission"
+        ],
+        "responses": [
+            "6. SPECIAL STUDENTS. Special students are those who are not entitled to\nreceive official credit for work, which they desire to take because they\ndo not satisfy the requirements for admission to the courses or\nsubjects or for any other reason. Special students may be admitted at\nany time to the course they wish to attend provided that:\n6.1 They receive approval from the Dean and/or department\nChairperson for each of the course they intend to participate in;\n6.2 They sign an agreement that they waive the right to receive and\nto demand credit for the work done [Section VIII, par. 144,\nManual of Regulations for Private School (MORPS), 1970, 7th\nedition] and that they pay in full the fees at the time of\nenrollment; and\n6.3 Special students are not eligible for any honors or privileges."
+        ]
+    },
+    {
+        "tag": "ucadmissiongraduatestudent",
+        "patterns": [
+            "How to enroll as a graduate student?",
+            "How to apply for admission as a graduate student?",
+            "What are the admission requirements as a graduate student?",
+            "What is the admission process like for a graduate student?",
+            "Graduate student admission"
+        ]
+    },
+    {
+        "tag": "uc"
+    }
+    {
         "tag": "ucacademicprograms",
         "patterns": [
             "What are the available academic programs in uc main?",
@@ -338,6 +439,93 @@
         ],
         "responses": [
             "15.1 Doctor of Education major in:\n15.1.1 Educational Leadership and Management\n15.1.2 Institutional Planning\n15.2 Master of Arts in Nursing major in:\n15.2.1 Community Health Nursing\n15.2.2 Maternal and Child Nursing\n15.2.3 Medical-Surgical Nursing\n15.2.4 Nursing Administration\n15.2.5 Psychiatric Nursing\n15.3 Master of Business Administration\n15.3.1 Thesal\n15.3.2 Non-thesal\n15.3.2.1 Financial Management\n15.3.2.2 Hotel and Restaurant Management\n15.3.2.3 Human Resource Management and Development\n15.4 Master of Science in Criminal Justice\n15.5 Master of Science in Elementary Management\n15.6 Master in Science Teaching major in:\n15.6.1 Computer Studies\n15.6.2 Educational Technology\n15.6.3 English Language and Literature\n15.6.4 Filipino\n15.6.5 Makabayan\n15.6.6 Marine and Nautical Sciences\n15.6.7 Mathematics\n15.6.8 Science"
+        ]
+    },
+    {
+        "tag": "ucsocialmedias",
+        "patterns": [
+            "Does the school have social media accounts?",
+            "What are the school's social media accounts?",
+            "Social media accounts"
+        ],
+        "responses": [
+            "Here are some links to access Univeristy of Cebu's social media accounts:\n\nUC: https://www.facebook.com/universityofcebumaincampus\nUC-MAIN: https://www.facebook.com/UniversityOfCebuWebmasters\nUC-BANILAD: https://www.facebook.com/UCBanilad.Official\nUC-LM: https://www.facebook.com/UCLMOfficial\nUC-METC: https://www.facebook.com/UniversityOfCebuMetcCampus\nUC-SM: https://www.facebook.com/UCschoolofmedicine"
+        ]
+    },
+    {
+        "tag": "uccontactaddress",
+        "patterns": [
+            "What are the contact addresses for uc?",
+            "Are there any contact addresses from uc?",
+            "Does uc have contact addresses?",
+            "Contact addresses"
+        ],
+        "responses": [
+            "Here's a list of contact address for uc:\n\nUC-MAIN (Main Office): (032)255-7777 | info@uc.edu.ph\nUC-MAIN (Registrar): (032) 2539434 | 255-7777 | 4167 | main.collegeregistrar@uc.edu.ph\nUC-BANILAD: (63-32)233-8888\nUC-METC: (63-32)262-8888\nUC-LM: (63-32)345-6666\nUC-SM: (032) 232 1525"
+        ]
+    },
+    {
+        "tag": "ucassessmentslip",
+        "patterns": [
+            "How can I view my assessment slip?",
+            "Assessment slip"
+        ],
+        "responses": [
+            "Here's how you can access your online assessment slip: https://enrollment.uc.edu.ph/college/Payment/PayFeesIndex"
+        ]
+    },
+    {
+        "tag": "ucviewgrades",
+        "patterns": [
+            "How can I view my grades?",
+            "View grades"
+        ],
+        "responses": [
+            "Here's how you can access your grades by school term: https://enrollment.uc.edu.ph/college/Enrollment/MyGrades"
+        ]
+    },
+    {
+        "tag": "ucidregistration",
+        "patterns": [
+            "Where can I register my school ID?",
+            "School ID registration"
+        ],
+        "responses": [
+            "Here's where you can register your school ID: https://enrollment.uc.edu.ph/college/Account/Register"
+        ]
+    },
+    {
+        "tag": "ucpayments",
+        "patterns": [
+            "How can I pay my tuition?",
+            "What are the modes of payment for my tuition?",
+            "Are there any payment guides available?",
+            "Payment guides"
+        ],
+        "responses": [
+            "Here are some ways you can pay your tuition by accessing these links:\n\nhttps://enrollment.uc.edu.ph/college/images/payments.jpg\nhttps://enrollment.uc.edu.ph/college/images/epayments.jpg\nhttps://enrollment.uc.edu.ph/college/images/bdo.jpg"
+        ]
+    },
+    {
+        "tag": "ucpaymentemails",
+        "patterns": [
+            "What are the payment emails available?",
+            "Are there any payment emails?",
+            "Payment emails"
+        ],
+        "responses": [
+            "Here are some payment emails you can refer to:\n\nUC-MAIN: payments2.ucmaincashier@gmail.com\nUC-LM: uclmjhs.payments@gmail.com | uclmshs.payments@gmail.com | uclmcollege.payments@gmail.com\nUC-METC: payments.ucmetccashier@gmail.com | ucmetc_cashier@yahoo.com"
+        ]
+    },
+    {
+        "tag": "uccourseprospectus",
+        "patterns": [
+            "Where can I view a prospectus?",
+            "How do I access my course's prospectus?",
+            "Prospectuses"
+        ],
+        "responses": [
+            "Here's one way of accessing a course's prospectus: https://enrollment.uc.edu.ph/college/Enrollment/Curricula"
         ]
     }
   ]

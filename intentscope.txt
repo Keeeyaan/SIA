@@ -1,24 +1,24 @@
 //subject to change
 
 ** CCS DEPARTMENT **
-- Mission
-- Vission
-- Goal
-- Admission Requirements
+- ✓ Mission
+- ✓ Vission
+- ✓ Goal
+- ✓ Admission Requirements
 - Enrollment Schedule
 - Mentors
-- Social Medias 
-- Contact Address
-- Programs
-- Location
+- ✓ Social Medias 
+- ✓ Contact Address
+- ✓ Programs
+- ✓ Location
 
 ** GENERAL **
-- Assesment Slip
-- View Grades
-- ID Registration Location
+- ✓ Assesment Slip
+- ✓ View Grades
+- ✓ ID Registration Location
 - Online Payments
-- Payments
-- Payment Email
+- ✓ Payments
+- ✓ Payment Email
 - Faculties location
-- View Courses Prospectus
+- ✓ View Courses Prospectus
 - Facilities

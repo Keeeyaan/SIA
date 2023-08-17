@@ -317,6 +317,8 @@
       "tag": "ucbscs",
       "patterns": [
         "What can you major in college of information and computer studies?",
+        "What can you major in college of computer studies?",
+        "College of computer studies majors",
         "College of information and computer studies",
         "Bachelor of Science in Information technology majors",
         "Bachelor of Science in IT majors",
@@ -445,7 +447,9 @@
         "Where does the CCS office located at?",
         "CCS office location",
         "IT office location",
-        "Computer Science office location"
+        "College of Computer Studies office location",
+        "Computer Science office location",
+        "Information Technology office location"
       ],
       "responses": [
         "The CCS office is located at the fifth floor main building near room 530A."

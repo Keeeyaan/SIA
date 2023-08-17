@@ -75,7 +75,7 @@
         "how about the vision of uc?"
       ],
       "responses": [
-        "Democratize quality education.\nBe the visionary and industry leader.\nGive hope and transform lives."
+        "University of Cebu vision is to:\n- Democratize quality education.\n- Be the visionary and industry leader.\n- Give hope and transform lives."
       ]
     },
     {
@@ -101,7 +101,7 @@
         "how about the goals of uc?"
       ],
       "responses": [
-        "1. To offer programs that are relevant, holistic and compliant with institutional, regulatory, industry and accreditation standards that will develop life-long learners;\n2. To develop social awareness, responsibility and accountability among stakeholders anchored on instruction, research, and production;\n3. To complement the academic programs with holistic and integrated student personnel services;\n4. To develop a pool of qualified, professional and motivated faculty in the areas of instruction, research and community extension;\n5. To ensure effective administration and supervision of instructional and learning resources in support of the academic programs;\n6. To provide an environment that is safe, functional, and conducive to teaching, learning and working; and\n7. To ensure collaborative, sustainable, efficient, and effective operations in meeting the needs of the institution and its stakeholders."
+        "University of Cebu goals are:\n1. To offer programs that are relevant, holistic and compliant with institutional, regulatory, industry and accreditation standards that will develop life-long learners;\n2. To develop social awareness, responsibility and accountability among stakeholders anchored on instruction, research, and production;\n3. To complement the academic programs with holistic and integrated student personnel services;\n4. To develop a pool of qualified, professional and motivated faculty in the areas of instruction, research and community extension;\n5. To ensure effective administration and supervision of instructional and learning resources in support of the academic programs;\n6. To provide an environment that is safe, functional, and conducive to teaching, learning and working; and\n7. To ensure collaborative, sustainable, efficient, and effective operations in meeting the needs of the institution and its stakeholders."
       ]
     },
     {
@@ -439,6 +439,33 @@
       ]
     },
     {
+      "tag": "ccsofficelocation",
+      "patterns": [
+        "Where can i find CCS office?",
+        "Where does the CCS office located at?",
+        "CCS office location",
+        "IT office location",
+        "Computer Science office location"
+      ],
+      "responses": [
+        "The CCS office is located at the fifth floor main building near room 530A."
+      ]
+    },
+    {
+      "tag": "abcasofficelocation",
+      "patterns": [
+        "Where can i find CAS office?",
+        "Where does the CAS office located at?",
+        "CAS office location",
+        "Where can i find AB office?",
+        "Where does the AB office located at?",
+        "AB office location"
+      ],
+      "responses": [
+        "The AB/CAS office is located at the second floor main building."
+      ]
+    },
+    {
       "tag": "ucsocialmedias",
       "patterns": [
         "Does the school have social media accounts?",
@@ -446,7 +473,7 @@
         "Social media accounts"
       ],
       "responses": [
-        "Here are some links to access Univeristy of Cebu's social media accounts:\n\nUC: https://www.facebook.com/universityofcebumaincampus\nUC-MAIN: https://www.facebook.com/UniversityOfCebuWebmasters\nUC-BANILAD: https://www.facebook.com/UCBanilad.Official\nUC-LM: https://www.facebook.com/UCLMOfficial\nUC-METC: https://www.facebook.com/UniversityOfCebuMetcCampus\nUC-SM: https://www.facebook.com/UCschoolofmedicine"
+        "Here are some links to access Univeristy of Cebu's social media accounts:\n\nUC: https://www.facebook.com/universityofcebumaincampus\nUC-MAIN: https://www.facebook.com/UniversityOfCebuWebmasters\nUC-MAIN UCCP: https://www.facebook.com/uccpleaders\nUC-MAIN CCS: https://www.facebook.com/ucmainccs"
       ]
     },
     {
@@ -458,7 +485,7 @@
         "Contact addresses"
       ],
       "responses": [
-        "Here's a list of contact address for uc:\n\nUC-MAIN (Main Office): (032)255-7777 | info@uc.edu.ph\nUC-MAIN (Registrar): (032) 2539434 | 255-7777 | 4167 | main.collegeregistrar@uc.edu.ph\nUC-BANILAD: (63-32)233-8888\nUC-METC: (63-32)262-8888\nUC-LM: (63-32)345-6666\nUC-SM: (032) 232 1525"
+        "Here's a list of contact address for uc:\n\nUC-MAIN (Main Office): (032)255-7777 | info@uc.edu.ph\nUC-MAIN (Registrar): (032) 2539434 | 255-7777 | 4167 | main.collegeregistrar@uc.edu.ph"
       ]
     },
     {
@@ -505,7 +532,7 @@
         "Payment emails"
       ],
       "responses": [
-        "Here are some payment emails you can refer to:\n\nUC-MAIN: payments2.ucmaincashier@gmail.com\nUC-LM: uclmjhs.payments@gmail.com | uclmshs.payments@gmail.com | uclmcollege.payments@gmail.com\nUC-METC: payments.ucmetccashier@gmail.com | ucmetc_cashier@yahoo.com"
+        "Here are some payment emails you can refer to:\n\nUC-MAIN: payments2.ucmaincashier@gmail.com"
       ]
     },
     {

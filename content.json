@@ -118,6 +118,58 @@
       ]
     },
     {
+      "tag": "ccsmission",
+      "patterns": [
+        "college of computer studies mission",
+        "ccs mission",
+        "computer studies mission",
+        "what is the mission of uc ccs department?",
+        "how about the mission of college of computer studies?"
+      ],
+      "responses": [
+        "We envision being the hub of quality, globally-competitive and socially-responsive information technology education"
+      ]
+    },
+    {
+      "tag": "ccsvision",
+      "patterns": [
+        "college of computer studies vision",
+        "ccs vision",
+        "computer studies vision",
+        "what is the vision of ccs department?",
+        "how about the vision of college of computer studies?"
+      ],
+      "responses": [
+        "We commit to continuously:\n\nOffer relevant programs that mold well-rounded computing professionals;\nEngage in accreditation and quality standards; and\nFacilitate in building an IT-enabled nation."
+      ]
+    },
+    {
+      "tag": "ccsgoal",
+      "patterns": [
+        "college of computer studies goals",
+        "ccs goals",
+        "computer studies goals",
+        "what are the goals of ccs department?",
+        "how about the goals of college of computer studies?"
+      ],
+      "responses": [
+        "We aim to cultivate a teaching-learning environment that:\n\nPromotes scholarly endeavors for the promotion of moral, social, cultural, and environmental interests;\nMeets the demands of the industry in terms of technical, personal and interpersonal skills;\nConducts intellectual, technological and significant researches in computing; and\nOptimizes the use of appropriate and advanced resources and services."
+      ]
+    },
+    {
+      "tag": "ccscorevalue",
+      "patterns": [
+        "college of computer studies core values",
+        "ccs core values",
+        "computer studies core values",
+        "what are the core values of ccs department?",
+        "how about the core values of college of computer studies?"
+      ],
+      "responses": [
+        "These are the core values that CCS believes in:\n\nInitiative (inceptum)\nwit, practicality, ingenuity\nInnovation (innovatio)\ntechnology, creativity, novelty\nService (muneris)\nindustry, loyalty, courtesy"
+      ]
+    },
+    {
       "tag": "ucowner",
       "patterns": [
         "who is the owner of UC?",

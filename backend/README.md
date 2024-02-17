@@ -27,6 +27,6 @@ pip install -r requirements.txt
 
 4. Run the server using Uvicorn with the following command:
 ```
-uvicorn main:app --reload
+python -m main
 ```
 The server should now be accessible at http://127.0.0.1:8000.

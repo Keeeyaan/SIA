@@ -1,15 +1,8 @@
-from typing import Union
+import os
+import uvicorn
+from dotenv import load_dotenv
 
-from fastapi import FastAPI
-
-app = FastAPI()
-
-
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
-
-
-@app.get("/items/{item_id}")
-async def read_item(item_id: int, q: Union[str, None] = None):
-    return {"item_id": item_id, "q": q}
+load_dotenv()
+RELOAD = bool(os.getenv('RELOAD'))
+if __name__ == "__main__":
+    uvicorn.run("src.app:app", reload=RELOAD)

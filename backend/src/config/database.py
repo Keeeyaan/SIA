@@ -5,9 +5,11 @@ from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
 
 from src.models.admin import Admin
+from src.models.inquiry import Inquiry
+from src.models.knowledge_base import KnowledgeBase
 
 load_dotenv()
-MONGODB_URI = os.getenv('MONGODB_URI_ATLAS')
+MONGODB_URI = os.getenv('MONGODB_URI_LOCAL')
 MONGODB_NAME = os.getenv('MONGODB_NAME')
 
 client = AsyncIOMotorClient(MONGODB_URI)
@@ -23,7 +25,9 @@ async def init_db():
         await init_beanie(
             database=db,
             document_models=[
-                Admin
+                Admin,
+                Inquiry,
+                KnowledgeBase
             ],
         )
     except Exception as e:

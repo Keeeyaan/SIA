@@ -7,6 +7,8 @@ from src.config.database import init_db
 
 # Routes Import
 from src.routes.admin_router import admin
+from src.routes.inquiry_router import inquiry
+from src.routes.knowledge_base_router import kbs
 
 app = FastAPI(
     title="UCnian Guide Bot APIs",
@@ -29,3 +31,5 @@ async def start_db():
 
 
 app.include_router(admin, tags=["Admins"], prefix="/v1/admins")
+app.include_router(inquiry, tags=["Inquiries"], prefix="/v1/inquiries")
+app.include_router(kbs, tags=["KnowledgeBase"], prefix="/v1/kbs")

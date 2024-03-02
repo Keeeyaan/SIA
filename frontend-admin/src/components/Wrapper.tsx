@@ -13,7 +13,7 @@ const Wrapper = ({
   children: ReactNode;
 }) => {
   useEffect(() => {
-    document.title = `GuideBot | ${title || ""}`;
+    document.title = `Guide Bot Admin | ${title || ""}`;
     window.scroll(0, 0);
   }, [title]);
 

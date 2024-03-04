@@ -8,6 +8,7 @@ from src.config.database import init_db
 # Routes Import
 from src.routes.admin_router import admin
 from src.routes.inquiry_router import inquiry
+from src.routes.intent_router import intent
 from src.routes.knowledge_base_router import kbs
 
 app = FastAPI(
@@ -25,11 +26,12 @@ app.add_middleware(
 )
 
 
+app.include_router(admin, tags=["Admins"], prefix="/api/v1/admins")
+app.include_router(inquiry, tags=["Inquiries"], prefix="/api/v1/inquiries")
+app.include_router(intent, tags=["Intents"], prefix="/api/v1/intents")
+app.include_router(kbs, tags=["KnowledgeBase"], prefix="/api/v1/kbs")
+
+
 @app.on_event("startup")
 async def start_db():
     await init_db()
-
-
-app.include_router(admin, tags=["Admins"], prefix="/v1/admins")
-app.include_router(inquiry, tags=["Inquiries"], prefix="/v1/inquiries")
-app.include_router(kbs, tags=["KnowledgeBase"], prefix="/v1/kbs")

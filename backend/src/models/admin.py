@@ -1,12 +1,10 @@
 from datetime import datetime
 from typing import Optional
 from beanie import Document, Indexed
-from pydantic import BaseModel, validator
-
+from pydantic import EmailStr
 
 class Admin(Document):
-    username: str
-    email: Indexed(str, unique=True)
+    email: EmailStr = Indexed(unique=True)
     password: str
     first_name: str
     last_name: str
@@ -19,9 +17,8 @@ class Admin(Document):
     class Config:
         json_schema_extra = {
             "example": {
-                "username": "testuser",
-                "email": "test@test.com",
-                "password": "test123",
+                "email": "testuser@test.com",
+                "password": "Test1234",
                 "first_name": "test",
                 "last_name": "user",
             }

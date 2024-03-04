@@ -8,9 +8,10 @@ from src.models.admin import Admin
 from src.models.inquiry import Inquiry
 from src.models.knowledge_base import KnowledgeBase
 from src.models.intent import Intent
+from src.models.conversation import Conversation
 
 load_dotenv()
-MONGODB_URI = os.getenv('MONGODB_URI_ATLAS')
+MONGODB_URI = os.getenv('MONGODB_LOCAL')
 MONGODB_NAME = os.getenv('MONGODB_NAME')
 
 client = AsyncIOMotorClient(MONGODB_URI)
@@ -27,8 +28,9 @@ async def init_db():
             document_models=[
                 Admin,
                 Inquiry,
-                Intent,
-                KnowledgeBase
+                KnowledgeBase,
+                Conversation,
+                Intent
             ],
         )
     except Exception as e:

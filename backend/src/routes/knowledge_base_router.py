@@ -1,33 +1,47 @@
-from fastapi import APIRouter, status
+from fastapi import APIRouter, status, HTTPException
 from bson import ObjectId
+from typing import List
 
 from src.models.knowledge_base import KnowledgeBase
 
 kbs = APIRouter()
 
+def not_found(information: str, obj: KnowledgeBase):
+  if obj is None:
+    raise HTTPException(
+      status_code=status.HTTP_404_NOT_FOUND,
+      detail=f"{information} not found"
+    )
+
 @kbs.get('/', status_code=status.HTTP_200_OK)
-async def get_knowledge_base():
-    knowledge_base = await KnowledgeBase.find_all().to_list()
-    return knowledge_base
+async def get_knowledge_bases() -> List[KnowledgeBase]:
+  knowledge_base = await KnowledgeBase.find_all().to_list()
+  return knowledge_base
 
 @kbs.post('/', status_code=status.HTTP_201_CREATED, response_model=KnowledgeBase)
-async def post_knowledge_base(data: KnowledgeBase):
-    await data.create()
-    return data
+async def post_knowledge_base(data: KnowledgeBase) -> KnowledgeBase:
+  await data.insert()
+  return data
 
-@kbs.put('/{id}', status_code=status.HTTP_200_OK)
-async def update_knowledge_base(id: str, data: KnowledgeBase):
-    test = await KnowledgeBase.find_one(KnowledgeBase.id == ObjectId(id))
+@kbs.patch('/{id}', status_code=status.HTTP_200_OK)
+async def update_knowledge_base(id: str, data: dict) -> object:
+  knowledge_base = await KnowledgeBase.find_one(KnowledgeBase.id == ObjectId(id))
 
-    test.intents = data.intents
-    test.version = data.version
-    test.updatedAt = data.updatedAt
+  not_found("Knowledge Base", knowledge_base)
 
-    await test.save()
+  for field, value in data.items():
+    setattr(knowledge_base,field,value)
 
-    return {"message": "Knowledge Base updated successfully"}
+  await knowledge_base.save()
+
+  return {"detail": "Knowledge Base updated successfully"}
 
 @kbs.delete('/{id}', status_code=status.HTTP_200_OK)
-async def delete_knowledge_base(id: str):
-    await KnowledgeBase.find_one(KnowledgeBase.id == ObjectId(id)).delete()
-    return {"message": "Knowledge Base deleted successfully"}
+async def delete_knowledge_base(id: str) -> object:
+  knowledge_base = await KnowledgeBase.find_one(KnowledgeBase.id == ObjectId(id))
+
+  not_found("Knowledge Base", knowledge_base)
+
+  await knowledge_base.delete()
+
+  return {"detail": "Knowledge Base deleted successfully"}

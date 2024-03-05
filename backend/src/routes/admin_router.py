@@ -1,10 +1,12 @@
-from fastapi import APIRouter, status, HTTPException
+from fastapi import APIRouter, status, HTTPException, Depends
+from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 from bson import ObjectId
 from passlib.context import CryptContext
 from typing import List
 from pymongo.errors import DuplicateKeyError
 
 from src.models.admin import Admin
+from src.utils import get_current_user
 
 admin = APIRouter()
 
@@ -32,12 +34,12 @@ def not_found(information: str, obj: Admin):
     )
 
 @admin.get('/', status_code=status.HTTP_200_OK)
-async def get_all_admins() -> List[Admin]:
+async def get_all_admins(current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> List[Admin]:
   admins = await Admin.find_all().to_list()
   return admins
 
 @admin.post('/', status_code=status.HTTP_201_CREATED, response_model=Admin)
-async def register_admin(data: Admin):
+async def register_admin(data: Admin, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
   password_validator(data.password)
 
   data.password = hash_pw(data.password)
@@ -53,7 +55,7 @@ async def register_admin(data: Admin):
   return data
 
 @admin.patch('/{id}', status_code=status.HTTP_200_OK)
-async def update_admin_by_id(id: str, data: dict) -> object:
+async def update_admin_by_id(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
   admin = await Admin.find_one(Admin.id == ObjectId(id))
 
   not_found("Admin user", admin)
@@ -69,7 +71,7 @@ async def update_admin_by_id(id: str, data: dict) -> object:
   return {"detail": "Admin user updated successfully", "updated_admin": admin}
 
 @admin.delete('/{id}', status_code=status.HTTP_200_OK)
-async def delete_admin_by_id(id: str) -> object:
+async def delete_admin_by_id(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
   admin = await Admin.find_one(Admin.id == ObjectId(id))
   
   not_found("Admin user", admin)

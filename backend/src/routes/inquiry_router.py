@@ -1,8 +1,10 @@
-from fastapi import APIRouter, status, HTTPException
+from fastapi import APIRouter, status, HTTPException, Depends
+from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from typing import List
 
 from src.models.inquiry import Inquiry
+from src.utils import get_current_user
 
 inquiry = APIRouter()
 
@@ -14,7 +16,7 @@ def not_found(information: str, obj: Inquiry):
     )
 
 @inquiry.get('/', status_code=status.HTTP_200_OK)
-async def get_all_inquiries() -> List[Inquiry]:
+async def get_all_inquiries(current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> List[Inquiry]:
   inquiries = await Inquiry.find_all().to_list()
   return inquiries
 
@@ -24,7 +26,7 @@ async def post_inquiry(item: Inquiry) -> Inquiry:
   return item
 
 @inquiry.patch("/{id}", status_code=status.HTTP_200_OK)
-async def update_inquiry(id: str, data: dict) -> object:
+async def update_inquiry(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
   inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
 
   not_found("Inquiry", inquiry)
@@ -37,7 +39,7 @@ async def update_inquiry(id: str, data: dict) -> object:
   return {"detail": "Inquiry updated successfully", "updated_inquiry": inquiry}
 
 @inquiry.delete("/{id}", status_code=status.HTTP_200_OK)
-async def delete_inquiry(id: str) -> object:
+async def delete_inquiry(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
   inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
 
   not_found("Inquiry", inquiry)

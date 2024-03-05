@@ -1,32 +1,35 @@
-from fastapi import APIRouter, status, HTTPException
-from src.models.intent import Intent
+from fastapi import APIRouter, status, HTTPException, Depends
+from fastapi.security import HTTPAuthorizationCredentials
 from pydantic import BaseModel
+
+from src.models.intent import Intent
+from src.utils import get_current_user
 
 intent = APIRouter()
 
 class Pattern(BaseModel):
-    pattern: str
+  pattern: str
 
 class Response(BaseModel):
-    response: str
+  response: str
 
 @intent.get('/', status_code=status.HTTP_200_OK)
-async def get_all_intents():
-    intent = await Intent.find_all().to_list()
-    return intent
+async def get_all_intents(current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
+  intent = await Intent.find_all().to_list()
+  return intent
 
 @intent.get('/{tag}/', status_code=status.HTTP_200_OK)
-async def get_all_patterns_and_responses_by_tag(tag: str):
-    intent = await Intent.find_one(Intent.tag == tag)
-    return {"patterns": intent.patterns, "responses": intent.responses}
+async def get_all_patterns_and_responses_by_tag(tag: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
+  intent = await Intent.find_one(Intent.tag == tag)
+  return {"patterns": intent.patterns, "responses": intent.responses}
 
 @intent.post('/', status_code=status.HTTP_201_CREATED)
-async def create_intent(intent: Intent):
-    await intent.create()
-    return {"detail": "Intent created successfully!"}
+async def create_intent(intent: Intent, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
+  await intent.create()
+  return {"detail": "Intent created successfully!"}
 
 @intent.post("/pattern/{tag}/", status_code=status.HTTP_201_CREATED)
-async def add_tag_pattern(tag: str, data: Pattern):
+async def add_tag_pattern(tag: str, data: Pattern, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
   try:
     intent = await Intent.find_one(Intent.tag == tag)
 
@@ -45,7 +48,7 @@ async def add_tag_pattern(tag: str, data: Pattern):
       status.HTTP_500_INTERNAL_SERVER_ERROR, detail="Internal Server Error")
 
 @intent.post('/response/{tag}/', status_code=status.HTTP_201_CREATED)
-async def add_tag_response(tag: str, data: Response):
+async def add_tag_response(tag: str, data: Response, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
   try:
     intent = await Intent.find_one(Intent.tag == tag)
 

@@ -1,7 +1,4 @@
-import axios from "axios";
-
-axios.defaults.baseURL = import.meta.env.VITE_API_URL;
-axios.defaults.withCredentials = true;
+import { axiosPrivate } from "@/components/AxiosInterceptor";
 
 interface IGenericResponse {
   detail: string;
@@ -21,19 +18,20 @@ interface IGetPatternsAndResponsesByTagResponse {
 }
 
 export const getIntents = async () => {
-  const response = await axios.get<IGetIntentsResponse[]>(`intents/`);
+  const response = await axiosPrivate.get<IGetIntentsResponse[]>(`intents/`);
   return response.data;
 };
 
 export const getPatternsAndResponsesByTag = async (tag: string) => {
-  const response = await axios.get<IGetPatternsAndResponsesByTagResponse>(
-    `intents/${tag}/`
-  );
+  const response =
+    await axiosPrivate.get<IGetPatternsAndResponsesByTagResponse>(
+      `intents/${tag}/`
+    );
   return response.data;
 };
 
 export const createIntent = async (data: { tag: string }) => {
-  const response = await axios.post<IGenericResponse>(`intents`, data);
+  const response = await axiosPrivate.post<IGenericResponse>(`intents`, data);
   return response.data;
 };
 
@@ -44,7 +42,7 @@ export const addIntentPattern = async ({
   tag: string;
   data: { pattern: string };
 }) => {
-  const response = await axios.post<IGenericResponse>(
+  const response = await axiosPrivate.post<IGenericResponse>(
     `intents/pattern/${tag}`,
     data
   );
@@ -58,7 +56,7 @@ export const addIntentResponse = async ({
   tag: string;
   data: { response: string };
 }) => {
-  const response = await axios.post<IGenericResponse>(
+  const response = await axiosPrivate.post<IGenericResponse>(
     `intents/response/${tag}`,
     data
   );

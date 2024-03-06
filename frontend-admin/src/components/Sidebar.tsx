@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Separator } from "./ui/separator";
 import { Link } from "react-router-dom";
 import { buttonVariants } from "./ui/button";
+import { useStore } from "@/store";
 
 const SmallSB = () => {
   return (
@@ -45,10 +46,18 @@ const BigSB = () => {
           </div>
           <div>
             <Link
-              to="/"
+              to="/inquiries"
               className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
             >
-              Knowledge Base
+              Inquiries
+            </Link>
+          </div>
+          <div>
+            <Link
+              to="/feedback"
+              className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
+            >
+              Feedback
             </Link>
           </div>
         </div>
@@ -58,8 +67,7 @@ const BigSB = () => {
 };
 
 const Sidebar = () => {
-  // const { sidebarIsClosed } = useStore();
-  const sidebarIsClosed = false;
+  const { sidebarIsClosed } = useStore();
 
   return (
     <Card className="rounded-none">

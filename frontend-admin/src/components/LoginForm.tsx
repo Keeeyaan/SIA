@@ -1,8 +1,9 @@
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
-// import { Loader2 } from "lucide-react";
+import { Loader2 } from "lucide-react";
 
+import { useLoginAdmin } from "@/hooks/useLoginAdmin";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -24,6 +25,8 @@ const LoginValidationSchema = z.object({
 });
 
 const LoginForm = () => {
+  const { mutate: login, isPending } = useLoginAdmin();
+
   const form = useForm<z.infer<typeof LoginValidationSchema>>({
     resolver: zodResolver(LoginValidationSchema),
     defaultValues: {
@@ -33,8 +36,7 @@ const LoginForm = () => {
   });
 
   function onSubmit(values: z.infer<typeof LoginValidationSchema>) {
-    // login(values);
-    console.log(values);
+    login(values);
   }
 
   return (
@@ -67,8 +69,7 @@ const LoginForm = () => {
           )}
         />
         <Button className="w-full" type="submit">
-          {/* {isPending ? <Loader2 className=" animate-spin" /> : "Login"} */}
-          Login
+          {isPending ? <Loader2 className=" animate-spin" /> : "Login"}
         </Button>
       </form>
     </Form>

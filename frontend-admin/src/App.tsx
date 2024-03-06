@@ -1,6 +1,15 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
-import { Error, Dashboard, Layout, Login } from "./pages";
+import {
+  Error,
+  ProtectedRoute,
+  Dashboard,
+  Layout,
+  Login,
+  DashboardLayout,
+  Inquiries,
+  Feedback,
+} from "./pages";
 
 const router = createBrowserRouter([
   {
@@ -9,8 +18,25 @@ const router = createBrowserRouter([
     errorElement: <Error />,
     children: [
       {
-        index: true,
-        element: <Dashboard />,
+        element: (
+          <ProtectedRoute>
+            <DashboardLayout />
+          </ProtectedRoute>
+        ),
+        children: [
+          {
+            index: true,
+            element: <Dashboard />,
+          },
+          {
+            path: "/inquiries",
+            element: <Inquiries />,
+          },
+          {
+            path: "/feedback",
+            element: <Feedback />,
+          },
+        ],
       },
       {
         path: "/login",

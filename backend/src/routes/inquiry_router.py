@@ -4,46 +4,51 @@ from bson import ObjectId
 from typing import List
 
 from src.models.inquiry import Inquiry
-from src.utils import get_current_user
+from src.utils.user import get_current_user
 
 inquiry = APIRouter()
 
+
 def not_found(information: str, obj: Inquiry):
-  if obj is None:
-    raise HTTPException(
-      status_code=status.HTTP_404_NOT_FOUND,
-      detail=f"{information} not found"
-    )
+    if obj is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"{information} not found"
+        )
+
 
 @inquiry.get('/', status_code=status.HTTP_200_OK)
 async def get_all_inquiries(current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> List[Inquiry]:
-  inquiries = await Inquiry.find_all().to_list()
-  return inquiries
+    inquiries = await Inquiry.find_all().to_list()
+    return inquiries
+
 
 @inquiry.post('/', status_code=status.HTTP_201_CREATED, response_model=Inquiry)
 async def post_inquiry(item: Inquiry) -> Inquiry:
-  await item.insert()
-  return item
+    await item.insert()
+    return item
+
 
 @inquiry.patch("/{id}", status_code=status.HTTP_200_OK)
 async def update_inquiry(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
-  inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
+    inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
 
-  not_found("Inquiry", inquiry)
+    not_found("Inquiry", inquiry)
 
-  for field, value in data.items():
-    setattr(inquiry,field,value)
+    for field, value in data.items():
+        setattr(inquiry, field, value)
 
-  await inquiry.save()
+    await inquiry.save()
 
-  return {"detail": "Inquiry updated successfully", "updated_inquiry": inquiry}
+    return {"detail": "Inquiry updated successfully", "updated_inquiry": inquiry}
+
 
 @inquiry.delete("/{id}", status_code=status.HTTP_200_OK)
 async def delete_inquiry(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
-  inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
+    inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
 
-  not_found("Inquiry", inquiry)
+    not_found("Inquiry", inquiry)
 
-  await inquiry.delete()
-  
-  return {"detail": "Inquiry deleted successfully", "deleted_inquiry": inquiry}
+    await inquiry.delete()
+
+    return {"detail": "Inquiry deleted successfully", "deleted_inquiry": inquiry}

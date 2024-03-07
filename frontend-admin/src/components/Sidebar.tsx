@@ -74,7 +74,7 @@ const Sidebar = () => {
       <div
         className={`${
           sidebarIsClosed ? "w-[80px]" : "w-[280px]"
-        } sticky transition-all ease-in-out duration-300`}
+        } sticky transition-all ease-in-out duration-300 top-0`}
       >
         {sidebarIsClosed ? <SmallSB /> : <BigSB />}
       </div>

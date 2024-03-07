@@ -1,7 +1,9 @@
 from typing import Union
+from os import getenv
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from dotenv import load_dotenv
 
 from src.config.database import init_db
 
@@ -13,6 +15,9 @@ from src.routes.knowledge_base_router import kbs
 from src.routes.conversation_router import conversation
 from src.routes.authentication_router import auth
 
+load_dotenv()
+origins = getenv('ORIGINS').split(' ')
+
 app = FastAPI(
     title="UCnian Guide Bot APIs",
     description="These APIs encompass the entire UCnian Guide Bot platform, serving both the admin portal and user portal.",
@@ -21,7 +26,7 @@ app = FastAPI(
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -32,7 +37,9 @@ app.include_router(admin, tags=["Admins"], prefix="/api/v1/admins")
 app.include_router(inquiry, tags=["Inquiries"], prefix="/api/v1/inquiries")
 app.include_router(intent, tags=["Intents"], prefix="/api/v1/intents")
 app.include_router(kbs, tags=["KnowledgeBase"], prefix="/api/v1/kbs")
-app.include_router(conversation, tags=["Conversations"], prefix="/api/v1/conversation")
+app.include_router(conversation, tags=[
+                   "Conversations"], prefix="/api/v1/conversation")
+
 
 @app.on_event("startup")
 async def start_db():

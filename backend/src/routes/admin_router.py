@@ -6,7 +6,7 @@ from typing import List
 from pymongo.errors import DuplicateKeyError
 
 from src.models.admin import Admin
-from src.utils import get_current_user
+from src.utils.user import get_current_user
 
 admin = APIRouter()
 

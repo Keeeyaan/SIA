@@ -8,7 +8,7 @@ from os import getenv
 from pydantic import BaseModel, EmailStr
 
 from src.models.admin import Admin
-from src.utils import get_current_user
+from src.utils.user import get_current_user
 
 auth = APIRouter()
 

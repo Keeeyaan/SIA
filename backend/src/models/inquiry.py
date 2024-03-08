@@ -2,15 +2,18 @@ from beanie import Document
 from pydantic import BaseModel
 from datetime import datetime
 
+
 class Token(BaseModel):
     token: str
     lastLogged: datetime
 
+
 class Inquiry(Document):
     token: Token
     inquiry: str
-    version: str
-    tag: str
+    version: Optional[str]
+    tag: Optional[str]
+    created_at: Optional[datetime] = datetime.now()
 
     class Settings:
         name = "inquiries"

@@ -1,6 +1,5 @@
 import { Outlet } from "react-router-dom";
 
-import Bottombar from "@/components/Bottombar";
 import Sidebar from "@/components/Sidebar";
 
 const Layout = () => {
@@ -9,7 +8,6 @@ const Layout = () => {
       <Sidebar />
       <main className="w-full flex flex-col justify-between space-y-4">
         <Outlet />
-        <Bottombar />
       </main>
     </main>
   );

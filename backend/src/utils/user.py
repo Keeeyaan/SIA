@@ -40,4 +40,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
             detail="Admin user not found"
         )
 
-    return user
+    return {
+        "user": user,
+        "token": token
+    }

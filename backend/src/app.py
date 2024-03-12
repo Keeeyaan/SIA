@@ -15,6 +15,7 @@ from src.routes.knowledge_base_router import kbs
 from src.routes.conversation_router import conversation
 from src.routes.authentication_router import auth
 from src.routes.feedback_router import feedback
+from src.routes.model_router import model
 
 load_dotenv()
 origins = getenv('ORIGINS').split(' ')
@@ -41,6 +42,7 @@ app.include_router(intent, tags=["Intents"], prefix="/api/v1/intents")
 app.include_router(conversation, tags=[
                    "Conversations"], prefix="/api/v1/conversation")
 app.include_router(feedback, tags=["Feedbacks"], prefix="/api/v1/feedbacks")
+app.include_router(model, tags=["Model"], prefix="/api/v1/model")
 
 
 @app.on_event("startup")

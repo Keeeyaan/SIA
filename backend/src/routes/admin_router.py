@@ -1,5 +1,5 @@
 from fastapi import APIRouter, status, HTTPException, Depends
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from passlib.context import CryptContext
 from typing import List

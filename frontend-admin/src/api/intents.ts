@@ -4,7 +4,7 @@ interface IGenericResponse {
   detail: string;
 }
 
-interface IGetIntentsResponse {
+export interface IGetIntentsResponse {
   _id: string;
   tag: string;
   patterns: [string];
@@ -12,7 +12,7 @@ interface IGetIntentsResponse {
   frequency: number;
 }
 
-interface IGetPatternsAndResponsesByTagResponse {
+export interface IGetPatternsAndResponsesByTagResponse {
   patterns: [string];
   responses: [string];
 }
@@ -49,6 +49,35 @@ export const addIntentPattern = async ({
   return response.data;
 };
 
+export const updateIntentPattern = async ({
+  tag,
+  id,
+  data,
+}: {
+  tag: string;
+  id: number;
+  data: { pattern: string };
+}) => {
+  const response = await axiosPrivate.patch<IGenericResponse>(
+    `intents/pattern/${tag}/id/${id}/`,
+    data
+  );
+  return response.data;
+};
+
+export const deleteIntentPattern = async ({
+  tag,
+  id,
+}: {
+  tag: string;
+  id: number;
+}) => {
+  const response = await axiosPrivate.delete<IGenericResponse>(
+    `intents/pattern/${tag}/id/${id}/`
+  );
+  return response.data;
+};
+
 export const addIntentResponse = async ({
   tag,
   data,
@@ -59,6 +88,34 @@ export const addIntentResponse = async ({
   const response = await axiosPrivate.post<IGenericResponse>(
     `intents/response/${tag}`,
     data
+  );
+  return response.data;
+};
+export const updateIntentResponse = async ({
+  tag,
+  id,
+  data,
+}: {
+  tag: string;
+  id: number;
+  data: { response: string };
+}) => {
+  const response = await axiosPrivate.patch<IGenericResponse>(
+    `intents/response/${tag}/id/${id}`,
+    data
+  );
+  return response.data;
+};
+
+export const deleteIntentResponse = async ({
+  tag,
+  id,
+}: {
+  tag: string;
+  id: number;
+}) => {
+  const response = await axiosPrivate.delete<IGenericResponse>(
+    `intents/response/${tag}/id/${id}`
   );
   return response.data;
 };

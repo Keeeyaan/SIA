@@ -12,7 +12,7 @@ from src.models.conversation import Conversation
 from src.models.feedback import Feedback
 
 load_dotenv()
-MONGODB_URI = os.getenv('MONGODB_URI_LOCAL')
+MONGODB_URI = os.getenv('MONGODB_URI_ATLAS')
 MONGODB_NAME = os.getenv('MONGODB_NAME')
 
 client = AsyncIOMotorClient(MONGODB_URI)

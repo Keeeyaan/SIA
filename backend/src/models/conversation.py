@@ -33,7 +33,7 @@ class Conversation(Document):
     class Config:
         json_schema_extra = {
             "example": {
-                "token": "OmB!N:rS#'(£[.&3xU6:qyT;3/ru'=sYmCxIT+whb\}_|Iv?;",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0dXNlckB0ZXN0LmNvbSIsImV4cCI6MTcxMjcxMzA4MX0.wiqf8zrLFfdlwkdMR3Km2Z6qcmEb48StitYM5Yg8zEg",
                 "sequence": [
                     {
                         "inquiry": "Hello",
@@ -42,5 +42,37 @@ class Conversation(Document):
                     }
                 ],
                 "createdAt": "2024-03-09T12:08:10.670173"
+            }
+        }
+
+
+class PostConversation(BaseModel):
+    filename: str
+    extension: str
+    inquiry: str
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "filename": "version_2.0",
+                "extension": "keras",
+                "inquiry": "Hi",
+            }
+        }
+
+
+class UpdateConversation(BaseModel):
+    token: str
+    filename: str
+    extension: str
+    inquiry: str
+
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "inquiry": "Hi",
+                "filename": "version_2.0",
+                "extension": "keras",
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0dXNlckB0ZXN0LmNvbSIsImV4cCI6MTcxMjcxMzA4MX0.wiqf8zrLFfdlwkdMR3Km2Z6qcmEb48StitYM5Yg8zEg"
             }
         }

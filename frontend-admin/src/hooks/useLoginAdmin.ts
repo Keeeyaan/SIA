@@ -22,7 +22,7 @@ export const useLoginAdmin = () => {
     onError: (error: any) => {
       toast({
         title: "Opps.. Error on login. Try again!",
-        description: error.response.data.message || error.message,
+        description: error.response.data.detail || error.message,
       });
     },
   });

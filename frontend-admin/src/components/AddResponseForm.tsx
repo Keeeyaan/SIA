@@ -1,3 +1,4 @@
+import { Dispatch } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
@@ -20,18 +21,25 @@ const PatternValidationSchema = z.object({
   tag: z.string().min(1, "Tag is required").max(128).trim(),
 });
 
-const AddResponseForm = () => {
+const AddResponseForm = ({
+  tag,
+  setDialogOpen,
+}: {
+  tag: string;
+  setDialogOpen: Dispatch<React.SetStateAction<boolean>>;
+}) => {
   const form = useForm<z.infer<typeof PatternValidationSchema>>({
     resolver: zodResolver(PatternValidationSchema),
     defaultValues: {
       response: "",
-      tag: "",
+      tag: tag,
     },
   });
   const { mutate: addResponse, isPending } = useAddIntentResponse();
 
   function onSubmit(values: z.infer<typeof PatternValidationSchema>) {
     addResponse({ tag: values.tag, data: { response: values.response } });
+    setDialogOpen(false);
   }
 
   return (

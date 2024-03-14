@@ -3,11 +3,13 @@ from beanie import Document
 from datetime import datetime
 from typing import List, Optional
 
+
 class Intent(BaseModel):
     tag: Optional[str] = "TBD"
     patterns: Optional[List[str]]
     responses: Optional[List[str]]
     frequency: Optional[int] = 0
+
 
 class KnowledgeBase(Document):
     intents: List[Intent]

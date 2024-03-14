@@ -1,45 +1,12 @@
 from fastapi import APIRouter, status, HTTPException, Depends
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
-from datetime import datetime, timedelta
-from passlib.context import CryptContext
-from jose import JWTError, jwt
-from dotenv import load_dotenv
-from os import getenv
+from fastapi.security import HTTPAuthorizationCredentials
+from datetime import timedelta
 from pydantic import BaseModel, EmailStr
 
-from src.models.admin import Admin
-from src.utils.user import get_current_user
+from src.utils.user import get_current_user, authenticate_user, create_access_token
+from src.utils.user import ACCESS_TOKEN_EXPIRES_WEEKS
 
 auth = APIRouter()
-
-load_dotenv()
-ACCESS_TOKEN_EXPIRES_WEEKS = getenv("ACCESS_TOKEN_EXPIRES_WEEKS")
-SECRET_KEY = getenv("SECRET_KEY")
-ALGORITHM = getenv("ALGORITHM")
-ACCESS_TOKEN_EXPIRE_MINUTES = getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
-
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-
-
-def verify_password(plain_password: str, hashed_password: str):
-    return pwd_context.verify(plain_password, hashed_password)
-
-
-async def authenticate_user(email: str, password: str):
-    user = await Admin.find_one(Admin.email == email)
-
-    if not user or not verify_password(password, user.password):
-        return False
-
-    return user
-
-
-def create_access_token(data: dict, expires_delta: timedelta):
-    to_encode = data.copy()
-    expire = datetime.utcnow() + expires_delta
-    to_encode.update({"exp": expire})
-    encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
-    return encoded_jwt
 
 
 class LoginRequestBody(BaseModel):

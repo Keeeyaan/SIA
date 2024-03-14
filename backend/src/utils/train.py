@@ -1,12 +1,13 @@
 from keras.layers import Embedding, LSTM, Dense, Bidirectional
-from keras.preprocessing.text import Tokenizer
 from keras.callbacks import EarlyStopping
 from keras.optimizers import Adam
 from keras.utils import pad_sequences
 from keras.models import Sequential
+from keras.preprocessing.text import Tokenizer
 
 from sklearn.preprocessing import LabelEncoder
 
+import tensorflow as tf
 import pandas as pd
 import os
 

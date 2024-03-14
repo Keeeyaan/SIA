@@ -4,7 +4,7 @@ from typing import List, Optional
 
 
 class Intent(Document):
-    tag: Indexed(str, unique=True)
+    tag: str = Indexed(str, unique=True)
     patterns: Optional[List[str]] = []
     responses: Optional[List[str]] = []
     frequency: Optional[int] = 0

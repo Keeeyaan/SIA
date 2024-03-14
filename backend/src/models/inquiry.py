@@ -1,5 +1,4 @@
 from typing import Optional
-
 from beanie import Document
 from pydantic import BaseModel
 from datetime import datetime

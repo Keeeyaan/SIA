@@ -1,6 +1,6 @@
-from fastapi import APIRouter, status, HTTPException, Depends
+from fastapi import APIRouter, status, Depends
 from bson import ObjectId
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from fastapi.security import HTTPAuthorizationCredentials
 
 from src.models.feedback import Feedback
 from src.routes.inquiry_router import not_found

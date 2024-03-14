@@ -1,4 +1,4 @@
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useToast } from "@/components/ui/use-toast";
 
@@ -6,11 +6,15 @@ import { createIntent } from "@/api/intents";
 
 export const useCreateIntent = () => {
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["intents"],
     mutationFn: createIntent,
     onSuccess: (data) => {
+      queryClient.invalidateQueries({
+        queryKey: ["intents"],
+      });
       toast({
         title: "Intent Created!",
         description: data.detail,

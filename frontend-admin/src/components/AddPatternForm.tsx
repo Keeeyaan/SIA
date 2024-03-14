@@ -22,15 +22,17 @@ const PatternValidationSchema = z.object({
 });
 
 const AddPatternForm = ({
+  tag,
   setDialogOpen,
 }: {
+  tag: string;
   setDialogOpen: Dispatch<React.SetStateAction<boolean>>;
 }) => {
   const form = useForm<z.infer<typeof PatternValidationSchema>>({
     resolver: zodResolver(PatternValidationSchema),
     defaultValues: {
       pattern: "",
-      tag: "",
+      tag: tag,
     },
   });
   const { mutate: addPattern, isPending } = useAddIntentPattern();

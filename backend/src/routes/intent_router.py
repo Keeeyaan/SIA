@@ -23,16 +23,23 @@ async def get_all_intents(current_user: HTTPAuthorizationCredentials = Depends(g
     return intent
 
 
-@intent.get('/{tag}/', status_code=status.HTTP_200_OK)
-async def get_all_patterns_and_responses_by_tag(tag: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
-    intent = await Intent.find_one(Intent.tag == tag)
-    return {"patterns": intent.patterns, "responses": intent.responses}
-
-
 @intent.post('/', status_code=status.HTTP_201_CREATED)
 async def create_intent(intent: Intent, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
     await intent.create()
     return {"detail": "Intent created successfully!"}
+
+
+@intent.delete('/{tag}', status_code=status.HTTP_201_CREATED)
+async def delete_intent_by_tag(tag: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
+    intent = await Intent.find_one(Intent.tag == tag)
+    await intent.delete()
+    return {"detail": "Intent deleted successfully!"}
+
+
+@intent.get('/{tag}/', status_code=status.HTTP_200_OK)
+async def get_all_patterns_and_responses_by_tag(tag: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
+    intent = await Intent.find_one(Intent.tag == tag)
+    return {"patterns": intent.patterns, "responses": intent.responses}
 
 
 @intent.post("/pattern/{tag}/", status_code=status.HTTP_201_CREATED)

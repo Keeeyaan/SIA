@@ -26,11 +26,8 @@ def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses):
     
   # #getting output from model
   output = model.predict(prediction_input, verbose=0)
-  print(output)
   predicted_prob = output.max()
-  print(predicted_prob)
   predicted_index = output.argmax()
-  print(predicted_index)
 
   #finding the right tag and predicting
   response_tag = le.inverse_transform([predicted_index])[0]

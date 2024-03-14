@@ -3,8 +3,9 @@ from typing import Optional
 from beanie import Document, Indexed
 from pydantic import EmailStr
 
+
 class Admin(Document):
-    email: EmailStr = Indexed(unique=True)
+    email: EmailStr = Indexed(str, unique=True)
     password: str
     first_name: str
     last_name: str

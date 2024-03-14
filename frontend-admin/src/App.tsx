@@ -9,6 +9,7 @@ import {
   DashboardLayout,
   Inquiries,
   Feedback,
+  Account,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
           {
             path: "/feedback",
             element: <Feedback />,
+          },
+          {
+            path: "/account",
+            element: <Account />,
           },
         ],
       },

@@ -28,38 +28,37 @@ const BigSB = () => {
   return (
     <div>
       <CardHeader className="p-5">
-        <div className="flex items-center gap-2 justify-center">
-          {/* <img src="/logo.png" className="w-[40px] h-[40[px]" /> */}
-          <CardTitle>Guide Bot Admin</CardTitle>
+        <div className="flex items-center text-center justify-center">
+          <CardTitle>Ucnian Guide Bot Admin</CardTitle>
         </div>
       </CardHeader>
-      <Separator />
+      <Separator className="mb-4" />
       <CardContent className="p-0">
-        <div>
-          <div>
-            <Link
-              to="/"
-              className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
-            >
-              Dashboard
-            </Link>
-          </div>
-          <div>
-            <Link
-              to="/inquiries"
-              className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
-            >
-              Inquiries
-            </Link>
-          </div>
-          <div>
-            <Link
-              to="/feedback"
-              className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
-            >
-              Feedback
-            </Link>
-          </div>
+        <div className="space-y-2">
+          <Link
+            to="/"
+            className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
+          >
+            Knowledge Base
+          </Link>
+          <Link
+            to="/inquiries"
+            className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
+          >
+            Inquiries
+          </Link>
+          <Link
+            to="/feedback"
+            className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
+          >
+            Feedback
+          </Link>
+          <Link
+            to="/account"
+            className={`${buttonVariants({ variant: "ghost" })} w-full rounded-none`}
+          >
+            Account
+          </Link>
         </div>
       </CardContent>
     </div>

@@ -23,7 +23,7 @@ export const useAddIntentResponse = () => {
     onError: (error: any) => {
       toast({
         title: "Opps.. Error on add. Try again!",
-        description: error.response.data.message || error.message,
+        description: error.response.data.detail || error.message,
       });
     },
   });

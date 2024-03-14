@@ -1,32 +1,31 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useToast } from "@/components/ui/use-toast";
-import { addIntentPattern } from "@/api/intents";
+import { deleteIntentResponse } from "@/api/intents";
 
-export const useAddIntentPattern = () => {
-  const queryClient = useQueryClient();
+export const useDeleteIntentResponse = () => {
   const { toast } = useToast();
 
+  const queryClient = useQueryClient();
+
   return useMutation({
-    mutationKey: ["pattern"],
-    mutationFn: addIntentPattern,
+    mutationKey: ["response"],
+    mutationFn: deleteIntentResponse,
     onSuccess: (data) => {
       queryClient.invalidateQueries({
         queryKey: ["pt&rp"],
       });
       toast({
-        title: "Intent Pattern Added!",
+        title: "Response deleted!",
         description: data.detail,
       });
     },
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     onError: (error: any) => {
       toast({
-        title: "Opps.. Error on add. Try again!",
+        title: "Opps.. Error on delete. Try again!",
         description: error.response.data.detail || error.message,
       });
     },
   });
 };
-
-export default useAddIntentPattern;

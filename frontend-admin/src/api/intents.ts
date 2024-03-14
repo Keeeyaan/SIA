@@ -34,6 +34,12 @@ export const createIntent = async (data: { tag: string }) => {
   const response = await axiosPrivate.post<IGenericResponse>(`intents`, data);
   return response.data;
 };
+export const deleteIntentByTag = async (tag: string) => {
+  const response = await axiosPrivate.delete<IGenericResponse>(
+    `intents/${tag}`
+  );
+  return response.data;
+};
 
 export const addIntentPattern = async ({
   tag,

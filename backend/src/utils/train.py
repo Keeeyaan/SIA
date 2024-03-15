@@ -3,6 +3,7 @@ from keras.callbacks import EarlyStopping
 from keras.optimizers import Adam
 from keras.utils import pad_sequences
 from keras.models import Sequential
+from keras.preprocessing.text import Tokenizer
 
 from sklearn.preprocessing import LabelEncoder
 
@@ -11,7 +12,7 @@ import pandas as pd
 import os
 
 
-def init(data: object):
+def init(data: dict) -> dict:
     # Creating the Model
     # getting all the data to lists
     tags = []
@@ -28,7 +29,7 @@ def init(data: object):
     # converting to dataframe
     data = pd.DataFrame({"inputs": inputs, "tags": tags})
 
-    tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=2000)
+    tokenizer = Tokenizer(num_words=2000)
     tokenizer.fit_on_texts(data['inputs'])
     train = tokenizer.texts_to_sequences(data['inputs'])
 

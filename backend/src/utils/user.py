@@ -8,6 +8,9 @@ from datetime import datetime, timedelta
 
 from src.models.admin import Admin
 
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
 security = HTTPBearer()
 
 load_dotenv()
@@ -15,6 +18,8 @@ ACCESS_TOKEN_EXPIRES_WEEKS = getenv("ACCESS_TOKEN_EXPIRES_WEEKS")
 ACCESS_TOKEN_EXPIRE_MINUTES = getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
 SECRET_KEY = getenv("SECRET_KEY")
 ALGORITHM = getenv("ALGORITHM")
+
+nltk.download('vader_lexicon')
 
 
 async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(security)) -> str:
@@ -70,3 +75,18 @@ def create_access_token(data: dict, expires_delta: timedelta):
     to_encode.update({"exp": expire})
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
+
+
+def analyze_sentiment(text: str):
+    sid = SentimentIntensityAnalyzer()
+
+    scores = sid.polarity_scores(text)
+
+    if scores['compound'] >= 0.05:
+        sentiment = 'Positive'
+    elif scores['compound'] <= -0.05:
+        sentiment = 'Negative'
+    else:
+        sentiment = 'Neutral'
+
+    return sentiment

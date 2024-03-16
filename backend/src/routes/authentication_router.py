@@ -13,6 +13,14 @@ class LoginRequestBody(BaseModel):
     email: EmailStr
     password: str
 
+    class Config:
+        json_schema_extra = {
+            "example": {
+                "email": "testuser@test.com",
+                "password": "Test1234"
+            }
+        }
+
 
 @auth.post('/login', status_code=status.HTTP_200_OK)
 async def login(data: LoginRequestBody) -> object:

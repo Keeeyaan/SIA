@@ -4,7 +4,7 @@ from fastapi.security import HTTPAuthorizationCredentials
 
 from src.models.feedback import Feedback
 from src.routes.inquiry_router import not_found
-from src.utils.user import get_current_user
+from src.utils.user import get_current_user, analyze_sentiment
 
 feedback = APIRouter()
 
@@ -15,9 +15,14 @@ async def get_feedbacks(current_user: HTTPAuthorizationCredentials = Depends(get
     return feedbacks
 
 
-@feedback.post('/', status_code=status.HTTP_201_CREATED, response_model=Feedback)
-async def post_feedback(data: Feedback, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
-    await data.insert()
+@feedback.post('/', status_code=status.HTTP_201_CREATED)
+async def post_feedback(data: Feedback):
+    sentiment = analyze_sentiment(data.comment)
+
+    data.sentiment = sentiment
+
+    await data.create()
+    
     return data
 
 

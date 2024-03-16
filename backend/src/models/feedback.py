@@ -1,12 +1,12 @@
 from beanie import Document
 from datetime import datetime
-from typing import List, Optional
+from typing import Optional
 
 from src.models.conversation import Sequence
 
 
 class Feedback(Document):
-    sequence: List[Sequence]
+    sequence: Sequence
     comment: str
     sentiment: str
     version: Optional[str]
@@ -18,15 +18,13 @@ class Feedback(Document):
     class Config:
         json_schema_extra = {
             "example": {
-                "sequence": [
-                    {
-                        "inquiry": "Hello",
-                        "response": "Hi, how can I help you?",
-                        "createdAt": "2024-03-09T12:08:10.668933"
-                    }
-                ],
-                "comment": "Response is inaccurate",
-                "sentiment": "Negative",
+                "sequence": {
+                    "inquiry": "Hello",
+                    "response": "Hi, how can I help you?",
+                    "createdAt": "2024-03-09T12:08:10.668933"
+                },
+                "comment": "Response is appropriate for the inquiry.",
+                "sentiment": "Neutral",
                 "version": "1.0",
                 "createdAt": "2024-03-09T12:08:10.670173"
             }

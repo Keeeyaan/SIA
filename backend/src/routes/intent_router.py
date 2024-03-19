@@ -1,20 +1,10 @@
 from fastapi import APIRouter, status, HTTPException, Depends
 from fastapi.security import HTTPAuthorizationCredentials
-from pydantic import BaseModel
 
-from src.models.intent import Intent
+from src.models.intent import Intent, Pattern, Response
 from src.utils.user import get_current_user
-from src.routes.inquiry_router import not_found
 
 intent = APIRouter()
-
-
-class Pattern(BaseModel):
-    pattern: str
-
-
-class Response(BaseModel):
-    response: str
 
 
 @intent.get('/', status_code=status.HTTP_200_OK)

@@ -1,25 +1,12 @@
 from fastapi import APIRouter, status, HTTPException, Depends
 from fastapi.security import HTTPAuthorizationCredentials
 from datetime import timedelta
-from pydantic import BaseModel, EmailStr
 
 from src.utils.user import get_current_user, authenticate_user, create_access_token
 from src.utils.user import ACCESS_TOKEN_EXPIRES_WEEKS
+from src.models.auth import LoginRequestBody
 
 auth = APIRouter()
-
-
-class LoginRequestBody(BaseModel):
-    email: EmailStr
-    password: str
-
-    class Config:
-        json_schema_extra = {
-            "example": {
-                "email": "testuser@test.com",
-                "password": "Test1234"
-            }
-        }
 
 
 @auth.post('/login', status_code=status.HTTP_200_OK)

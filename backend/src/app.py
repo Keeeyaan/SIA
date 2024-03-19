@@ -1,4 +1,3 @@
-from typing import Union
 from os import getenv
 
 from fastapi import FastAPI

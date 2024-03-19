@@ -1,20 +1,12 @@
-from fastapi import APIRouter, status, HTTPException, Depends
+from fastapi import APIRouter, status, Depends
 from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from typing import List
 
 from src.models.knowledge_base import KnowledgeBase
-from src.utils.user import get_current_user
+from src.utils.user import get_current_user, not_found
 
 kbs = APIRouter()
-
-
-def not_found(information: str, obj: KnowledgeBase):
-    if obj is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"{information} not found"
-        )
 
 
 @kbs.get('/', status_code=status.HTTP_200_OK)

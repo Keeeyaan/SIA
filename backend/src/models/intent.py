@@ -1,5 +1,5 @@
 from beanie import Document, Indexed
-from datetime import datetime
+from pydantic import BaseModel
 from typing import List, Optional
 
 
@@ -28,3 +28,11 @@ class Intent(Document):
                 "frequency": 0
             }
         }
+
+
+class Pattern(BaseModel):
+    pattern: str
+
+
+class Response(BaseModel):
+    response: str

@@ -1,45 +1,13 @@
 from fastapi import APIRouter, status, HTTPException, Depends
 from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
-from passlib.context import CryptContext
 from typing import List
 from pymongo.errors import DuplicateKeyError
 
 from src.models.admin import Admin
-from src.utils.user import get_current_user
+from src.utils.user import get_current_user, password_validator, hash_pw, not_found
 
 admin = APIRouter()
-
-
-def password_validator(password: str):
-    if len(password) < 8:
-        raise HTTPException(
-            status_code=400, detail="Password must be at least 8 characters long")
-    if not any(char.isdigit() for char in password):
-        raise HTTPException(
-            status_code=400, detail="Password must contain at least one digit")
-    if not any(char.isalpha() for char in password):
-        raise HTTPException(
-            status_code=400, detail="Password must contain at least one letter")
-    if not any(char.isupper() for char in password):
-        raise HTTPException(
-            status_code=400, detail="Password must contain at least one uppercase letter")
-    if not any(char.islower() for char in password):
-        raise HTTPException(
-            status_code=400, detail="Password must contain at least one lowercase letter")
-
-
-def hash_pw(password: str) -> str:
-    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
-    return pwd_context.hash(password)
-
-
-def not_found(information: str, obj: Admin):
-    if obj is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"{information} not found"
-        )
 
 
 @admin.get('/', status_code=status.HTTP_200_OK)

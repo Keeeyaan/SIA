@@ -90,3 +90,34 @@ def analyze_sentiment(text: str):
         sentiment = 'Neutral'
 
     return sentiment
+
+
+def password_validator(password: str):
+    if len(password) < 8:
+        raise HTTPException(
+            status_code=400, detail="Password must be at least 8 characters long")
+    if not any(char.isdigit() for char in password):
+        raise HTTPException(
+            status_code=400, detail="Password must contain at least one digit")
+    if not any(char.isalpha() for char in password):
+        raise HTTPException(
+            status_code=400, detail="Password must contain at least one letter")
+    if not any(char.isupper() for char in password):
+        raise HTTPException(
+            status_code=400, detail="Password must contain at least one uppercase letter")
+    if not any(char.islower() for char in password):
+        raise HTTPException(
+            status_code=400, detail="Password must contain at least one lowercase letter")
+
+
+def hash_pw(password: str) -> str:
+    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+    return pwd_context.hash(password)
+
+
+def not_found(information: str, obj: Admin):
+    if obj is None:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail=f"{information} not found"
+        )

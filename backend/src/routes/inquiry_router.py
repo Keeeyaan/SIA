@@ -1,20 +1,12 @@
-from fastapi import APIRouter, status, HTTPException, Depends
+from fastapi import APIRouter, status, Depends
 from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from typing import List
 
 from src.models.inquiry import Inquiry
-from src.utils.user import get_current_user
+from src.utils.user import get_current_user, not_found
 
 inquiry = APIRouter()
-
-
-def not_found(information: str, obj: Inquiry):
-    if obj is None:
-        raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail=f"{information} not found"
-        )
 
 
 @inquiry.get('/', status_code=status.HTTP_200_OK)

@@ -3,13 +3,14 @@ from keras.callbacks import EarlyStopping
 from keras.optimizers import Adam
 from keras.utils import pad_sequences
 from keras.models import Sequential
-from keras.preprocessing.text import Tokenizer
+# from keras.preprocessing.text import Tokenizer
 
 from sklearn.preprocessing import LabelEncoder
 
 import tensorflow as tf
 import pandas as pd
 import os
+from pathlib import Path
 
 
 def init(data: dict) -> dict:
@@ -29,7 +30,7 @@ def init(data: dict) -> dict:
     # converting to dataframe
     data = pd.DataFrame({"inputs": inputs, "tags": tags})
 
-    tokenizer = Tokenizer(num_words=2000)
+    tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=2000)
     tokenizer.fit_on_texts(data['inputs'])
     train = tokenizer.texts_to_sequences(data['inputs'])
 
@@ -80,6 +81,7 @@ def fit_model(model, x_train, y_train):
 
 
 def save_model(model, filename, extension):
-    current_working_directory = os.path.dirname(os.path.abspath(__file__))
+    current_working_directory = Path.cwd()
 
-    model.save(f"{current_working_directory}/versions/{filename}.{extension}")
+    model.save(
+        f"{current_working_directory}/bot_models/{filename}.{extension}")

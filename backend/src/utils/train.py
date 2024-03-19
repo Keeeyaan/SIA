@@ -3,19 +3,15 @@ from keras.callbacks import EarlyStopping
 from keras.optimizers import Adam
 from keras.utils import pad_sequences
 from keras.models import Sequential
-# from keras.preprocessing.text import Tokenizer
+from keras.preprocessing.text import Tokenizer
 
 from sklearn.preprocessing import LabelEncoder
 
-import tensorflow as tf
 import pandas as pd
-import os
 from pathlib import Path
 
 
 def init(data: dict) -> dict:
-    # Creating the Model
-    # getting all the data to lists
     tags = []
     inputs = []
     responses = {}
@@ -27,10 +23,9 @@ def init(data: dict) -> dict:
             inputs.append(lines)
             tags.append(intent.tag)
 
-    # converting to dataframe
     data = pd.DataFrame({"inputs": inputs, "tags": tags})
 
-    tokenizer = tf.keras.preprocessing.text.Tokenizer(num_words=2000)
+    tokenizer = Tokenizer(num_words=2000)
     tokenizer.fit_on_texts(data['inputs'])
     train = tokenizer.texts_to_sequences(data['inputs'])
 
@@ -56,7 +51,6 @@ def init(data: dict) -> dict:
 
 
 def create_model(vocabulary_size, input_shape, output_length):
-    # Create the model
     model = Sequential()
     model.add(Embedding(vocabulary_size + 1, 128, input_length=input_shape))
     model.add(Bidirectional(LSTM(64, return_sequences=True)))

@@ -1,13 +1,17 @@
 import Bottombar from "@/components/Bottombar";
+import Conversation from "@/components/Conversation";
 import InitialMessage from "@/components/InitialMessage";
 
 const Home = () => {
+  const data = [{}];
+  console.log(data);
+
   return (
     <>
       <div
-        className={`flex items-center justify-center h-full w-full bg-no-repeat bg-center bg-[url('/uclogo.png')] bg-[#17AEDA] bg-opacity-10`}
+        className={`${data.length && "overflow-y-scroll"} flex items-center justify-center h-full w-full bg-no-repeat bg-center bg-[url('/uclogo.png')] bg-[#17AEDA] bg-opacity-20`}
       >
-        <InitialMessage />
+        {data.length ? <Conversation /> : <InitialMessage />}
       </div>
       <Bottombar />
     </>

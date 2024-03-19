@@ -2,11 +2,16 @@ from fastapi import APIRouter, status, Depends
 from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from typing import List
+from pydantic import BaseModel
 
 from src.models.inquiry import Inquiry
 from src.utils.user import get_current_user, not_found
 
 inquiry = APIRouter()
+
+
+class InquiryBody(BaseModel):
+    inquiry: str
 
 
 @inquiry.get('/', status_code=status.HTTP_200_OK)
@@ -15,9 +20,9 @@ async def get_all_inquiries(current_user: HTTPAuthorizationCredentials = Depends
     return inquiries
 
 
-@inquiry.post('/', status_code=status.HTTP_201_CREATED, response_model=Inquiry)
-async def post_inquiry(item: Inquiry) -> Inquiry:
-    await item.insert()
+@inquiry.post('/', status_code=status.HTTP_201_CREATED)
+async def post_inquiry(item: InquiryBody):
+    # await item.insert()
     return item
 
 

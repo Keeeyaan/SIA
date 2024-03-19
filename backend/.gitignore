@@ -14,6 +14,7 @@ test.db
 log.txt
 Pipfile.lock
 env3.*
+bot_models
 # env
 docs_build
 site_build

@@ -5,12 +5,12 @@ from pydantic import EmailStr
 
 
 class Admin(Document):
-    email: Indexed(str, unique=True)
+    email: str
     password: str
     first_name: str
     last_name: str
-    created_at: Optional[datetime] = datetime.now()
-    updated_at: Optional[datetime] = datetime.now()
+    created_at: Optional[datetime] = None
+    updated_at: Optional[datetime] = None
 
     class Settings:
         name = "admins"

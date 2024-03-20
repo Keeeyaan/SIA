@@ -12,7 +12,6 @@ security = HTTPBearer()
 
 load_dotenv()
 ACCESS_TOKEN_EXPIRES_WEEKS = getenv("ACCESS_TOKEN_EXPIRES_WEEKS")
-ACCESS_TOKEN_EXPIRE_MINUTES = getenv("ACCESS_TOKEN_EXPIRE_MINUTES")
 SECRET_KEY = getenv("SECRET_KEY")
 ALGORITHM = getenv("ALGORITHM")
 
@@ -51,7 +50,7 @@ async def get_current_user(credentials: HTTPAuthorizationCredentials = Depends(s
 pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
 
 
-def verify_password(plain_password: str, hashed_password: str):
+def verify_password(plain_password, hashed_password):
     return pwd_context.verify(plain_password, hashed_password)
 
 

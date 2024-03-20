@@ -15,6 +15,11 @@ from src.models.feedback import Feedback
 load_dotenv()
 MONGODB_URI = os.getenv('MONGODB_URI_ATLAS')
 MONGODB_NAME = os.getenv('MONGODB_NAME')
+PRODUCTION = os.getenv('PRODUCTION')
+
+
+if PRODUCTION == "True":
+    MONGODB_URI = os.getenv('MONGODB_URI')
 
 client = AsyncIOMotorClient(MONGODB_URI, server_api=ServerApi('1'))
 db = client[MONGODB_NAME]

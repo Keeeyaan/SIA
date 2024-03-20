@@ -1,11 +1,11 @@
 from datetime import datetime
-from typing import Optional
+from typing import Optional, Annotated
 from beanie import Document, Indexed
 from pydantic import EmailStr
 
 
 class Admin(Document):
-    email: EmailStr = Indexed(str, unique=True)
+    email: Annotated[EmailStr, Indexed(unique=True)]
     password: str
     first_name: str
     last_name: str

@@ -9,8 +9,8 @@ class Admin(Document):
     password: str
     first_name: str
     last_name: str
-    created_at: Optional[datetime]
-    updated_at: Optional[datetime]
+    created_at: Optional[datetime] = datetime.now()
+    updated_at: Optional[datetime] = datetime.now()
 
     class Settings:
         name = "admins"
@@ -24,8 +24,3 @@ class Admin(Document):
                 "last_name": "user",
             }
         }
-
-    def __init__(self, **kwargs):
-        super().__init__(**kwargs)
-        self.created_at = kwargs.get('created_at', datetime.now())
-        self.updated_at = kwargs.get('updated_at', datetime.now())

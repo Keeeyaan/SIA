@@ -13,17 +13,9 @@ from src.models.conversation import Conversation
 from src.models.feedback import Feedback
 
 load_dotenv()
-MONGODB_URI = os.environ.get('MONGODB_URI_ATLAS')
+MONGODB_URI = os.environ.get('MONGODB_URI')
 MONGODB_NAME = os.environ.get('MONGODB_NAME')
 PRODUCTION = os.environ.get('PRODUCTION')
-
-if PRODUCTION == "True":
-    MONGODB_URI = os.environ.get('MONGODB_URI')
-
-print(MONGODB_URI)
-
-client = AsyncIOMotorClient(MONGODB_URI, server_api=ServerApi('1'))
-db = client[MONGODB_NAME]
 
 
 async def init_db():
@@ -31,6 +23,9 @@ async def init_db():
     The `init_db` function initializes the database and sets up the document models.
     """
     try:
+        client = AsyncIOMotorClient(MONGODB_URI, server_api=ServerApi('1'))
+        db = client[MONGODB_NAME]
+
         client.admin.command('ping')
         print("Pinged your deployment. You successfully connected to MongoDB!")
         await init_beanie(

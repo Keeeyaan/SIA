@@ -1,7 +1,8 @@
 from pydantic import BaseModel, EmailStr
 
+
 class LoginRequestBody(BaseModel):
-    email: EmailStr
+    email: str
     password: str
 
     class Config:

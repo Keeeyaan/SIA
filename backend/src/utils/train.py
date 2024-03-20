@@ -11,6 +11,12 @@ import pandas as pd
 from pathlib import Path
 
 
+import nltk
+from nltk.sentiment.vader import SentimentIntensityAnalyzer
+
+nltk.download('vader_lexicon')
+
+
 def init(data: dict) -> dict:
     tags = []
     inputs = []
@@ -79,3 +85,18 @@ def save_model(model, filename, extension):
 
     model.save(
         f"{current_working_directory}/bot_models/{filename}.{extension}")
+
+
+def analyze_sentiment(text: str):
+    sid = SentimentIntensityAnalyzer()
+
+    scores = sid.polarity_scores(text)
+
+    if scores['compound'] >= 0.05:
+        sentiment = 'Positive'
+    elif scores['compound'] <= -0.05:
+        sentiment = 'Negative'
+    else:
+        sentiment = 'Neutral'
+
+    return sentiment

@@ -3,7 +3,6 @@ import os
 from dotenv import load_dotenv
 from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient
-from pymongo.server_api import ServerApi
 from fastapi import HTTPException, status
 
 from src.models.admin import Admin
@@ -27,7 +26,7 @@ async def init_db():
     The `init_db` function initializes the database and sets up the document models.
     """
     try:
-        client = AsyncIOMotorClient(MONGODB_URI, server_api=ServerApi('1'))
+        client = AsyncIOMotorClient(MONGODB_URI)
         db = client[MONGODB_NAME]
 
         client.admin.command('ping')

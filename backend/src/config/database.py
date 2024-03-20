@@ -18,7 +18,9 @@ MONGODB_NAME = os.environ.get('MONGODB_NAME')
 PRODUCTION = os.environ.get('PRODUCTION')
 
 if PRODUCTION == "True":
-    MONGODB_URI = os.getenv('MONGODB_URI')
+    MONGODB_URI = os.environ.get('MONGODB_URI')
+
+print(MONGODB_URI)
 
 client = AsyncIOMotorClient(MONGODB_URI, server_api=ServerApi('1'))
 db = client[MONGODB_NAME]

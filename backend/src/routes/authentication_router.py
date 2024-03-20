@@ -10,7 +10,7 @@ auth = APIRouter()
 
 
 @auth.post('/login', status_code=status.HTTP_200_OK)
-async def login(data: LoginRequestBody) -> object:
+async def login(data: LoginRequestBody):
     user = await authenticate_user(data.email, data.password)
     if not user:
         HTTPException(

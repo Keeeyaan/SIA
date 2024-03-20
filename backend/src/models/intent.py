@@ -1,10 +1,10 @@
 from beanie import Document, Indexed
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import List, Optional, Annotated
 
 
 class Intent(Document):
-    tag: str = Indexed(str, unique=True)
+    tag: str = Annotated[str, Indexed(unique=True)]
     patterns: Optional[List[str]] = []
     responses: Optional[List[str]] = []
     frequency: Optional[int] = 0

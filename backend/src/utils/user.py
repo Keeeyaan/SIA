@@ -58,7 +58,7 @@ def verify_password(plain_password: str, hashed_password: str):
 async def authenticate_user(email: str, password: str):
     user = await Admin.find_one(Admin.email == email)
 
-    if not user or not verify_password(password, user.password):
+    if user is None or not verify_password(password, user.password):
         return False
 
     return user

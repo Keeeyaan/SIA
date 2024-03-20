@@ -12,8 +12,9 @@ auth = APIRouter()
 @auth.post('/login', status_code=status.HTTP_200_OK)
 async def login(data: LoginRequestBody):
     user = await authenticate_user(data.email, data.password)
-    if not user:
-        HTTPException(
+
+    if user is False:
+        raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
             detail="Invalid login credentials",
             headers={"WWW-Authenticate": "Bearer"}

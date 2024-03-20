@@ -13,7 +13,7 @@ class LoginRequestBody(BaseModel):
     password: str
 
     class Config:
-        json_schema_extra = {
+        schema_extra = {
             "example": {
                 "email": "testuser@test.com",
                 "password": "Test1234",

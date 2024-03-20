@@ -5,12 +5,12 @@ from pydantic import EmailStr
 
 
 class Admin(Document):
-    email: str
+    email: Annotated[EmailStr, Indexed(unique=True)]
     password: str
     first_name: str
     last_name: str
-    created_at: Optional[datetime] = None
-    updated_at: Optional[datetime] = None
+    created_at: Optional[datetime] = datetime.now()
+    updated_at: Optional[datetime] = datetime.now()
 
     class Settings:
         name = "admins"

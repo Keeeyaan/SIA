@@ -11,7 +11,7 @@ admin = APIRouter()
 
 
 @admin.get('/', status_code=status.HTTP_200_OK)
-async def get_all_admins(current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> List[Admin]:
+async def get_all_admins() -> List[Admin]:
     admins = await Admin.find_all().to_list()
     return admins
 

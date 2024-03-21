@@ -18,7 +18,6 @@ MONGODB_NAME = os.environ.get('MONGODB_NAME')
 if MONGODB_URI is None or MONGODB_NAME is None:
     raise HTTPException(status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
                         detail='Please define the MONGODB_URI and MONGODB_NAME environment variable inside .env')
-print(MONGODB_URI)
 
 
 async def init_db():
@@ -27,7 +26,7 @@ async def init_db():
     """
     try:
         client = AsyncIOMotorClient(
-            'mongodb+srv://ucnianguidebot:ezJXVxMtY2IryBnO@main.bn7uisg.mongodb.net/ucnianguidebot?retryWrites=true&w=majority')
+            'mongodb+srv://vercel-admin-user:spCJcs4q4PdYfVwQ@main.bn7uisg.mongodb.net/?retryWrites=true&w=majority')
         db = client.ucnianguidebot
 
         client.admin.command('ping')
@@ -36,11 +35,11 @@ async def init_db():
             database=db,
             document_models=[
                 Admin,
-                Inquiry,
-                KnowledgeBase,
-                Conversation,
-                Intent,
-                Feedback
+                # Inquiry,
+                # KnowledgeBase,
+                # Conversation,
+                # Intent,
+                # Feedback
             ],
         )
     except Exception as e:

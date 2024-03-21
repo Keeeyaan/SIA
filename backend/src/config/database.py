@@ -11,7 +11,6 @@ from src.models.knowledge_base import KnowledgeBase
 from src.models.intent import Intent
 from src.models.conversation import Conversation
 from src.models.feedback import Feedback
-import logging
 
 
 load_dotenv()
@@ -29,9 +28,8 @@ async def init_db():
     """
     try:
         client = AsyncIOMotorClient(MONGODB_URI)
-        db = client[MONGODB_NAME]
-        # print(db)
-        logging.warning(db)
+        db = client.ucnianguidebot
+
         client.admin.command('ping')
         print("Pinged your deployment. You successfully connected to MongoDB!")
         await init_beanie(

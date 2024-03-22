@@ -25,21 +25,18 @@ async def init_db():
     The `init_db` function initializes the database and sets up the document models.
     """
     try:
-        client = AsyncIOMotorClient(
-            'mongodb+srv://vercel-admin-user:spCJcs4q4PdYfVwQ@main.bn7uisg.mongodb.net/?retryWrites=true&w=majority')
-        db = client.ucnianguidebot
+        client = AsyncIOMotorClient(MONGODB_URI)
+        db = client[MONGODB_NAME]
 
-        client.admin.command('ping')
-        print("Pinged your deployment. You successfully connected to MongoDB!")
         await init_beanie(
             database=db,
             document_models=[
                 Admin,
-                # Inquiry,
-                # KnowledgeBase,
-                # Conversation,
-                # Intent,
-                # Feedback
+                Intent,
+                Inquiry,
+                KnowledgeBase,
+                Conversation,
+                Feedback
             ],
         )
     except Exception as e:

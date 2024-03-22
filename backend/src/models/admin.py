@@ -5,7 +5,7 @@ from pydantic import EmailStr
 
 
 class Admin(Document):
-    email: str
+    email: Annotated[EmailStr, Indexed(unique=True)]
     password: str
     first_name: str
     last_name: str

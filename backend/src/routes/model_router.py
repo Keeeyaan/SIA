@@ -11,21 +11,23 @@ model = APIRouter()
 
 
 @model.post('/', status_code=status.HTTP_200_OK)
-async def train_model(data: TrainModel, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
+async def train_model(data: TrainModel, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     intents = await Intent.find_all().to_list()
 
-    initial = init({'intents': intents})
+    initial = init({"intents": intents})
 
     model = create_model(
-        initial.get('vocabulary_size'),
-        initial.get('input_shape'),
-        initial.get('output_length')
+        initial.get("vocabulary_size"),
+        initial.get("input_shape"),
+        initial.get("output_length")
     )
 
     model = fit_model(
         model,
-        initial.get('x_train'),
-        initial.get('y_train')
+        initial.get("x_train"),
+        initial.get("y_train")
     )
 
     save_model(model, data.filename, data.filename_extension)
+
+    return {"detail": "Model updated successfully!"}

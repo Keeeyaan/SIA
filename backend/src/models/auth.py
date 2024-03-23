@@ -8,6 +8,6 @@ class LoginRequestBody(BaseModel):
         json_schema_extra = {
             "example": {
                 "email": "testuser@test.com",
-                "password": "Test1234",
+                "password": "Test1234"
             }
         }

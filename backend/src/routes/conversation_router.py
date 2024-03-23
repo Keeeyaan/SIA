@@ -5,7 +5,7 @@ from typing import List
 
 from src.models.conversation import Conversation, Sequence, UpdateConversation, PostConversation
 from src.models.intent import Intent
-from src.utils.user import get_current_user, create_access_token
+from src.utils.user import get_current_user, create_access_token, not_found
 from src.utils.user import ACCESS_TOKEN_EXPIRES_WEEKS
 
 from src.utils.model import load_model, chatbot_respond
@@ -24,8 +24,11 @@ async def get_all_conversations(current_user: HTTPAuthorizationCredentials = Dep
 
 
 @conversation.get('/{token}', status_code=status.HTTP_200_OK)
-async def get_conversation(token: str):
+async def get_conversation(token: str) -> Conversation:
     conversation = await Conversation.find_one(Conversation.token == token)
+
+    not_found("Conversation", conversation)
+
     return conversation
 
 
@@ -40,7 +43,7 @@ async def post_conversation(sequence: PostConversation) -> Conversation:
 
     intents = await Intent.find_all().to_list()
 
-    initial = init({'intents': intents})
+    initial = init({"intents": intents})
 
     try:
         model = load_model(
@@ -108,7 +111,7 @@ async def update_conversation(data: UpdateConversation) -> dict:
 
         await conversation.save()
 
-        return {'detail': conversation}
+        return {"detail": conversation}
     except:
         raise HTTPException(
             status_code=400,
@@ -118,5 +121,10 @@ async def update_conversation(data: UpdateConversation) -> dict:
 
 @conversation.delete('/{id}', status_code=status.HTTP_200_OK)
 async def delete_conversation(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
-    await Conversation.find_one(Conversation.id == ObjectId(id)).delete()
-    return {"detail": "Conversation deleted successfully"}
+    conversation = await Conversation.find_one(Conversation.id == ObjectId(id))
+
+    not_found("Conversation", conversation)
+
+    await conversation.delete()
+
+    return {"detail": "Conversation deleted successfully", "deleted_conversation": conversation}

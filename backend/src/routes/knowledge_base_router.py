@@ -17,12 +17,12 @@ async def get_knowledge_bases(current_user: HTTPAuthorizationCredentials = Depen
 
 @kbs.post('/', status_code=status.HTTP_201_CREATED, response_model=KnowledgeBase)
 async def post_knowledge_base(data: KnowledgeBase, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> KnowledgeBase:
-    await data.insert()
+    await data.create()
     return data
 
 
 @kbs.patch('/{id}', status_code=status.HTTP_200_OK)
-async def update_knowledge_base(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
+async def update_knowledge_base(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     knowledge_base = await KnowledgeBase.find_one(KnowledgeBase.id == ObjectId(id))
 
     not_found("Knowledge Base", knowledge_base)
@@ -36,7 +36,7 @@ async def update_knowledge_base(id: str, data: dict, current_user: HTTPAuthoriza
 
 
 @kbs.delete('/{id}', status_code=status.HTTP_200_OK)
-async def delete_knowledge_base(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
+async def delete_knowledge_base(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     knowledge_base = await KnowledgeBase.find_one(KnowledgeBase.id == ObjectId(id))
 
     not_found("Knowledge Base", knowledge_base)

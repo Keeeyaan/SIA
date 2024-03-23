@@ -17,13 +17,13 @@ async def get_all_admins(current_user: HTTPAuthorizationCredentials = Depends(ge
 
 
 @admin.post('/', status_code=status.HTTP_201_CREATED, response_model=Admin)
-async def register_admin(data: Admin, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
+async def register_admin(data: Admin, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> Admin:
     password_validator(data.password)
 
     data.password = hash_pw(data.password)
 
     try:
-        await data.insert()
+        await data.create()
     except DuplicateKeyError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -34,7 +34,7 @@ async def register_admin(data: Admin, current_user: HTTPAuthorizationCredentials
 
 
 @admin.patch('/{id}', status_code=status.HTTP_200_OK)
-async def update_admin_by_id(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
+async def update_admin_by_id(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     admin = await Admin.find_one(Admin.id == ObjectId(id))
 
     not_found("Admin user", admin)
@@ -51,7 +51,7 @@ async def update_admin_by_id(id: str, data: dict, current_user: HTTPAuthorizatio
 
 
 @admin.delete('/{id}', status_code=status.HTTP_200_OK)
-async def delete_admin_by_id(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
+async def delete_admin_by_id(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     admin = await Admin.find_one(Admin.id == ObjectId(id))
 
     not_found("Admin user", admin)

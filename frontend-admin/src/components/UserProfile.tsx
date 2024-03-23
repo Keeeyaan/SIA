@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import { Github, LifeBuoy, LogOut, Settings, User } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -13,11 +14,10 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 
 const UserProfile = () => {
-  // const { mutate: logout } = useLogoutUser();
-
+  const navigate = useNavigate();
   const logoutHandler = () => {
-    // logout();
-    console.log("logout");
+    localStorage.removeItem("ucnian-token");
+    navigate("/login");
   };
 
   return (

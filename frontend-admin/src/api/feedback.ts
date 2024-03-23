@@ -11,6 +11,6 @@ interface IGetAllInquiriesResponse {
 
 export const getAllFeedbacks = async () => {
   const response =
-    await axiosPrivate.get<IGetAllInquiriesResponse[]>(`inquiries/`);
+    await axiosPrivate.get<IGetAllInquiriesResponse[]>(`feedbacks/`);
   return response.data;
 };

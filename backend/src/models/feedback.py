@@ -10,7 +10,7 @@ class Feedback(Document):
     comment: str
     sentiment: str
     version: Optional[str]
-    createdAt: Optional[datetime] = datetime.now()
+    created_at: Optional[datetime] = datetime.now()
 
     class Settings:
         name = "feedbacks"
@@ -21,11 +21,11 @@ class Feedback(Document):
                 "sequence": {
                     "inquiry": "Hello",
                     "response": "Hi, how can I help you?",
-                    "createdAt": "2024-03-09T12:08:10.668933"
+                    "created_at": "2024-03-09T12:08:10.668933"
                 },
                 "comment": "Response is appropriate for the inquiry.",
                 "sentiment": "Neutral",
                 "version": "1.0",
-                "createdAt": "2024-03-09T12:08:10.670173"
+                "created_at": "2024-03-09T12:08:10.670173"
             }
         }

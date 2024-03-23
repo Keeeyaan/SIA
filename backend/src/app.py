@@ -7,12 +7,12 @@ from dotenv import load_dotenv
 from src.config.database import init_db
 
 # Routes Import
-from src.routes.admin_router import admin
 from src.routes.authentication_router import auth
-# from src.routes.inquiry_router import inquiry
-# from src.routes.intent_router import intent
-# from src.routes.knowledge_base_router import kbs
-# from src.routes.feedback_router import feedback
+from src.routes.admin_router import admin
+from src.routes.intent_router import intent
+from src.routes.inquiry_router import inquiry
+from src.routes.knowledge_base_router import kbs
+from src.routes.feedback_router import feedback
 
 # from src.routes.conversation_router import conversation #comment this on push
 # from src.routes.model_router import model #comment this on push
@@ -36,9 +36,9 @@ app.add_middleware(
 
 app.include_router(auth, tags=["Authentication"], prefix="/api/v1/auth")
 app.include_router(admin, tags=["Admins"], prefix="/api/v1/admins")
+app.include_router(intent, tags=["Intents"], prefix="/api/v1/intents")
 app.include_router(kbs, tags=["KnowledgeBase"], prefix="/api/v1/kbs")
 app.include_router(inquiry, tags=["Inquiries"], prefix="/api/v1/inquiries")
-app.include_router(intent, tags=["Intents"], prefix="/api/v1/intents")
 app.include_router(feedback, tags=["Feedbacks"], prefix="/api/v1/feedbacks")
 # app.include_router(conversation, tags=[
 #                    "Conversations"], prefix="/api/v1/conversation") #comment this on push

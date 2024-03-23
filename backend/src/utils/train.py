@@ -8,8 +8,7 @@ from keras.preprocessing.text import Tokenizer
 from sklearn.preprocessing import LabelEncoder
 
 import pandas as pd
-from pathlib import Path
-
+import os
 
 import nltk
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
@@ -81,7 +80,10 @@ def fit_model(model, x_train, y_train):
 
 
 def save_model(model, filename, extension):
-    current_working_directory = Path.cwd()
+    current_working_directory = os.path.abspath(os.path.dirname(__file__))
+
+    if not os.path.exists(f"{current_working_directory}/bot_models"):
+        os.makedirs(f"{current_working_directory}/bot_models")
 
     model.save(
         f"{current_working_directory}/bot_models/{filename}.{extension}")

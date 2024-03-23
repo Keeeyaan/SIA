@@ -1,9 +1,10 @@
+import InquriesTable from "@/components/inquiry-table/InquriesTable";
 import Wrapper from "@/components/Wrapper";
 
 const Inquiries = () => {
   return (
     <Wrapper title="Inquiries" norMargin>
-      Inquiries
+      <InquriesTable />
     </Wrapper>
   );
 };

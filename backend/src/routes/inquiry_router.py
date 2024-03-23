@@ -2,16 +2,11 @@ from fastapi import APIRouter, status, Depends
 from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from typing import List
-from pydantic import BaseModel
 
-from src.models.inquiry import Inquiry
+from src.models.inquiry import Inquiry, InquiryBody
 from src.utils.user import get_current_user, not_found
 
 inquiry = APIRouter()
-
-
-class InquiryBody(BaseModel):
-    inquiry: str
 
 
 @inquiry.get('/', status_code=status.HTTP_200_OK)
@@ -27,7 +22,7 @@ async def post_inquiry(item: InquiryBody):
 
 
 @inquiry.patch("/{id}", status_code=status.HTTP_200_OK)
-async def update_inquiry(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
+async def update_inquiry(id: str, data: dict, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
 
     not_found("Inquiry", inquiry)
@@ -41,7 +36,7 @@ async def update_inquiry(id: str, data: dict, current_user: HTTPAuthorizationCre
 
 
 @inquiry.delete("/{id}", status_code=status.HTTP_200_OK)
-async def delete_inquiry(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> object:
+async def delete_inquiry(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
 
     not_found("Inquiry", inquiry)

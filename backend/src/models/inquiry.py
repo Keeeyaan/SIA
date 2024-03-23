@@ -31,3 +31,7 @@ class Inquiry(Document):
                 "tag": "about",
             }
         }
+
+
+class InquiryBody(BaseModel):
+    inquiry: str

@@ -13,7 +13,7 @@ import { Button } from "./ui/button";
 
 const Sidebar = () => {
   return (
-    <Card className="rounded-none border-none w-[300px]">
+    <Card className="rounded-none border-none w-[350px]">
       <div className="flex h-screen flex-col justify-between bg-gradient-to-b from-yellow-200 via-yellow-100 to-yellow-50">
         <CardHeader className="p-5 text-center text-slate-800">
           <h1 className="">Frequently Asked Questions</h1>

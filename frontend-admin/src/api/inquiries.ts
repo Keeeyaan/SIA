@@ -2,10 +2,9 @@ import { axiosPrivate } from "@/components/AxiosInterceptor";
 
 interface IGetAllInquiriesResponse {
   _id: string;
+  token: string;
+  inquiry: string;
   tag: string;
-  patterns: [string];
-  responses: [string];
-  frequency: number;
   created_at: Date;
 }
 

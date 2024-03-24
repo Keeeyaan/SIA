@@ -1,7 +1,8 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardHeader } from "./ui/card";
+import Typewriter from "./Typewriter";
 
-const Chatbox = ({ type, data }: { type: "inquiry" | "response", data: string | undefined }) => {
+const Chatbox = ({ type, data, current_index, length }: { type: "inquiry" | "response", data: string, current_index: number, length: number }) => {
   return (
     <>
       {type === "inquiry" ? (
@@ -23,7 +24,10 @@ const Chatbox = ({ type, data }: { type: "inquiry" | "response", data: string | 
           <div className="flex flex-row justify-end gap-x-2 w-1/2">
             <Card className="w-auto">
               <CardHeader className="p-4">
-                <h1 className="text-sm">{data}</h1>
+                {
+                  current_index == length - 1 ? <Typewriter text={data} delay={50} infinite={false} /> :
+                  <h1 className="text-sm">{data}</h1>
+                }
               </CardHeader>
             </Card>
             <Avatar>

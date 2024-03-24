@@ -4,9 +4,6 @@ const Typewriter = ({ text, delay, infinite }: { text: string, delay: number, in
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  console.log(currentText);
-  
-
   useEffect(() => {
     let timeout: number | NodeJS.Timeout;
 

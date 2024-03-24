@@ -3,24 +3,52 @@ import { Loader2, Send } from "lucide-react";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-import useCreateInquiry from "@/hooks/useCreateInquiry";
+
+import { getCookie } from "react-use-cookie";
+
+import useCreateConversation from "@/hooks/useCreateConversation";
+import useUpdateConversation from "@/hooks/useUpdateConversation";
+import { useStore } from "@/store";
 
 const Bottombar = () => {
   const inquiryRef = useRef<HTMLInputElement>();
+  const { setConversationPending, setInquiry } = useStore()
 
-  const { mutate: createInquiry, isPending } = useCreateInquiry();
+  const { mutate: createConversation, isPending: createIsPending } = useCreateConversation();
+  const { mutate: updateConversation, isPending: updateIsPending } = useUpdateConversation()
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const inquiryValue = inquiryRef.current?.value;
+
     if (!inquiryValue) {
       return;
     }
-    const data = { inquiry: inquiryValue };
-    // createInquiry(data);
-    console.log(data);
-  };
 
+    const temp = { filename: "test", extension: "keras", inquiry: inquiryValue };
+
+    if (getCookie("ucnian_guidebot_token") === "") {
+      setInquiry(inquiryValue)
+      
+      setConversationPending(true)
+      
+      createConversation(temp);
+      
+      if (inquiryRef.current)
+        inquiryRef.current.value = '';
+    } else {
+      setInquiry(inquiryValue)
+      
+      setConversationPending(true)
+      
+      updateConversation({...temp, token: getCookie("ucnian_guidebot_token")})
+      
+      if (inquiryRef.current)
+        inquiryRef.current.value = '';
+    }
+  };
+  
   return (
     <div className="flex flex-col justify-center w-full bg-[#214E87]">
       <div className="p-6">
@@ -31,10 +59,10 @@ const Bottombar = () => {
           <Input
             ref={inquiryRef}
             className="p-6 w-3/4 rounded-full"
-            placeholder="Ask any question here"
+            placeholder="Message UCnian Guide Bot"
           />
           <Button type="submit" className="rounded-full" variant="outline">
-            {isPending ? (
+            {(createIsPending || updateIsPending) ? (
               <Loader2 className="animate-spin" />
             ) : (
               <Send size={18} />

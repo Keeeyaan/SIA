@@ -4,7 +4,6 @@ import InitialMessage from "@/components/InitialMessage";
 
 const Home = () => {
   const data = [{}];
-  console.log(data);
 
   return (
     <>

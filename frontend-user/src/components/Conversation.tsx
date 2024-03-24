@@ -4,9 +4,6 @@ import Chatbox from "./ChatBox";
 
 const Conversation = () => {
   const { data: convo } = useFetchConversation()
-  // const { inquiry, conversationPending } = useStore()
-
-  
 
   return (
     <div className="min-h-full min-w-full flex flex-col p-20 gap-y-10">
@@ -20,16 +17,6 @@ const Conversation = () => {
           )
         })
       }
-      {/* {
-        conversationPending && (
-          <>
-            <div className="flex flex-col justify-between">
-              <Chatbox type="inquiry" data={inquiry}/>
-              <Chatbox type="response" data={"..."}/>
-            </div>
-          </>
-        )
-      } */}
     </div>
   );
 };

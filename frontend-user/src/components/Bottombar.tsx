@@ -28,7 +28,7 @@ const Bottombar = () => {
 
     const temp = { filename: "test", extension: "keras", inquiry: inquiryValue };
 
-    if (getCookie("ucnian_guidebot_token") === "") {
+    if (!getCookie("ucnian_guidebot_token")) {
       setInquiry(inquiryValue)
       
       setConversationPending(true)

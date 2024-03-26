@@ -1,6 +1,6 @@
 import { axiosPrivate } from "@/components/AxiosInterceptor";
 
-interface IGenericResponse {
+export interface IGenericResponse {
   detail: string;
 }
 

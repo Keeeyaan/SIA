@@ -16,8 +16,8 @@ async def get_all_inquiries(current_user: HTTPAuthorizationCredentials = Depends
 
 
 @inquiry.post('/', status_code=status.HTTP_201_CREATED)
-async def post_inquiry(item: InquiryBody):
-    # await item.insert()
+async def create_inquiry(item: Inquiry):
+    await item.create()
     return item
 
 

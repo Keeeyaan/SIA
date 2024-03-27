@@ -17,16 +17,14 @@ interface Conversation {
 }
 
 interface PostConversation {
-  filename: string
-  extension: string
   inquiry: string
+  kbs_version: string
 }
 
 interface UpdateConversation {
   token: string
-  filename: string
-  extension: string
   inquiry: string
+  kbs_version: string
 }
 
 export const getConversation = async (token: string) => {

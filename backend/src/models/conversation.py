@@ -47,32 +47,28 @@ class Conversation(Document):
 
 
 class PostConversation(BaseModel):
-    filename: str
-    extension: str
     inquiry: str
+    kbs_version: str
 
     class Config:
         json_schema_extra = {
             "example": {
-                "filename": "version_2.0",
-                "extension": "keras",
                 "inquiry": "Hi",
+                "kbs_version": "1.0"
             }
         }
 
 
 class UpdateConversation(BaseModel):
     token: str
-    filename: str
-    extension: str
     inquiry: str
+    kbs_version: str
 
     class Config:
         json_schema_extra = {
             "example": {
+                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0dXNlckB0ZXN0LmNvbSIsImV4cCI6MTcxMjcxMzA4MX0.wiqf8zrLFfdlwkdMR3Km2Z6qcmEb48StitYM5Yg8zEg",
                 "inquiry": "Hi",
-                "filename": "version_2.0",
-                "extension": "keras",
-                "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0dXNlckB0ZXN0LmNvbSIsImV4cCI6MTcxMjcxMzA4MX0.wiqf8zrLFfdlwkdMR3Km2Z6qcmEb48StitYM5Yg8zEg"
+                "kbs_version": "1.0"
             }
         }

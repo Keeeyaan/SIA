@@ -4,7 +4,7 @@ from bson import ObjectId
 from typing import List
 
 from src.models.conversation import Conversation, Sequence, UpdateConversation, PostConversation
-from src.models.intent import Intent
+from src.models.knowledge_base import KnowledgeBase
 from src.utils.user import get_current_user, create_access_token, not_found
 from src.utils.user import ACCESS_TOKEN_EXPIRES_WEEKS
 
@@ -33,7 +33,7 @@ async def get_conversation(token: str) -> Conversation:
 
 
 @conversation.post('/', status_code=status.HTTP_201_CREATED, response_model=Conversation)
-async def post_conversation(sequence: PostConversation) -> Conversation:
+async def post_conversation(data: PostConversation) -> Conversation:
     access_token_expires = timedelta(weeks=int(ACCESS_TOKEN_EXPIRES_WEEKS))
 
     token = create_access_token(
@@ -41,56 +41,51 @@ async def post_conversation(sequence: PostConversation) -> Conversation:
         expires_delta=access_token_expires
     )
 
-    intents = await Intent.find_all().to_list()
+    kbs = await KnowledgeBase.find_one(KnowledgeBase.version == data.kbs_version)
 
-    initial = init({"intents": intents})
+    initial = init({"intents": kbs.intents})
 
     try:
-        model = load_model(
-            sequence.filename,
-            sequence.extension
-        )
+      model = load_model(data.kbs_version)
 
-        response = chatbot_respond(
-            sequence.inquiry,
-            model,
-            initial.get('tokenizer'),
-            initial.get('input_shape'),
-            initial.get('label_encoder'),
-            initial.get('responses')
-        )
+      response = chatbot_respond(
+          data.inquiry,
+          model,
+          initial.get('tokenizer'),
+          initial.get('input_shape'),
+          initial.get('label_encoder'),
+          initial.get('responses')
+      )
 
-        data = Conversation(
-            token=token,
-            sequence=[Sequence(
-                inquiry=sequence.inquiry,
-                response=response,
-                createdAt=datetime.now()
-            )]
-        )
+      conversation = Conversation(
+          token=token,
+          sequence=[Sequence(
+              inquiry=data.inquiry,
+              response=response,
+              createdAt=datetime.now()
+          )]
+      )
 
-        await data.create()
+      await conversation.create()
 
-        return data
+      return conversation
     except:
-        raise HTTPException(
-            status_code=400,
-            detail="Please use the latest version of the model."
-        )
+      raise HTTPException(
+          status_code=400,
+          detail="Please use the latest version of the model."
+      )
 
 
 @conversation.patch('/', status_code=status.HTTP_200_OK)
 async def update_conversation(data: UpdateConversation) -> dict:
     conversation = await Conversation.find_one(Conversation.token == data.token)
-    intents = await Intent.find_all().to_list()
 
-    initial = init({'intents': intents})
+    kbs = await KnowledgeBase.find_one(KnowledgeBase.version == data.kbs_version)
+
+    initial = init({'intents': kbs.intents})
 
     try:
-        model = load_model(
-            data.filename,
-            data.extension
-        )
+        model = load_model(data.kbs_version)
 
         response = chatbot_respond(
             data.inquiry,

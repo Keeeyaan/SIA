@@ -3,18 +3,18 @@ from fastapi.security import HTTPAuthorizationCredentials
 
 from src.utils.train import init, create_model, fit_model, save_model
 from src.utils.user import get_current_user
-from src.models.model import TrainModel
 
-from src.models.intent import Intent
+from src.models.model import TrainModel
+from src.models.knowledge_base import KnowledgeBase
 
 model = APIRouter()
 
 
 @model.post('/', status_code=status.HTTP_200_OK)
 async def train_model(data: TrainModel, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
-    intents = await Intent.find_all().to_list()
+    kbs = await KnowledgeBase.find_one(KnowledgeBase.version == data.kbs_version)
 
-    initial = init({"intents": intents})
+    initial = init({"intents": kbs.intents})
 
     model = create_model(
         initial.get("vocabulary_size"),
@@ -28,6 +28,6 @@ async def train_model(data: TrainModel, current_user: HTTPAuthorizationCredentia
         initial.get("y_train")
     )
 
-    save_model(model, data.filename, data.filename_extension)
+    save_model(model, f"version_{data.kbs_version}", "keras")
 
     return {"detail": "Model updated successfully!"}

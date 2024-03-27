@@ -9,10 +9,10 @@ import os
 os.environ['TF_ENABLE_ONEDNN_OPTS']
 
 
-def load_model(filename, extension):
+def load_model(version: str):
     current_working_directory = os.path.dirname(os.path.abspath(__file__))
 
-    return tf.keras.models.load_model(f"{current_working_directory}/bot_models/{filename}.{extension}")
+    return tf.keras.models.load_model(f"{current_working_directory}/bot_models/version_{version}.keras")
 
 
 def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses):

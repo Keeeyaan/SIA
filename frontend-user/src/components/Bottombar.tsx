@@ -26,7 +26,7 @@ const Bottombar = () => {
       return;
     }
 
-    const temp = { filename: "test", extension: "keras", inquiry: inquiryValue };
+    const temp = { inquiry: inquiryValue, kbs_version: "1.0" };
 
     if (!getCookie("ucnian_guidebot_token")) {
       setInquiry(inquiryValue)

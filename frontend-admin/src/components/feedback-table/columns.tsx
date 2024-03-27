@@ -1,5 +1,6 @@
 import { format } from "date-fns";
 import { ColumnDef } from "@tanstack/react-table";
+import FeedbackTableAction from "./FeedbackTableAction";
 
 interface IFeedback {
   _id: string;
@@ -28,6 +29,12 @@ export const columns: ColumnDef<IFeedback>[] = [
     cell: ({ row }) => {
       const formattedDate = format(row.getValue("created_at"), "MMMM dd, yyyy");
       return formattedDate;
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      return <FeedbackTableAction feedback={row.original} />;
     },
   },
 ];

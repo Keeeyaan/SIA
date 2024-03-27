@@ -4,7 +4,10 @@ from bson import ObjectId
 from typing import List
 
 from src.models.knowledge_base import KnowledgeBase
+from src.models.intent import Intent
+
 from src.utils.user import get_current_user, not_found
+
 
 kbs = APIRouter()
 
@@ -17,7 +20,12 @@ async def get_knowledge_bases(current_user: HTTPAuthorizationCredentials = Depen
 
 @kbs.post('/', status_code=status.HTTP_201_CREATED, response_model=KnowledgeBase)
 async def post_knowledge_base(data: KnowledgeBase, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> KnowledgeBase:
+    intents = await Intent.find_all().to_list()
+
+    data.intents = intents
+
     await data.create()
+    
     return data
 
 

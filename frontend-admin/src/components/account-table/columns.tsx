@@ -1,5 +1,6 @@
 import { ColumnDef } from "@tanstack/react-table";
 import { format } from "date-fns";
+import AccountTableAction from "./AccountTableAction";
 
 interface IAdmins {
   _id: string;
@@ -33,6 +34,12 @@ export const columns: ColumnDef<IAdmins>[] = [
     cell: ({ row }) => {
       const formattedDate = format(row.getValue("created_at"), "MMMM dd, yyyy");
       return formattedDate;
+    },
+  },
+  {
+    id: "actions",
+    cell: ({ row }) => {
+      return <AccountTableAction admin={row.original} />;
     },
   },
 ];

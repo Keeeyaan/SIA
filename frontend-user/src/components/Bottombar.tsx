@@ -8,11 +8,9 @@ import { getCookie } from "react-use-cookie";
 
 import useCreateConversation from "@/hooks/useCreateConversation";
 import useUpdateConversation from "@/hooks/useUpdateConversation";
-import { useStore } from "@/store";
 
 const Bottombar = () => {
   const inquiryRef = useRef<HTMLInputElement>();
-  const { setConversationPending, setInquiry } = useStore()
 
   const { mutate: createConversation, isPending: createIsPending } = useCreateConversation();
   const { mutate: updateConversation, isPending: updateIsPending } = useUpdateConversation()
@@ -29,19 +27,11 @@ const Bottombar = () => {
     const temp = { inquiry: inquiryValue, kbs_version: "1.0" };
 
     if (!getCookie("ucnian_guidebot_token")) {
-      setInquiry(inquiryValue)
-      
-      setConversationPending(true)
-      
       createConversation(temp);
       
       if (inquiryRef.current)
         inquiryRef.current.value = '';
     } else {
-      setInquiry(inquiryValue)
-      
-      setConversationPending(true)
-      
       updateConversation({...temp, token: getCookie("ucnian_guidebot_token")})
       
       if (inquiryRef.current)

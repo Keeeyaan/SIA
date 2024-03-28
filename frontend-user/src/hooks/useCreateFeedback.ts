@@ -2,18 +2,20 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 import { useToast } from "@/components/ui/use-toast";
 
-import { updateConversation } from "@/api/conversation";
+import { createFeedback } from "@/api/feedback";
 
-export const useUpdateConversation = () => {
+export const useCreateFeedback = () => {
   const { toast } = useToast()
   const queryClient = useQueryClient()
 
   return useMutation({
-    mutationKey: ["conversation"],
-    mutationFn: updateConversation,
+    mutationKey: ["feedback"],
+    mutationFn: createFeedback,
     onSuccess: (data) => {
+      toast({ title: "Feedback Submitted!" });
+
       queryClient.invalidateQueries({
-        queryKey: ["conversation"],
+        queryKey: ["feedback"],
       })
     },
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
@@ -26,4 +28,4 @@ export const useUpdateConversation = () => {
   })
 };
 
-export default useUpdateConversation;
+export default useCreateFeedback;

@@ -14,8 +14,8 @@ from src.routes.inquiry_router import inquiry
 from src.routes.knowledge_base_router import kbs
 from src.routes.feedback_router import feedback
 
-# from src.routes.conversation_router import conversation #comment this on push
-# from src.routes.model_router import model #comment this on push
+# from src.routes.conversation_router import conversation # comment this on push
+# from src.routes.model_router import model # comment this on push
 
 load_dotenv()
 origins = getenv('ORIGINS').split(' ')
@@ -41,8 +41,8 @@ app.include_router(kbs, tags=["KnowledgeBase"], prefix="/api/v1/kbs")
 app.include_router(inquiry, tags=["Inquiries"], prefix="/api/v1/inquiries")
 app.include_router(feedback, tags=["Feedbacks"], prefix="/api/v1/feedbacks")
 # app.include_router(conversation, tags=[
-#                    "Conversations"], prefix="/api/v1/conversation") #comment this on push
-# app.include_router(model, tags=["Model"], prefix="/api/v1/model") #comment this on push
+#                    "Conversations"], prefix="/api/v1/conversation") # comment this on push
+# app.include_router(model, tags=["Model"], prefix="/api/v1/model") # comment this on push
 
 
 @app.on_event("startup")

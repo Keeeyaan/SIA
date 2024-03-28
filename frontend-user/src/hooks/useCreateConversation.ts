@@ -4,23 +4,21 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { createConversation } from "@/api/conversation";
 import { setCookie } from "react-use-cookie";
-import { useStore } from "@/store";
 
 export const useCreateConversation = () => {
   const { toast } = useToast()
   const queryClient = useQueryClient()
-  const { setConversationPending } = useStore()
 
   const mutation = useMutation({
     mutationKey: ["conversation"],
     mutationFn: createConversation,
     onSuccess: (data) => {
       setCookie("ucnian_guidebot_token", data.data.token, {
-        days:1,
+        days:30,
         Secure: true
       })
 
-      setConversationPending(false)
+      toast({ title: "Conversation Created." })
 
       queryClient.invalidateQueries({
         queryKey: ["conversation"],

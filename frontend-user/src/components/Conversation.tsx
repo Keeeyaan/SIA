@@ -5,7 +5,7 @@ const Conversation = () => {
   const { data: convo } = useFetchConversation()
 
   return (
-    <div className="min-h-full min-w-full flex flex-col pt-20 px-20">
+    <div className="h-[90%] w-[90%]">
       {
         convo?.data?.sequence?.map((item: any, index: number) => {
           return (

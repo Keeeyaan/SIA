@@ -3,13 +3,14 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import {
   Error,
   ProtectedRoute,
-  Dashboard,
   Layout,
   Login,
   DashboardLayout,
+  Dashboard,
   Inquiries,
   Feedback,
   Account,
+  Intents,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -28,6 +29,11 @@ const router = createBrowserRouter([
           {
             index: true,
             element: <Dashboard />,
+          },
+
+          {
+            path: "/intents",
+            element: <Intents />,
           },
           {
             path: "/inquiries",

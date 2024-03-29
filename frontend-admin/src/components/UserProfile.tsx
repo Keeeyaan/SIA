@@ -30,10 +30,10 @@ const UserProfile = () => {
           <Avatar className="h-full w-full">
             <AvatarImage
               className="rounded-full"
-              src="/logo.png"
+              src="https://cdn-icons-png.flaticon.com/512/847/847969.png?w=826&t=st=1691641237~exp=1691641837~hmac=6371e3f2acfbe7c141349f0c1a8ea64a846ef79be69c39ab7cd6ba738f0ef556"
               alt="profile"
             />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarFallback>UC</AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>

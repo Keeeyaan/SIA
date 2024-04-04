@@ -5,16 +5,16 @@ import { useToast } from "@/components/ui/use-toast";
 import { updateConversation } from "@/api/conversation";
 
 export const useUpdateConversation = () => {
-  const { toast } = useToast()
-  const queryClient = useQueryClient()
+  const { toast } = useToast();
+  const queryClient = useQueryClient();
 
   return useMutation({
     mutationKey: ["conversation"],
     mutationFn: updateConversation,
-    onSuccess: (data) => {
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ["conversation"],
-      })
+      });
     },
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     onError: (error: any) => {
@@ -22,8 +22,8 @@ export const useUpdateConversation = () => {
         title: "Oops! Error in sending request. Please try again.",
         description: error.response.data.message || error.message,
       });
-    }
-  })
+    },
+  });
 };
 
 export default useUpdateConversation;

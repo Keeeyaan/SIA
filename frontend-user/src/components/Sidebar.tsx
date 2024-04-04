@@ -5,6 +5,7 @@ import {
   HelpCircle,
   // ArrowUpRightFromSquare,
 } from "lucide-react";
+import { setCookie } from "react-use-cookie";
 
 import { Card, CardFooter, CardHeader } from "./ui/card";
 import { Separator } from "./ui/separator";
@@ -53,7 +54,10 @@ const Sidebar = () => {
           <ArrowUpRightFromSquare className="mr-3 w-6 h-6 flex-shrink-0" />
           Got any recommendations?
         </Button> */}
-            <Button className="justify-start bg-transparent hover:bg-yellow-50 text-black">
+            <Button
+              onClick={() => setCookie("ucnian_guidebot_token", "")}
+              className="justify-start bg-transparent hover:bg-yellow-50 text-black"
+            >
               <Trash2 className="mr-3 w-6 h-6 flex-shrink-0" />
               Clear conversations
             </Button>

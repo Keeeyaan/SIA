@@ -12,8 +12,10 @@ import useUpdateConversation from "@/hooks/useUpdateConversation";
 const Bottombar = () => {
   const inquiryRef = useRef<HTMLInputElement>();
 
-  const { mutate: createConversation, isPending: createIsPending } = useCreateConversation();
-  const { mutate: updateConversation, isPending: updateIsPending } = useUpdateConversation()
+  const { mutate: createConversation, isPending: createIsPending } =
+    useCreateConversation();
+  const { mutate: updateConversation, isPending: updateIsPending } =
+    useUpdateConversation();
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,17 +30,18 @@ const Bottombar = () => {
 
     if (!getCookie("ucnian_guidebot_token")) {
       createConversation(temp);
-      
-      if (inquiryRef.current)
-        inquiryRef.current.value = '';
+
+      if (inquiryRef.current) inquiryRef.current.value = "";
     } else {
-      updateConversation({...temp, token: getCookie("ucnian_guidebot_token")})
-      
-      if (inquiryRef.current)
-        inquiryRef.current.value = '';
+      updateConversation({
+        ...temp,
+        token: getCookie("ucnian_guidebot_token"),
+      });
+
+      if (inquiryRef.current) inquiryRef.current.value = "";
     }
   };
-  
+
   return (
     <div className="flex flex-col justify-center w-full bg-[#214E87]">
       <div className="p-6">
@@ -52,7 +55,7 @@ const Bottombar = () => {
             placeholder="Message UCnian Guide Bot"
           />
           <Button type="submit" className="rounded-full" variant="outline">
-            {(createIsPending || updateIsPending) ? (
+            {createIsPending || updateIsPending ? (
               <Loader2 className="animate-spin" />
             ) : (
               <Send size={18} />

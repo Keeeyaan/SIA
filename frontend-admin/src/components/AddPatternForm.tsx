@@ -17,7 +17,7 @@ import {
 import useAddIntentPattern from "@/hooks/useAddIntentPattern";
 
 const PatternValidationSchema = z.object({
-  pattern: z.string().min(1, "Pattern is required").max(256).trim(),
+  pattern: z.string().min(1, "Pattern is required").max(1024).trim(),
   tag: z.string().min(1, "Tag is required").max(128).trim(),
 });
 

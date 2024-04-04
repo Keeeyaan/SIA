@@ -16,8 +16,8 @@ import {
 } from "@/components/ui/form";
 import useAddIntentResponse from "@/hooks/useAddIntentResponse";
 
-const PatternValidationSchema = z.object({
-  response: z.string().min(1, "Pattern is required").max(256).trim(),
+const ResponseValidationSchema = z.object({
+  response: z.string().min(1, "Response is required").max(1024).trim(),
   tag: z.string().min(1, "Tag is required").max(128).trim(),
 });
 
@@ -28,8 +28,8 @@ const AddResponseForm = ({
   tag: string;
   setDialogOpen: Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const form = useForm<z.infer<typeof PatternValidationSchema>>({
-    resolver: zodResolver(PatternValidationSchema),
+  const form = useForm<z.infer<typeof ResponseValidationSchema>>({
+    resolver: zodResolver(ResponseValidationSchema),
     defaultValues: {
       response: "",
       tag: tag,
@@ -37,7 +37,7 @@ const AddResponseForm = ({
   });
   const { mutate: addResponse, isPending } = useAddIntentResponse();
 
-  function onSubmit(values: z.infer<typeof PatternValidationSchema>) {
+  function onSubmit(values: z.infer<typeof ResponseValidationSchema>) {
     addResponse({ tag: values.tag, data: { response: values.response } });
     setDialogOpen(false);
   }

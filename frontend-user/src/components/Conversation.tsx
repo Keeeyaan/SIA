@@ -1,4 +1,4 @@
-import Chatbox from "./ChatBox";
+import ChatBox from "./ChatBox";
 
 import { IConversation } from "@/api/conversation";
 
@@ -8,16 +8,16 @@ const Conversation = ({ convo }: { convo: IConversation }) => {
       {convo?.sequence?.map((item: any, index: number) => {
         return (
           <div
-            className="flex flex-col justify-between gap-y-4 mb-10"
+            className="flex flex-col justify-between gap-y-5 mb-10"
             key={item.createdAt + item.inquiry}
           >
-            <Chatbox
+            <ChatBox
               type="inquiry"
               data={item}
               current_index={index}
               length={convo?.sequence.length}
             />
-            <Chatbox
+            <ChatBox
               type="response"
               data={item}
               current_index={index}

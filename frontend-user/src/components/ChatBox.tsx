@@ -1,22 +1,14 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Card, CardHeader } from "./ui/card";
+import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import Typewriter from "./Typewriter";
 import ReactMarkDown from "react-markdown";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
-import { Copy, Loader2, ThumbsDown } from "lucide-react";
+import { Copy, Loader2, ThumbsDown, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "./ui/button";
 import useCreateFeedback from "@/hooks/useCreateFeedback";
 import { Textarea } from "./ui/textarea";
 
-const Chatbox = ({
+const ChatBox = ({
   type,
   data,
   current_index,
@@ -60,7 +52,7 @@ const Chatbox = ({
   return (
     <div className="">
       {type === "inquiry" ? (
-        <div className="flex gap-4">
+        <div className="flex flex-row gap-5">
           <Avatar>
             <AvatarImage src="https://cdn-icons-png.flaticon.com/512/847/847969.png?w=826&t=st=1691641237~exp=1691641837~hmac=6371e3f2acfbe7c141349f0c1a8ea64a846ef79be69c39ab7cd6ba738f0ef556" />
             <AvatarFallback>CN</AvatarFallback>
@@ -75,8 +67,8 @@ const Chatbox = ({
           </div>
         </div>
       ) : (
-        <div className="flex flex-col justify-start gap-2">
-          <div className="flex gap-4">
+        <div className="flex flex-col justify-start">
+          <div className="flex flex-row gap-5">
             <Avatar>
               <AvatarImage src="./ucnianguidebotlogo.svg" />
               <AvatarFallback>UCnian Guide Bot</AvatarFallback>
@@ -115,38 +107,46 @@ const Chatbox = ({
                 </CardHeader>
               </Card>
               <div className="flex items-center gap-3 ml-2">
-                <div className="opacity-50 cursor-pointer hover:opacity-100">
-                  <Copy size={17} strokeWidth={2} />
-                </div>
-                <Dialog open={open} onOpenChange={setOpen}>
-                  <DialogTrigger className="opacity-50 hover:opacity-100">
-                    <ThumbsDown size={17} strokeWidth={2} />
-                  </DialogTrigger>
-                  <DialogContent>
-                    <form onSubmit={onSubmitHandler}>
-                      <DialogHeader>
-                        <DialogTitle>Provide feedback</DialogTitle>
-                        <DialogDescription className="flex flex-col justify-start w-full gap-4 pt-5">
-                          Tell us more:
-                          <Textarea
-                            ref={feedbackRef}
-                            className="p-2"
-                            placeholder="Input your feedback here"
-                            disabled={createIsPending}
-                          />
-                          <Button type="submit" variant="outline">
-                            {createIsPending ? (
-                              <Loader2 className="animate-spin" />
-                            ) : (
-                              "Submit Feedback"
-                            )}
-                          </Button>
-                        </DialogDescription>
-                      </DialogHeader>
-                    </form>
-                  </DialogContent>
-                </Dialog>
+                <Copy
+                  className="opacity-50 cursor-pointer hover:opacity-100"
+                  size={17}
+                  strokeWidth={2}
+                />
+                <ThumbsDown
+                  className="opacity-50 hover:opacity-100 cursor-default hover:cursor-pointer"
+                  size={17}
+                  strokeWidth={2}
+                  onClick={() => setOpen(true)}
+                />
               </div>
+              {
+                open && 
+                <Card className="mt-5">
+                  <form onSubmit={onSubmitHandler}>
+                    <CardHeader className="flex flex-row items-center justify-between">
+                      <h1 className="text-sm font-medium">Provide Feedback</h1>
+                      <X className="cursor-default hover:cursor-pointer" size={15} onClick={() => setOpen(false)} />
+                    </CardHeader>
+                    <CardContent>
+                      <Textarea
+                        ref={feedbackRef}
+                        className="resize-none"
+                        placeholder="Input your feedback here"
+                        disabled={createIsPending}
+                      />
+                    </CardContent>
+                    <CardFooter className="flex justify-end">
+                      <Button type="submit" variant="outline">
+                        {createIsPending ? (
+                          <Loader2 className="animate-spin" />
+                        ) : (
+                          "Submit"
+                        )}
+                      </Button>
+                    </CardFooter>
+                  </form>
+                </Card>
+              }
             </div>
           </div>
         </div>
@@ -155,4 +155,4 @@ const Chatbox = ({
   );
 };
 
-export default Chatbox;
+export default ChatBox;

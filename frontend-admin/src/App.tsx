@@ -11,6 +11,7 @@ import {
   Feedback,
   Account,
   Intents,
+  Model,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -30,7 +31,10 @@ const router = createBrowserRouter([
             index: true,
             element: <Dashboard />,
           },
-
+          {
+            path: "/model",
+            element: <Model />,
+          },
           {
             path: "/intents",
             element: <Intents />,

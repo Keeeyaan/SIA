@@ -5,7 +5,6 @@ import random
 import string
 import os
 
-
 os.environ['TF_ENABLE_ONEDNN_OPTS']
 
 
@@ -38,4 +37,4 @@ def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses):
     # finding the right tag and predicting
     response_tag = le.inverse_transform([predicted_index])[0]
 
-    return random.choice(responses[response_tag])
+    return {"response": random.choice(responses[response_tag]), "tag": response_tag}

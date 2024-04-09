@@ -3,6 +3,7 @@ from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from typing import List
 
+from src.models.inquiry import Inquiry
 from src.models.conversation import Conversation, Sequence, UpdateConversation, PostConversation
 from src.models.knowledge_base import KnowledgeBase
 from src.utils.user import get_current_user, create_access_token, not_found
@@ -46,34 +47,37 @@ async def post_conversation(data: PostConversation) -> Conversation:
     initial = init({"intents": kbs.intents})
 
     try:
-      model = load_model(data.kbs_version)
+        model = load_model(data.kbs_version)
 
-      response = chatbot_respond(
-          data.inquiry,
-          model,
-          initial.get('tokenizer'),
-          initial.get('input_shape'),
-          initial.get('label_encoder'),
-          initial.get('responses')
-      )
+        response = chatbot_respond(
+            data.inquiry,
+            model,
+            initial.get('tokenizer'),
+            initial.get('input_shape'),
+            initial.get('label_encoder'),
+            initial.get('responses')
+        )
 
-      conversation = Conversation(
-          token=token,
-          sequence=[Sequence(
-              inquiry=data.inquiry,
-              response=response,
-              createdAt=datetime.now()
-          )]
-      )
+        conversation = Conversation(
+            token=token,
+            sequence=[Sequence(
+                inquiry=data.inquiry,
+                response=response.get("response"),
+                createdAt=datetime.now()
+            )]
+        )
 
-      await conversation.create()
+        await conversation.create()
+        inquiry = Inquiry(token=token, inquiry=data.inquiry,
+                          tag=response.get("tag"), version=data.kbs_version)
+        await inquiry.insert()
 
-      return conversation
+        return conversation
     except:
-      raise HTTPException(
-          status_code=400,
-          detail="Please use the latest version of the model."
-      )
+        raise HTTPException(
+            status_code=503,
+            detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Could you please try asking again? Thank you."
+        )
 
 
 @conversation.patch('/', status_code=status.HTTP_200_OK)
@@ -99,18 +103,20 @@ async def update_conversation(data: UpdateConversation) -> dict:
         conversation.sequence.append(
             Sequence(
                 inquiry=data.inquiry,
-                response=response,
+                response=response.get("response"),
                 createdAt=datetime.now()
             )
         )
 
         await conversation.save()
-
+        inquiry = Inquiry(token=data.token, inquiry=data.inquiry,
+                          tag=response.get("tag"), version=data.kbs_version)
+        await inquiry.insert()
         return {"detail": conversation}
     except:
         raise HTTPException(
-            status_code=400,
-            detail="Please use the latest version of the model."
+            status_code=503,
+            detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Could you please try asking again? Thank you."
         )
 
 

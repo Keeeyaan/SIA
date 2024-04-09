@@ -13,7 +13,7 @@ export const useCreateConversation = () => {
     mutationKey: ["conversation"],
     mutationFn: createConversation,
     onSuccess: (data) => {
-      setCookie("ucnian_guidebot_token", data.data.token, {
+      setCookie("ucnian_guidebot_token", data.token, {
         days: 30,
         Secure: true,
       });
@@ -28,7 +28,7 @@ export const useCreateConversation = () => {
     onError: (error: any) => {
       toast({
         title: "Oops! Error in sending request. Please try again.",
-        description: error.response.data.message || error.message,
+        description: error.response.data.detail || error.message,
       });
     },
   });

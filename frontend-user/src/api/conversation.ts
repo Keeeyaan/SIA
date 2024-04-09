@@ -17,6 +17,7 @@ export interface IConversation {
 }
 
 interface PostConversation {
+  token: string;
   inquiry: string;
   kbs_version: string;
 }
@@ -34,7 +35,7 @@ export const getConversation = async (token: string) => {
 
 export const createConversation = async (data: PostConversation) => {
   const response = await axios.post<PostConversation>(`conversation/`, data);
-  return response;
+  return response.data;
 };
 
 export const updateConversation = async (data: UpdateConversation) => {

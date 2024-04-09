@@ -3,6 +3,7 @@ import {
   Bot,
   BrainCog,
   CircleUser,
+  LayoutDashboard,
   MessageCircleQuestion,
   MessageSquareText,
 } from "lucide-react";
@@ -46,6 +47,15 @@ const BigSB = ({ pathname }: { pathname: string }) => {
           <Link
             to="/"
             className={`${buttonVariants({ variant: `${pathname === "/" ? "secondary" : "ghost"}`, size: "lg" })} w-full rounded-none`}
+          >
+            <span className="flex items-center gap-4 w-full">
+              <LayoutDashboard size={24} />
+              Dashboard
+            </span>
+          </Link>
+          <Link
+            to="/model"
+            className={`${buttonVariants({ variant: `${pathname === "/model" ? "secondary" : "ghost"}`, size: "lg" })} w-full rounded-none`}
           >
             <span className="flex items-center gap-4 w-full">
               <Bot size={24} />

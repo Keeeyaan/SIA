@@ -4,6 +4,7 @@ from bson import ObjectId
 from typing import List
 
 from src.models.inquiry import Inquiry
+from src.models.intent import Intent
 from src.models.conversation import Conversation, Sequence, UpdateConversation, PostConversation
 from src.models.knowledge_base import KnowledgeBase
 from src.utils.user import get_current_user, create_access_token, not_found
@@ -71,6 +72,9 @@ async def post_conversation(data: PostConversation) -> Conversation:
         inquiry = Inquiry(token=token, inquiry=data.inquiry,
                           tag=response.get("tag"), version=data.kbs_version)
         await inquiry.insert()
+        intent = await Intent.find_one(Intent.tag == response.get("tag"))
+        intent.frequency = intent.frequency + 1
+        await intent.save()
 
         return conversation
     except:
@@ -112,6 +116,9 @@ async def update_conversation(data: UpdateConversation) -> dict:
         inquiry = Inquiry(token=data.token, inquiry=data.inquiry,
                           tag=response.get("tag"), version=data.kbs_version)
         await inquiry.insert()
+        intent = await Intent.find_one(Intent.tag == response.get("tag"))
+        intent.frequency = intent.frequency + 1
+        await intent.save()
         return {"detail": conversation}
     except:
         raise HTTPException(

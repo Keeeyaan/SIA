@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import useAddIntentPattern from "@/hooks/useAddIntentPattern";
+import { Textarea } from "./ui/textarea";
 
 const PatternValidationSchema = z.object({
   pattern: z.string().min(1, "Pattern is required").max(1024).trim(),
@@ -65,7 +66,11 @@ const AddPatternForm = ({
             <FormItem>
               <FormLabel>Pattern</FormLabel>
               <FormControl>
-                <Input placeholder="Pattern" {...field} />
+                <Textarea
+                  placeholder="Pattern"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

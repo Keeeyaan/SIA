@@ -15,6 +15,7 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import useAddIntentResponse from "@/hooks/useAddIntentResponse";
+import { Textarea } from "./ui/textarea";
 
 const ResponseValidationSchema = z.object({
   response: z.string().min(1, "Response is required").max(1024).trim(),
@@ -65,7 +66,11 @@ const AddResponseForm = ({
             <FormItem>
               <FormLabel>Response</FormLabel>
               <FormControl>
-                <Input placeholder="Response" {...field} />
+                <Textarea
+                  placeholder="Response"
+                  className="resize-none"
+                  {...field}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>

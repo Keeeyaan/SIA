@@ -20,7 +20,8 @@ const InquriesTable = () => {
           <p>Something went wrong!</p>
         </div>
       ) : (
-        <DataTable columns={columns} data={inquries!} />
+        // eslint-disable-next-line @typescript-eslint/no-non-null-asserted-optional-chain
+        <DataTable columns={columns} data={inquries?.data!} />
       )}
     </>
   );

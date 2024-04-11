@@ -19,6 +19,8 @@ import {
   PieChart,
   Pie,
   LabelList,
+  AreaChart,
+  Area,
 } from "recharts";
 
 import { Card, CardContent } from "@/components/ui/card";
@@ -28,11 +30,13 @@ import { Separator } from "@/components/ui/separator";
 import useFetchStats from "@/hooks/useFetchStats";
 import useFetchIntents from "@/hooks/useFetchIntents";
 import useFetchFeedbacks from "@/hooks/useFetchFeedbacks";
+import useFetchInquiries from "@/hooks/useFetchInquiries";
 
 const Dashboard = () => {
   const { data: stats, isLoading: statIsLoading } = useFetchStats();
   const { data: intents } = useFetchIntents(true);
   const { data: feedbacks } = useFetchFeedbacks();
+  const { data: inquiries } = useFetchInquiries();
 
   const colors = ["#facc15", "#4ade80", "#f87171"];
 
@@ -67,41 +71,38 @@ const Dashboard = () => {
           isLoading={statIsLoading}
         />
       </div>
-      <Card className="mb-4 w-full h-full mt-4">
-        <CardContent>
-          <h1 className="mt-4 mb-2 text-xl text-gray-700 font-semibold text-">
-            Inquiry Intent Frequency Overview
-          </h1>
-          <Separator />
-          <ResponsiveContainer height={300}>
-            <BarChart margin={{ top: 20 }} data={intents}>
-              <defs>
-                <linearGradient id="student" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
-                </linearGradient>
-                <linearGradient id="teacher" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%" stopColor="#01b9ad" stopOpacity={0.8} />
-                  <stop offset="95%" stopColor="#01b9ad" stopOpacity={0} />
-                </linearGradient>
-              </defs>
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="tag" />
-              <YAxis allowDecimals={false} />
-              <Tooltip />
-              <Bar
-                type="monotone"
-                dataKey="frequency"
-                stroke="#4B71F0"
-                // fill="url(#student)"
-                fill="#8884d8"
-                fillOpacity={0.6}
-              />
-            </BarChart>
-          </ResponsiveContainer>
-        </CardContent>
-      </Card>
-      <div className="flex items-center gap-4">
+      <div className="flex gap-4 mb-4">
+        <Card className="w-full h-full">
+          <CardContent>
+            <h1 className="mt-4 mb-2 text-xl text-gray-700 font-semibold text-">
+              Inquiries Timeline
+            </h1>
+            <Separator />
+            <ResponsiveContainer height={200}>
+              <AreaChart
+                margin={{ top: 20 }}
+                data={inquiries?.inquiriesByMonth}
+              >
+                <defs>
+                  <linearGradient id="colorPv" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="5%" stopColor="#82ca9d" stopOpacity={0.8} />
+                    <stop offset="95%" stopColor="#82ca9d" stopOpacity={0} />
+                  </linearGradient>
+                </defs>
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="month" />
+                <YAxis allowDecimals={false} />
+                <Tooltip />
+                <Area
+                  type="monotone"
+                  dataKey="count"
+                  stroke="#82ca9d"
+                  fill="url(#colorPv)"
+                />
+              </AreaChart>
+            </ResponsiveContainer>
+          </CardContent>
+        </Card>
         {/* <Card className="mb-4 h-full w-[500px]">
             <CardContent>
               <h1 className="mt-4 mb-2 text-xl text-gray-700 font-semibold text-">
@@ -128,7 +129,7 @@ const Dashboard = () => {
               </div>
             </CardContent>
           </Card> */}
-        <Card className="mb-4 h-full w-[500px]">
+        <Card className="h-full w-[500px]">
           <CardContent>
             <h1 className="mt-4 mb-2 text-xl text-gray-700 font-semibold text-">
               Overall Feedbacks Sentiment
@@ -190,6 +191,36 @@ const Dashboard = () => {
           </CardContent>
         </Card>
       </div>
+      <Card className="mb-4 w-full h-full mt-2">
+        <CardContent>
+          <h1 className="mt-4 mb-2 text-xl text-gray-700 font-semibold text-">
+            Inquiry Intent Frequency Overview
+          </h1>
+          <Separator />
+          <ResponsiveContainer height={300}>
+            <BarChart margin={{ top: 20 }} data={intents}>
+              <defs>
+                <linearGradient id="colorCv" x1="0" y1="0" x2="0" y2="1">
+                  <stop offset="5%" stopColor="#8884d8" stopOpacity={0.8} />
+                  <stop offset="95%" stopColor="#8884d8" stopOpacity={0} />
+                </linearGradient>
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" />
+              <XAxis dataKey="tag" />
+              <YAxis allowDecimals={false} />
+              <Tooltip />
+              <Bar
+                type="monotone"
+                dataKey="frequency"
+                stroke="#8884d8"
+                // fill="url(#colorCv)"
+                fill="#8884d8"
+                fillOpacity={0.6}
+              />
+            </BarChart>
+          </ResponsiveContainer>
+        </CardContent>
+      </Card>
     </Wrapper>
   );
 };

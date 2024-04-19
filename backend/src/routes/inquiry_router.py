@@ -3,6 +3,7 @@ from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from typing import List
 
+from src.models.intent import Intent
 from src.models.inquiry import Inquiry, InquiryBody
 from src.utils.user import get_current_user, not_found
 
@@ -38,8 +39,11 @@ async def update_inquiry(id: str, data: dict, current_user: HTTPAuthorizationCre
 @inquiry.delete("/{id}", status_code=status.HTTP_200_OK)
 async def delete_inquiry(id: str, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     inquiry = await Inquiry.find_one(Inquiry.id == ObjectId(id))
-
     not_found("Inquiry", inquiry)
+
+    intent = await Intent.find_one(Intent.tag == inquiry.tag)
+    intent.frequency = intent.frequency - 1
+    await intent.save()
 
     await inquiry.delete()
 

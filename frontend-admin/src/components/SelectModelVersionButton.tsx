@@ -16,17 +16,24 @@ import {
 import { Button } from "./ui/button";
 import { IGetKnowledgeBaseResponse } from "@/api/kbs";
 import { cn } from "@/lib/utils";
+import { IGetIntentsResponse } from "@/api/intents";
 
 const SelectModelVersionButton = ({
   kbs,
   isLoading,
   value,
   setValue,
+  setSpecKBS,
+  setTagValue,
 }: {
   kbs: IGetKnowledgeBaseResponse[] | undefined;
   isLoading: boolean;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  setSpecKBS: React.Dispatch<React.SetStateAction<IGetIntentsResponse[]>>;
+  setTagValue: React.Dispatch<
+    React.SetStateAction<IGetIntentsResponse | undefined>
+  >;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -37,10 +44,10 @@ const SelectModelVersionButton = ({
           variant="outline"
           role="combobox"
           aria-expanded={open}
-          className="justify-between"
+          className="justify-between min-w-[100px]"
         >
           {kbs?.find((model) => model.version === value)?.version ||
-            "Select Model Version"}
+            "Select Knowledge Base Version"}
 
           <Bot className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
@@ -62,6 +69,14 @@ const SelectModelVersionButton = ({
                     value={model.version}
                     onSelect={(currentValue) => {
                       setValue(currentValue === value ? "" : currentValue);
+                      const filteredKBS = kbs.filter(
+                        (kb) => kb.version === currentValue
+                      )[0].intents;
+                      setSpecKBS(currentValue === value ? [] : filteredKBS);
+                      setTagValue &&
+                        setTagValue(
+                          currentValue === value ? undefined : undefined
+                        );
                       setOpen(false);
                     }}
                   >

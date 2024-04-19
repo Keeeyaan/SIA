@@ -35,11 +35,15 @@ const SelectTagButton = ({
   isLoading,
   value,
   setValue,
+  setTagValue,
 }: {
   intents?: IGetIntentsResponse[];
   isLoading: boolean;
   value: string;
   setValue: React.Dispatch<React.SetStateAction<string>>;
+  setTagValue?: React.Dispatch<
+    React.SetStateAction<IGetIntentsResponse | undefined>
+  >;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -76,6 +80,13 @@ const SelectTagButton = ({
                     value={intent.tag}
                     onSelect={(currentValue) => {
                       setValue(currentValue === value ? "" : currentValue);
+                      const filteredTag = intents.filter(
+                        (intent) => currentValue === intent.tag
+                      );
+                      setTagValue &&
+                        setTagValue(
+                          currentValue === value ? undefined : filteredTag[0]
+                        );
                       setOpen(false);
                     }}
                   >

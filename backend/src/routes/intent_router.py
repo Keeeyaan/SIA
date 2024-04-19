@@ -3,6 +3,7 @@ from fastapi.security import HTTPAuthorizationCredentials
 
 from src.models.intent import Intent, Pattern, Response
 from src.utils.user import get_current_user
+import random
 
 intent = APIRouter()
 
@@ -11,6 +12,18 @@ intent = APIRouter()
 async def get_all_intents(current_user: HTTPAuthorizationCredentials = Depends(get_current_user)):
     intent = await Intent.find_all().to_list()
     return intent
+
+@intent.get('/public/', status_code=status.HTTP_200_OK)
+async def get_all_intents_public():
+    intents = await Intent.find_all().to_list()
+    sorted_intents = sorted(intents, key=lambda x: x.frequency, reverse=True)
+    top_5_intents = sorted_intents[:5]
+
+    for intent in top_5_intents:
+        intent.patterns = random.choice(intent.patterns)
+        del intent.responses
+
+    return top_5_intents
 
 
 @intent.post('/', status_code=status.HTTP_201_CREATED)

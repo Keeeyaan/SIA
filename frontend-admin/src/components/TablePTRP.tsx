@@ -26,12 +26,14 @@ const TablePTRP = ({
   itemHead,
   caption,
   tag,
+  noAction,
 }: {
   PTRP?: string[];
   isLoadingPTRP: boolean;
   itemHead: string;
   caption: string;
   tag: string;
+  noAction?: boolean;
 }) => {
   return (
     <>
@@ -53,14 +55,16 @@ const TablePTRP = ({
                 <TableRow key={index}>
                   <TableCell>{index}</TableCell>
                   <TableCell>{item}</TableCell>
-                  <TableCell>
-                    <TableAction
-                      tag={tag}
-                      item={item}
-                      id={index}
-                      itemHead={itemHead}
-                    />
-                  </TableCell>
+                  {!noAction && (
+                    <TableCell>
+                      <TableAction
+                        tag={tag}
+                        item={item}
+                        id={index}
+                        itemHead={itemHead}
+                      />
+                    </TableCell>
+                  )}
                 </TableRow>
               );
             })}

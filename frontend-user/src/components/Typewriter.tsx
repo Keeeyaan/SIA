@@ -29,7 +29,7 @@ const Typewriter = ({
     return () => clearTimeout(timeout);
   }, [currentIndex, delay, infinite, text]);
 
-  return <h1 className="text-sm">{currentText}</h1>;
+  return <h1 className="text-sm leading-relaxed">{currentText}</h1>;
 };
 
 export default Typewriter;

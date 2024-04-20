@@ -5,7 +5,7 @@ import {
   HelpCircle,
   // ArrowUpRightFromSquare,
 } from "lucide-react";
-import { setCookie } from "react-use-cookie";
+import { getCookie, setCookie } from "react-use-cookie";
 
 import { Card, CardFooter, CardHeader } from "./ui/card";
 import { Separator } from "./ui/separator";
@@ -13,37 +13,48 @@ import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import useFetchIntents from "@/hooks/useFetchIntents";
 
+import useCreateConversation from "@/hooks/useCreateConversation";
+import useUpdateConversation from "@/hooks/useUpdateConversation";
+
 const Sidebar = () => {
   const { data: intents } = useFetchIntents();
 
-  console.log(intents);
+  const { mutate: createConversation, isPending: createIsPending } = useCreateConversation();
+  const { mutate: updateConversation, isPending: updateIsPending } = useUpdateConversation();
+
+  const handleOnClickFAQ = (value: string) => {
+    const temp = { inquiry: value, kbs_version: "1.0" };
+
+    if (!getCookie("ucnian_guidebot_token")) createConversation(temp)
+    else {
+      updateConversation({
+        ...temp,
+        token: getCookie("ucnian_guidebot_token"),
+      });
+    }
+  }
 
   return (
     <Card className="rounded-none border-none w-[350px]">
       <div className="flex h-screen flex-col justify-between bg-gradient-to-b from-yellow-200 via-yellow-100 to-yellow-50">
-        {/* <CardHeader className="p-5 text-center text-slate-800">
+        <CardHeader className="p-5 text-center text-slate-800">
           <h1 className="">Frequently Asked Questions</h1>
           <div className="flex flex-col mt-10 space-y-5 text-sm font-medium">
-            <div className="flex items-center mr-5">
-              <HelpCircle size={18} className=" w-6 h-6 flex-shrink-0" />
-              <Button className="hover:underline" variant="ghost">
-                How can I get a student ID card?
-              </Button>
-            </div>
-            <Label className="flex items-center mr-5">
-              <HelpCircle className="w-6 h-6 flex-shrink-0" />
-              <Button className="hover:underline" variant="ghost">
-                How can I check my grades?
-              </Button>
-            </Label>
-            <Label className="flex items-center mr-5">
-              <HelpCircle className="w-6 h-6 flex-shrink-0" />
-              <Button className="hover:underline" variant="ghost">
-                How can I get a copy of my studyload?
-              </Button>
-            </Label>
+            {
+              intents &&
+              intents.map((item:any) => {
+                return (
+                  <Label className="flex items-center mr-5" key={item.id + item.patterns}>
+                    <HelpCircle size={18} className=" w-6 h-6 flex-shrink-0" />
+                    <Button className="hover:underline text-wrap text-start" variant="link" onClick={() => handleOnClickFAQ(item.patterns)} disabled={createIsPending || updateIsPending}>
+                      {item.patterns}
+                    </Button>
+                  </Label>
+                )
+              })
+            }
           </div>
-        </CardHeader> */}
+        </CardHeader>
         <div className="space-y-3">
           <Separator className="bg-black" />
           <CardFooter className="block space-y-3">

@@ -2,11 +2,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import Typewriter from "./Typewriter";
 import ReactMarkDown from "react-markdown";
-import { Copy, Loader2, ThumbsDown, X } from "lucide-react";
+import { Copy, Loader2, MessageSquareText, X } from "lucide-react";
 import { useRef, useState } from "react";
 import { Button } from "./ui/button";
 import useCreateFeedback from "@/hooks/useCreateFeedback";
 import { Textarea } from "./ui/textarea";
+import { toast } from "./ui/use-toast";
 
 const ChatBox = ({
   type,
@@ -48,6 +49,14 @@ const ChatBox = ({
 
     setOpen(false);
   };
+
+  const copyToClipboardHandler = (value: string) => {
+    navigator.clipboard.writeText(value);
+    toast({
+      title: "Copied to Clipboard!",
+      description: "Text has been copied to your clipboard"
+    })
+  }
 
   return (
     <div className="">
@@ -111,21 +120,25 @@ const ChatBox = ({
                   className="opacity-50 cursor-pointer hover:opacity-100"
                   size={17}
                   strokeWidth={2}
+                  onClick={() => copyToClipboardHandler(data.response)}
                 />
-                <ThumbsDown
+                <MessageSquareText
                   className="opacity-50 hover:opacity-100 cursor-default hover:cursor-pointer"
                   size={17}
                   strokeWidth={2}
                   onClick={() => setOpen(true)}
                 />
               </div>
-              {
-                open && 
+              {open && (
                 <Card className="mt-5">
                   <form onSubmit={onSubmitHandler}>
                     <CardHeader className="flex flex-row items-center justify-between">
                       <h1 className="text-sm font-medium">Provide Feedback</h1>
-                      <X className="cursor-default hover:cursor-pointer" size={15} onClick={() => setOpen(false)} />
+                      <X
+                        className="cursor-default hover:cursor-pointer"
+                        size={15}
+                        onClick={() => setOpen(false)}
+                      />
                     </CardHeader>
                     <CardContent>
                       <Textarea
@@ -146,7 +159,7 @@ const ChatBox = ({
                     </CardFooter>
                   </form>
                 </Card>
-              }
+              )}
             </div>
           </div>
         </div>

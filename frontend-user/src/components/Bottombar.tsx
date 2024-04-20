@@ -11,17 +11,19 @@ import useUpdateConversation from "@/hooks/useUpdateConversation";
 import { useStore } from "@/store";
 
 const Bottombar = () => {
-  const inquiryRef = useRef<HTMLInputElement>();
+  const inquiryRef = useRef<HTMLInputElement>(null);
 
-  const { mutate: createConversation, isPending: createIsPending } = useCreateConversation();
-  const { mutate: updateConversation, isPending: updateIsPending } = useUpdateConversation();
+  const { mutate: createConversation, isPending: createIsPending } =
+    useCreateConversation();
+  const { mutate: updateConversation, isPending: updateIsPending } =
+    useUpdateConversation();
 
-  const { inquiry, setInquiry } = useStore();
+  const { setInquiry } = useStore();
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    inquiryRef.current?.value && setInquiry(inquiryRef.current?.value)
+    inquiryRef.current?.value && setInquiry(inquiryRef.current?.value);
 
     const inquiryValue = inquiryRef.current?.value;
 
@@ -46,29 +48,32 @@ const Bottombar = () => {
   };
 
   return (
-    <div className="flex flex-col justify-center w-full bg-[#214E87]">
+    <div className="flex flex-col justify-center w-full bg-[#214E87] border-t-white border-t-[1px]">
       <div className="p-6">
         <form
           onSubmit={onSubmitHandler}
-          className="flex justify-center items-center w-full gap-4"
+          className="flex justify-center items-center w-full gap-2 md:gap-4"
         >
           <Input
             ref={inquiryRef}
-            className="p-6 w-3/4 rounded-full"
-            placeholder="Message UCnian Guide Bot"
+            className="lg:w-[700px] rounded-full border-none md:h-12"
+            placeholder="Ask your questions here..."
           />
-          <Button type="submit" className="rounded-full" variant="outline">
+          <Button
+            type="submit"
+            className="rounded-full border-none p-3 md:p-4 md:h-12"
+            variant="outline"
+          >
             {createIsPending || updateIsPending ? (
-              <Loader2 className="animate-spin" />
+              <Loader2 className="animate-spin" size={18} />
             ) : (
               <Send size={18} />
             )}
           </Button>
         </form>
-        <p className="text-xs text-white mt-3 text-center">
-          SIA is still in development, and while we strive for accuracy, there
-          may be times when it produces incomplete or inaccurate responses.
-          Thank you for understanding!
+        <p className="text-[11px] md:text-xs text-white mt-3 text-center">
+          UCnian Guide Bot still in development, so responses may be incomplete
+          or inaccurate at times. Thanks for understanding!
         </p>
       </div>
     </div>

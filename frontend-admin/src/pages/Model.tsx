@@ -33,6 +33,7 @@ const Model = () => {
           value={valueTag}
           setValue={setValueTag}
           setTagValue={setTagValue}
+          noAction
         />
       </div>
       <Card className="mt-4">

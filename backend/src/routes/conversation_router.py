@@ -36,12 +36,14 @@ async def get_conversation(token: str) -> Conversation:
 
 @conversation.post('/', status_code=status.HTTP_201_CREATED, response_model=Conversation)
 async def post_conversation(data: PostConversation) -> Conversation:
-    access_token_expires = timedelta(weeks=int(ACCESS_TOKEN_EXPIRES_WEEKS))
+    # access_token_expires = timedelta(weeks=int(ACCESS_TOKEN_EXPIRES_WEEKS))
 
-    token = create_access_token(
-        {"sub": str(uuid4())},
-        expires_delta=access_token_expires
-    )
+    # token = create_access_token(
+    #     {"sub": str(uuid4())},
+    #     expires_delta=access_token_expires
+    # )
+
+    token = str(uuid4())
 
     kbs = await KnowledgeBase.find_one(KnowledgeBase.version == data.kbs_version)
 

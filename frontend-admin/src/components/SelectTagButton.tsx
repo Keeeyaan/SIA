@@ -36,6 +36,7 @@ const SelectTagButton = ({
   value,
   setValue,
   setTagValue,
+  noAction,
 }: {
   intents?: IGetIntentsResponse[];
   isLoading: boolean;
@@ -44,6 +45,7 @@ const SelectTagButton = ({
   setTagValue?: React.Dispatch<
     React.SetStateAction<IGetIntentsResponse | undefined>
   >;
+  noAction?: boolean;
 }) => {
   const [open, setOpen] = useState(false);
 
@@ -98,30 +100,32 @@ const SelectTagButton = ({
                     />
                     {intent.tag}
                   </CommandItem>
-                  <AlertDialog>
-                    <AlertDialogTrigger asChild>
-                      <Button variant="ghost" size="sm">
-                        <X size={15} />
-                      </Button>
-                    </AlertDialogTrigger>
-                    <AlertDialogContent>
-                      <AlertDialogHeader>
-                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
-                        <AlertDialogDescription>
-                          This action cannot be undone. This will permanently
-                          remove the intent on the database.
-                        </AlertDialogDescription>
-                      </AlertDialogHeader>
-                      <AlertDialogFooter>
-                        <AlertDialogCancel>Cancel</AlertDialogCancel>
-                        <AlertDialogAction
-                          onClick={() => deleteIntent(intent.tag)}
-                        >
-                          {isPending ? <Loader2 /> : "Continue"}
-                        </AlertDialogAction>
-                      </AlertDialogFooter>
-                    </AlertDialogContent>
-                  </AlertDialog>
+                  {!noAction && (
+                    <AlertDialog>
+                      <AlertDialogTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                          <X size={15} />
+                        </Button>
+                      </AlertDialogTrigger>
+                      <AlertDialogContent>
+                        <AlertDialogHeader>
+                          <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                          <AlertDialogDescription>
+                            This action cannot be undone. This will permanently
+                            remove the intent on the database.
+                          </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                          <AlertDialogCancel>Cancel</AlertDialogCancel>
+                          <AlertDialogAction
+                            onClick={() => deleteIntent(intent.tag)}
+                          >
+                            {isPending ? <Loader2 /> : "Continue"}
+                          </AlertDialogAction>
+                        </AlertDialogFooter>
+                      </AlertDialogContent>
+                    </AlertDialog>
+                  )}
                 </div>
               ))
             )}

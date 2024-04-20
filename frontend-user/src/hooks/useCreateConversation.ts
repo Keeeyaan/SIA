@@ -4,10 +4,12 @@ import { useToast } from "@/components/ui/use-toast";
 
 import { createConversation } from "@/api/conversation";
 import { setCookie } from "react-use-cookie";
+import { useStore } from "@/store";
 
 export const useCreateConversation = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
+  const { inquiry, setInquiry } = useStore()
 
   const mutation = useMutation({
     mutationKey: ["conversation"],
@@ -23,6 +25,8 @@ export const useCreateConversation = () => {
       queryClient.invalidateQueries({
         queryKey: ["conversation"],
       });
+
+      setInquiry("")
     },
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     onError: (error: any) => {

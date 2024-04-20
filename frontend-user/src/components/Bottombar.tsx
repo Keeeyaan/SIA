@@ -8,17 +8,20 @@ import { getCookie } from "react-use-cookie";
 
 import useCreateConversation from "@/hooks/useCreateConversation";
 import useUpdateConversation from "@/hooks/useUpdateConversation";
+import { useStore } from "@/store";
 
 const Bottombar = () => {
   const inquiryRef = useRef<HTMLInputElement>();
 
-  const { mutate: createConversation, isPending: createIsPending } =
-    useCreateConversation();
-  const { mutate: updateConversation, isPending: updateIsPending } =
-    useUpdateConversation();
+  const { mutate: createConversation, isPending: createIsPending } = useCreateConversation();
+  const { mutate: updateConversation, isPending: updateIsPending } = useUpdateConversation();
+
+  const { inquiry, setInquiry } = useStore();
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    inquiryRef.current?.value && setInquiry(inquiryRef.current?.value)
 
     const inquiryValue = inquiryRef.current?.value;
 

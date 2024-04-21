@@ -6,7 +6,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useStore } from "@/store";
 
 const Conversation = ({ convo }: { convo: IConversation }) => {
-  const { inquiry, setInquiry } = useStore();
+  const { inquiry } = useStore();
 
   return (
     <div className="h-full w-full py-14 max-w-3xl mx-auto mb-4">

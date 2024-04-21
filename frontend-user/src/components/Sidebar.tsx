@@ -3,35 +3,38 @@ import {
   Bug,
   Trash2,
   HelpCircle,
-  // ArrowUpRightFromSquare,
 } from "lucide-react";
-import { getCookie, setCookie } from "react-use-cookie";
+import { setCookie } from "react-use-cookie";
 
 import { Card, CardFooter, CardHeader } from "./ui/card";
 import { Separator } from "./ui/separator";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import useFetchIntents from "@/hooks/useFetchIntents";
-
-import useCreateConversation from "@/hooks/useCreateConversation";
-import useUpdateConversation from "@/hooks/useUpdateConversation";
+import { useQueryClient } from "@tanstack/react-query";
+import { useStore } from "@/store";
+import { toast } from "./ui/use-toast";
 
 const Sidebar = () => {
   const { data: intents } = useFetchIntents();
 
-  const { mutate: createConversation, isPending: createIsPending } = useCreateConversation();
-  const { mutate: updateConversation, isPending: updateIsPending } = useUpdateConversation();
+  const queryClient = useQueryClient();
+  const { setFAQ, setInquiry } = useStore()
 
-  const handleOnClickFAQ = (value: string) => {
-    const temp = { inquiry: value, kbs_version: "1.0" };
+  const handleClearConversation = () => {
+    setCookie("ucnian_guidebot_token", "")
+    queryClient.invalidateQueries({
+      queryKey: ["conversation"]
+    })
+    toast({
+      title: "Conversation Cleared!",
+      description: "Your conversation is now cleared. Send us your next inquiry!"
+    })
+  }
 
-    if (!getCookie("ucnian_guidebot_token")) createConversation(temp)
-    else {
-      updateConversation({
-        ...temp,
-        token: getCookie("ucnian_guidebot_token"),
-      });
-    }
+  const handleFAQ = (value: string) => {
+    setFAQ(value);
+    setInquiry(value);
   }
 
   return (
@@ -46,7 +49,7 @@ const Sidebar = () => {
                 return (
                   <Label className="flex items-center mr-5" key={item.id + item.patterns}>
                     <HelpCircle size={18} className=" w-6 h-6 flex-shrink-0" />
-                    <Button className="hover:underline text-wrap text-start" variant="link" onClick={() => handleOnClickFAQ(item.patterns)} disabled={createIsPending || updateIsPending}>
+                    <Button className="hover:underline text-wrap text-start" variant="link" onClick={() => handleFAQ(item.patterns)}>
                       {item.patterns}
                     </Button>
                   </Label>
@@ -66,12 +69,8 @@ const Sidebar = () => {
               <Bug className="mr-3 w-6 h-6 flex-shrink-0" />
               Report any issue
             </Button>
-            {/* <Button className="justify-start bg-transparent hover:bg-yellow-50 text-black">
-          <ArrowUpRightFromSquare className="mr-3 w-6 h-6 flex-shrink-0" />
-          Got any recommendations?
-        </Button> */}
             <Button
-              onClick={() => setCookie("ucnian_guidebot_token", "")}
+              onClick={handleClearConversation}
               className="justify-start bg-transparent hover:bg-yellow-50 text-black"
             >
               <Trash2 className="mr-3 w-6 h-6 flex-shrink-0" />

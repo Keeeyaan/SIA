@@ -35,20 +35,24 @@ const Conversation = ({ convo }: { convo: IConversation }) => {
           );
         })}
         {inquiry.length > 0 ? (
-          <div className="flex flex-row gap-5">
-            <Avatar>
-              <AvatarImage src="./user.png" />
-              <AvatarFallback>CN</AvatarFallback>
-            </Avatar>
-            <div className="space-y-1">
-              <h1 className="font-medium text-slate-800">You</h1>
-              <Card className="w-auto">
-                <CardHeader className="p-4">
-                  <h1 className="text-sm">{inquiry}</h1>
-                </CardHeader>
-              </Card>
+        <div className="h-full w-full mt-4 md:mt-8 max-w-3xl mx-auto mb-4">
+          <div className="flex flex-col justify-between gap-y-4 pb-10 px-4">
+            <div className="flex flex-row gap-5">
+              <Avatar>
+                <AvatarImage src="./user.png" />
+                <AvatarFallback>You</AvatarFallback>
+              </Avatar>
+              <div className="space-y-1">
+                <h1 className="font-medium text-white">You</h1>
+                <Card className="bg-yellow-200 border-none w-auto rounded-tl-none">
+                  <CardHeader className="p-4">
+                    <p className="text-sm font-medium">{inquiry}</p>
+                  </CardHeader>
+                </Card>
+              </div>
             </div>
           </div>
+        </div>
         ) : (
           ""
         )}

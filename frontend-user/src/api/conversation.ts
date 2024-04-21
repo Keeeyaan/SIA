@@ -33,10 +33,10 @@ export const getConversation = async (token: string) => {
     return {
       token: token,
       sequence: [],
-      createdAt: ""
-    }
+      createdAt: "",
+    };
   }
-  
+
   const response = await axios.get<IConversation>(`conversation/${token}`);
   return response.data;
 };

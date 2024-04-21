@@ -1,9 +1,4 @@
-import {
-  Sun,
-  Bug,
-  Trash2,
-  HelpCircle,
-} from "lucide-react";
+import { Sun, Bug, Trash2, HelpCircle } from "lucide-react";
 import { setCookie } from "react-use-cookie";
 
 import { Card, CardFooter, CardHeader } from "./ui/card";
@@ -19,23 +14,24 @@ const Sidebar = () => {
   const { data: intents } = useFetchIntents();
 
   const queryClient = useQueryClient();
-  const { setFAQ, setInquiry } = useStore()
+  const { setFAQ, setInquiry } = useStore();
 
   const handleClearConversation = () => {
-    setCookie("ucnian_guidebot_token", "")
+    setCookie("ucnian_guidebot_token", "");
     queryClient.invalidateQueries({
-      queryKey: ["conversation"]
-    })
+      queryKey: ["conversation"],
+    });
     toast({
       title: "Conversation Cleared!",
-      description: "Your conversation is now cleared. Send us your next inquiry!"
-    })
-  }
+      description:
+        "Your conversation is now cleared. Send us your next inquiry!",
+    });
+  };
 
   const handleFAQ = (value: string) => {
     setFAQ(value);
     setInquiry(value);
-  }
+  };
 
   return (
     <Card className="rounded-none border-none w-[350px]">
@@ -43,19 +39,24 @@ const Sidebar = () => {
         <CardHeader className="p-5 text-center text-slate-800">
           <h1 className="mb-5">Frequently Asked Questions</h1>
           <div className="flex flex-col mt-10 space-y-5 text-sm font-medium">
-            {
-              intents &&
-              intents.map((item:any) => {
+            {intents &&
+              intents.map((item: any) => {
                 return (
-                  <Label className="flex items-center mr-5" key={item.id + item.patterns}>
+                  <Label
+                    className="flex items-center mr-5"
+                    key={item.id + item.patterns}
+                  >
                     <HelpCircle size={18} className=" w-6 h-6 flex-shrink-0" />
-                    <Button className="hover:underline text-wrap text-start" variant="link" onClick={() => handleFAQ(item.patterns)}>
+                    <Button
+                      className="hover:underline text-wrap text-start"
+                      variant="link"
+                      onClick={() => handleFAQ(item.patterns)}
+                    >
                       {item.patterns}
                     </Button>
                   </Label>
-                )
-              })
-            }
+                );
+              })}
           </div>
         </CardHeader>
         <div className="space-y-3">

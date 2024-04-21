@@ -14,9 +14,7 @@ export const useStore = create<GlobalStore>((set) => ({
   setSidebarIsClosed: () =>
     set((state) => ({ sidebarIsClosed: !state.sidebarIsClosed })),
   inquiry: "",
-  setInquiry: (value: string) =>
-    set({ inquiry: value }),
+  setInquiry: (value: string) => set({ inquiry: value }),
   FAQ: "",
-  setFAQ: (value: string) =>
-    set({ FAQ: value })
+  setFAQ: (value: string) => set({ FAQ: value }),
 }));

@@ -21,11 +21,11 @@ const Bottombar = () => {
   const { setInquiry, FAQ } = useStore();
 
   useEffect(() => {
-    handleFormSubmission()
-  }, [FAQ])
+    handleFormSubmission();
+  }, [FAQ]);
 
   const handleFormSubmission = () => {
-    let value = ""
+    let value = "";
 
     inquiryRef.current?.value && setInquiry(inquiryRef.current?.value);
 
@@ -70,7 +70,12 @@ const Bottombar = () => {
             className="lg:w-[700px] rounded-full border-none md:h-12"
             placeholder="Ask your questions here..."
           />
-          <Button type="submit" className="rounded-full" variant="outline" disabled={createIsPending || updateIsPending}>
+          <Button
+            type="submit"
+            className="rounded-full"
+            variant="outline"
+            disabled={createIsPending || updateIsPending}
+          >
             {createIsPending || updateIsPending ? (
               <Loader2 className="animate-spin" size={18} />
             ) : (

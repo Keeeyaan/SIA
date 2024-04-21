@@ -21,7 +21,6 @@ const Typewriter = ({
         setCurrentIndex((prevIndex) => prevIndex + 1);
       }, delay);
     } else if (infinite) {
-      // ADD THIS CHECK
       setCurrentIndex(0);
       setCurrentText("");
     }
@@ -29,7 +28,16 @@ const Typewriter = ({
     return () => clearTimeout(timeout);
   }, [currentIndex, delay, infinite, text]);
 
-  return <h1 className="text-sm leading-relaxed">{currentText}</h1>;
+  return (
+    <p className="text-sm leading-relaxed">
+      {currentText.split("\\n").map((line, index) => (
+        <div key={index}>
+          {line}
+          {index < currentText.split("\\n").length - 1 && <br />}
+        </div>
+      ))}
+    </p>
+  );
 };
 
 export default Typewriter;

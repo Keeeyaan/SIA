@@ -8,7 +8,7 @@ import { useStore } from "@/store";
 export const useUpdateConversation = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { inquiry, setInquiry } = useStore()
+  const { inquiry, setInquiry } = useStore();
 
   return useMutation({
     mutationKey: ["conversation"],
@@ -17,7 +17,7 @@ export const useUpdateConversation = () => {
       queryClient.invalidateQueries({
         queryKey: ["conversation"],
       });
-      setInquiry("")
+      setInquiry("");
     },
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     onError: (error: any) => {

@@ -63,7 +63,7 @@ const Bottombar = () => {
       <div className="p-6">
         <form
           onSubmit={onSubmitHandler}
-          className="flex justify-center items-center w-full gap-2 md:gap-4"
+          className="flex justify-center items-center w-full gap-2"
         >
           <Input
             ref={inquiryRef}
@@ -72,7 +72,7 @@ const Bottombar = () => {
           />
           <Button
             type="submit"
-            className="rounded-full"
+            className="rounded-full border-none p-3 md:p-4 md:h-12"
             variant="outline"
             disabled={createIsPending || updateIsPending}
           >

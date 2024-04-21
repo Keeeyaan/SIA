@@ -20,7 +20,7 @@ const ChatBox = ({
   current_index: number;
   length: number;
 }) => {
-  const feedbackRef = useRef<HTMLInputElement>();
+  const feedbackRef = useRef<HTMLTextAreaElement>(null);
 
   const [open, setOpen] = useState(false);
 
@@ -54,23 +54,23 @@ const ChatBox = ({
     navigator.clipboard.writeText(value);
     toast({
       title: "Copied to Clipboard!",
-      description: "Text has been copied to your clipboard"
-    })
-  }
+      description: "Text has been copied to your clipboard",
+    });
+  };
 
   return (
     <div className="">
       {type === "inquiry" ? (
         <div className="flex flex-row gap-5">
           <Avatar>
-            <AvatarImage src="https://cdn-icons-png.flaticon.com/512/847/847969.png?w=826&t=st=1691641237~exp=1691641837~hmac=6371e3f2acfbe7c141349f0c1a8ea64a846ef79be69c39ab7cd6ba738f0ef556" />
-            <AvatarFallback>CN</AvatarFallback>
+            <AvatarImage src="./user.png" />
+            <AvatarFallback>You</AvatarFallback>
           </Avatar>
           <div className="space-y-1">
-            <h1 className="font-medium text-slate-800">You</h1>
-            <Card className="w-auto">
+            <h1 className="font-medium text-white">You</h1>
+            <Card className="bg-yellow-200 border-none w-auto rounded-tl-none">
               <CardHeader className="p-4">
-                <h1 className="text-sm">{data.inquiry}</h1>
+                <p className="text-sm font-medium">{data.inquiry}</p>
               </CardHeader>
             </Card>
           </div>
@@ -83,8 +83,8 @@ const ChatBox = ({
               <AvatarFallback>UCnian Guide Bot</AvatarFallback>
             </Avatar>
             <div>
-              <h1 className="font-medium">UCnian Guide Bot</h1>
-              <Card className="mb-2">
+              <h1 className="font-medium mb-1 text-white">UCnian Guide Bot</h1>
+              <Card className="mb-2 rounded-tl-none border-none bg-yellow-100">
                 <CardHeader className="p-4">
                   {current_index == length - 1 ? (
                     <Typewriter
@@ -95,7 +95,7 @@ const ChatBox = ({
                   ) : (
                     <ReactMarkDown
                       children={data.response}
-                      className="markdown text-sm"
+                      className="markdown text-sm leading-relaxed"
                       allowedElements={[
                         "p",
                         "br",
@@ -115,9 +115,9 @@ const ChatBox = ({
                   )}
                 </CardHeader>
               </Card>
-              <div className="flex items-center gap-3 ml-2">
+              <div className="text-white flex items-center gap-3 ml-2 mt-3">
                 <Copy
-                  className="opacity-50 cursor-pointer hover:opacity-100"
+                  className="opacity-70 cursor-pointer hover:opacity-100"
                   size={17}
                   strokeWidth={2}
                   onClick={() => copyToClipboardHandler(data.response)}
@@ -125,7 +125,7 @@ const ChatBox = ({
                 <MessageSquareText
                   className="opacity-50 hover:opacity-100 cursor-default hover:cursor-pointer"
                   size={17}
-                  strokeWidth={2}
+                  strokeWidth={3}
                   onClick={() => setOpen(true)}
                 />
               </div>

@@ -41,7 +41,7 @@ const Sidebar = () => {
     <Card className="rounded-none border-none w-[350px]">
       <div className="flex h-screen flex-col justify-between bg-gradient-to-b from-yellow-200 via-yellow-100 to-yellow-50">
         <CardHeader className="p-5 text-center text-slate-800">
-          <h1 className="">Frequently Asked Questions</h1>
+          <h1 className="mb-5">Frequently Asked Questions</h1>
           <div className="flex flex-col mt-10 space-y-5 text-sm font-medium">
             {
               intents &&

@@ -24,6 +24,9 @@ const Bottombar = () => {
     handleFormSubmission()
   }, [FAQ])
 
+  const handleFormSubmission = () => {
+    let value = ""
+
     inquiryRef.current?.value && setInquiry(inquiryRef.current?.value);
 
     if (inquiryRef.current?.value) value = inquiryRef.current.value;

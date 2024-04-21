@@ -21,11 +21,12 @@ const Bottombar = () => {
   const { setInquiry, FAQ } = useStore();
 
   useEffect(() => {
-    handleFormSubmission()
-  }, [FAQ])
+    handleFormSubmission();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const handleFormSubmission = () => {
-    let value = ""
+    let value = "";
 
     inquiryRef.current?.value && setInquiry(inquiryRef.current?.value);
 
@@ -63,14 +64,19 @@ const Bottombar = () => {
       <div className="p-6">
         <form
           onSubmit={onSubmitHandler}
-          className="flex justify-center items-center w-full gap-2 md:gap-4"
+          className="flex justify-center items-center w-full gap-2"
         >
           <Input
             ref={inquiryRef}
             className="lg:w-[700px] rounded-full border-none md:h-12"
             placeholder="Ask your questions here..."
           />
-          <Button type="submit" className="rounded-full" variant="outline" disabled={createIsPending || updateIsPending}>
+          <Button
+            type="submit"
+            className="rounded-full border-none p-3 md:p-4 md:h-12"
+            variant="outline"
+            disabled={createIsPending || updateIsPending}
+          >
             {createIsPending || updateIsPending ? (
               <Loader2 className="animate-spin" size={18} />
             ) : (

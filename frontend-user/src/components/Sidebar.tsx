@@ -1,39 +1,42 @@
 import { Sun, Bug, Trash2, HelpCircle } from "lucide-react";
-import { getCookie, setCookie } from "react-use-cookie";
+import { setCookie } from "react-use-cookie";
 
 import { Card, CardFooter, CardHeader } from "./ui/card";
 import { Label } from "./ui/label";
 import { Button } from "./ui/button";
 import useFetchIntents from "@/hooks/useFetchIntents";
-
-import useCreateConversation from "@/hooks/useCreateConversation";
-import useUpdateConversation from "@/hooks/useUpdateConversation";
+import { useQueryClient } from "@tanstack/react-query";
+import { useStore } from "@/store";
+import { toast } from "./ui/use-toast";
 
 const Sidebar = () => {
   const { data: intents } = useFetchIntents();
 
-  const { mutate: createConversation, isPending: createIsPending } =
-    useCreateConversation();
-  const { mutate: updateConversation, isPending: updateIsPending } =
-    useUpdateConversation();
+  const queryClient = useQueryClient();
+  const { setFAQ, setInquiry } = useStore();
 
-  const handleOnClickFAQ = (value: string) => {
-    const temp = { inquiry: value, kbs_version: "1.0" };
+  const handleClearConversation = () => {
+    setCookie("ucnian_guidebot_token", "");
+    queryClient.invalidateQueries({
+      queryKey: ["conversation"],
+    });
+    toast({
+      title: "Conversation Cleared!",
+      description:
+        "Your conversation is now cleared. Send us your next inquiry!",
+    });
+  };
 
-    if (!getCookie("ucnian_guidebot_token")) createConversation(temp);
-    else {
-      updateConversation({
-        ...temp,
-        token: getCookie("ucnian_guidebot_token"),
-      });
-    }
+  const handleFAQ = (value: string) => {
+    setFAQ(value);
+    setInquiry(value);
   };
 
   return (
     <Card className="hidden md:block rounded-none border-none w-[350px]">
       <div className="flex h-screen flex-col justify-between bg-gradient-to-b from-yellow-200 via-yellow-100 to-yellow-50">
         <CardHeader className="p-5 text-center text-slate-800">
-          <h1 className="">Frequently Asked Questions</h1>
+          <h1 className="mb-5">Frequently Asked Questions</h1>
           <div className="flex flex-col mt-10 space-y-5 text-sm font-medium">
             {intents &&
               intents.map((item) => {
@@ -46,8 +49,7 @@ const Sidebar = () => {
                     <Button
                       className="hover:underline text-wrap text-start"
                       variant="link"
-                      onClick={() => handleOnClickFAQ(item.patterns)}
-                      disabled={createIsPending || updateIsPending}
+                      onClick={() => handleFAQ(item.patterns)}
                     >
                       {item.patterns}
                     </Button>
@@ -67,7 +69,7 @@ const Sidebar = () => {
               Report any issue
             </Button>
             <Button
-              onClick={() => setCookie("ucnian_guidebot_token", "")}
+              onClick={handleClearConversation}
               className="justify-start bg-transparent hover:bg-yellow-50 text-black"
             >
               <Trash2 className="mr-3 w-6 h-6 flex-shrink-0" />

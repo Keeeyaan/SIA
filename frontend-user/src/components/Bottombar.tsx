@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Loader2, Send } from "lucide-react";
 
 import { Button } from "./ui/button";
@@ -18,20 +18,25 @@ const Bottombar = () => {
   const { mutate: updateConversation, isPending: updateIsPending } =
     useUpdateConversation();
 
-  const { setInquiry } = useStore();
+  const { setInquiry, FAQ } = useStore();
 
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  useEffect(() => {
+    handleFormSubmission()
+  }, [FAQ])
+
+  const handleFormSubmission = () => {
+    let value = ""
 
     inquiryRef.current?.value && setInquiry(inquiryRef.current?.value);
 
-    const inquiryValue = inquiryRef.current?.value;
+    if (inquiryRef.current?.value) value = inquiryRef.current.value;
+    if (FAQ) value = FAQ;
 
-    if (!inquiryValue) {
+    if (!value) {
       return;
     }
 
-    const temp = { inquiry: inquiryValue, kbs_version: "1.0" };
+    const temp = { inquiry: value, kbs_version: "1.0" };
 
     if (!getCookie("ucnian_guidebot_token")) {
       createConversation(temp);
@@ -47,6 +52,12 @@ const Bottombar = () => {
     }
   };
 
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    inquiryRef.current?.value && setInquiry(inquiryRef.current?.value);
+    handleFormSubmission();
+  };
+
   return (
     <div className="flex flex-col justify-center w-full bg-[#214E87] border-t-white border-t-[1px]">
       <div className="p-6">
@@ -59,11 +70,7 @@ const Bottombar = () => {
             className="lg:w-[700px] rounded-full border-none md:h-12"
             placeholder="Ask your questions here..."
           />
-          <Button
-            type="submit"
-            className="rounded-full border-none p-3 md:p-4 md:h-12"
-            variant="outline"
-          >
+          <Button type="submit" className="rounded-full" variant="outline" disabled={createIsPending || updateIsPending}>
             {createIsPending || updateIsPending ? (
               <Loader2 className="animate-spin" size={18} />
             ) : (

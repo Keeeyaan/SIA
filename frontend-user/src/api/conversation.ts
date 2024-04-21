@@ -29,6 +29,14 @@ interface UpdateConversation {
 }
 
 export const getConversation = async (token: string) => {
+  if (token === "") {
+    return {
+      token: token,
+      sequence: [],
+      createdAt: ""
+    }
+  }
+  
   const response = await axios.get<IConversation>(`conversation/${token}`);
   return response.data;
 };

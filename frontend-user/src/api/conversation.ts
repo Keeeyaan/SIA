@@ -41,7 +41,10 @@ export const getConversation = async (token: string) => {
   return response.data;
 };
 
-export const createConversation = async (data: PostConversation) => {
+export const createConversation = async (data: {
+  inquiry: string;
+  kbs_version: string;
+}) => {
   const response = await axios.post<PostConversation>(`conversation/`, data);
   return response.data;
 };

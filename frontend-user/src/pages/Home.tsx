@@ -9,7 +9,7 @@ const Home = () => {
   return (
     <>
       <div
-        className={`${convo?.sequence.length && "overflow-y-scroll"} flex items-center justify-center h-full w-full bg-no-repeat bg-center bg-[url('/uclogo.png')] bg-[#17AEDA] bg-opacity-20`}
+        className={`${convo?.sequence.length && "overflow-y-scroll"} flex items-center justify-center h-full w-full bg-no-repeat bg-center bg-[url('/uclogo.png')] bg-[#19375f]  `}
       >
         {convo?.sequence.length ? (
           <Conversation convo={convo} />

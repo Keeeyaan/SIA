@@ -42,7 +42,10 @@ async def delete_inquiry(id: str, current_user: HTTPAuthorizationCredentials = D
     not_found("Inquiry", inquiry)
 
     intent = await Intent.find_one(Intent.tag == inquiry.tag)
-    intent.frequency = intent.frequency - 1
+
+    if intent.frequency > 0:
+        intent.frequency = intent.frequency - 1
+
     await intent.save()
 
     await inquiry.delete()

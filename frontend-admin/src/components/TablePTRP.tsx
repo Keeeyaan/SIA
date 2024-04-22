@@ -1,3 +1,6 @@
+import ReactMarkDown from "react-markdown";
+import remarkGfm from "remark-gfm";
+
 import {
   Table,
   TableBody,
@@ -46,7 +49,7 @@ const TablePTRP = ({
             <TableRow>
               <TableHead>ID</TableHead>
               <TableHead>{itemHead}</TableHead>
-              <TableHead></TableHead>
+              <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
@@ -54,7 +57,17 @@ const TablePTRP = ({
               return (
                 <TableRow key={index}>
                   <TableCell>{index}</TableCell>
-                  <TableCell>{item}</TableCell>
+                  <TableCell>
+                    {itemHead === "Pattern" ? (
+                      item
+                    ) : (
+                      <ReactMarkDown
+                        rehypePlugins={[remarkGfm]}
+                        className="markdown"
+                        children={item}
+                      />
+                    )}
+                  </TableCell>
                   {!noAction && (
                     <TableCell>
                       <TableAction

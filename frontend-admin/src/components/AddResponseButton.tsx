@@ -22,7 +22,7 @@ const AddResponseButton = ({ value }: { value: string }) => {
           <PlusSquare size={18} />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:min-w-[500px]">
         <DialogHeader>
           <DialogTitle>Add Response</DialogTitle>
           <DialogDescription>

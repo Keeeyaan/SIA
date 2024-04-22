@@ -18,7 +18,7 @@ import useAddIntentPattern from "@/hooks/useAddIntentPattern";
 import { Textarea } from "./ui/textarea";
 
 const PatternValidationSchema = z.object({
-  pattern: z.string().min(1, "Pattern is required").max(1024).trim(),
+  pattern: z.string().min(1, "Pattern is required").max(2048).trim(),
   tag: z.string().min(1, "Tag is required").max(128).trim(),
 });
 

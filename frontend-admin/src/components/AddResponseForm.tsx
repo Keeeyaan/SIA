@@ -18,7 +18,7 @@ import useAddIntentResponse from "@/hooks/useAddIntentResponse";
 import { Textarea } from "./ui/textarea";
 
 const ResponseValidationSchema = z.object({
-  response: z.string().min(1, "Response is required").max(1024).trim(),
+  response: z.string().min(1, "Response is required").max(2048).trim(),
   tag: z.string().min(1, "Tag is required").max(128).trim(),
 });
 

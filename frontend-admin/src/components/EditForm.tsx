@@ -12,9 +12,9 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
 import { useUpdateIntentPattern } from "@/hooks/useUpdateIntentPattern";
 import { useUpdateIntentResponse } from "@/hooks/useUpdateIntentResponse";
+import { Textarea } from "./ui/textarea";
 
 const EditUserValidationSchema = z.object({
   data: z.string().min(1, "Input required!"),
@@ -66,7 +66,7 @@ const EditForm = ({
             <FormItem>
               <FormLabel>{type || "Pattern"}</FormLabel>
               <FormControl>
-                <Input {...field} />
+                <Textarea rows={10} {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>

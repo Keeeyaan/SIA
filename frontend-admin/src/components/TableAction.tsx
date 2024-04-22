@@ -90,7 +90,7 @@ const TableAction = ({
 
       {/* Edit Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
-        <DialogContent className="sm:max-w-[425px]">
+        <DialogContent className="sm:min-w-[500px]">
           <DialogHeader>
             <DialogTitle>Edit {itemHead} Item</DialogTitle>
             <DialogDescription>

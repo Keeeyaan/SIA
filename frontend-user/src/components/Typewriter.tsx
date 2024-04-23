@@ -29,14 +29,14 @@ const Typewriter = ({
   }, [currentIndex, delay, infinite, text]);
 
   return (
-    <p className="text-sm leading-relaxed">
+    <div className="text-sm leading-relaxed">
       {currentText.split("\n").map((line, index) => (
-        <div key={index}>
+        <p key={index}>
           {line}
           {index < currentText.split("\n").length - 1 && <br />}
-        </div>
+        </p>
       ))}
-    </p>
+    </div>
   );
 };
 

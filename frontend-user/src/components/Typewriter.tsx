@@ -30,10 +30,10 @@ const Typewriter = ({
 
   return (
     <p className="text-sm leading-relaxed">
-      {currentText.split("\\n").map((line, index) => (
+      {currentText.split("\n").map((line, index) => (
         <div key={index}>
           {line}
-          {index < currentText.split("\\n").length - 1 && <br />}
+          {index < currentText.split("\n").length - 1 && <br />}
         </div>
       ))}
     </p>

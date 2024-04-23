@@ -7,6 +7,8 @@ interface GlobalStore {
   setInquiry: (value: string) => void;
   FAQ: string;
   setFAQ: (value: string) => void;
+  version: string;
+  setVersion: (version: string) => void;
 }
 
 export const useStore = create<GlobalStore>((set) => ({
@@ -17,4 +19,6 @@ export const useStore = create<GlobalStore>((set) => ({
   setInquiry: (value: string) => set({ inquiry: value }),
   FAQ: "",
   setFAQ: (value: string) => set({ FAQ: value }),
+  version: "",
+  setVersion: (version: string) => set({ version: version }),
 }));

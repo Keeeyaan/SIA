@@ -22,7 +22,7 @@ const Bottombar = () => {
 
   useEffect(() => {
     handleFormSubmission();
-  }, [FAQ]);
+  }, [FAQ, version]);
 
   const handleFormSubmission = () => {
     let value = "";

@@ -18,7 +18,7 @@ const Bottombar = () => {
   const { mutate: updateConversation, isPending: updateIsPending } =
     useUpdateConversation();
 
-  const { setInquiry, FAQ } = useStore();
+  const { setInquiry, FAQ, version } = useStore();
 
   useEffect(() => {
     handleFormSubmission();
@@ -36,7 +36,7 @@ const Bottombar = () => {
       return;
     }
 
-    const temp = { inquiry: value, kbs_version: "1.0" };
+    const temp = { inquiry: value, kbs_version: version};
 
     if (!getCookie("ucnian_guidebot_token")) {
       createConversation(temp);

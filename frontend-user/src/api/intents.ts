@@ -10,6 +10,7 @@ interface IIntentResponse {
   patterns: string;
   tag: string;
 }
+
 export const getIntents = async (token: string) => {
   const response = await axios.get<IIntentResponse[]>(`intents/public/`, {
     headers: { Authorization: `Bearer ${token}` },

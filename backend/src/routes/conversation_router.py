@@ -43,47 +43,47 @@ async def post_conversation(data: PostConversation) -> Conversation:
     #     expires_delta=access_token_expires
     # )
 
-    token = uuid4()
+    token = str(uuid4())
 
     kbs = await KnowledgeBase.find_one(KnowledgeBase.version == data.kbs_version)
 
     initial = init({"intents": kbs.intents})
 
-    try:
-        model = load_model(data.kbs_version)
+    # try:
+    model = load_model(data.kbs_version)
 
-        response = chatbot_respond(
-            data.inquiry,
-            model,
-            initial.get('tokenizer'),
-            initial.get('input_shape'),
-            initial.get('label_encoder'),
-            initial.get('responses')
-        )
+    response = chatbot_respond(
+        data.inquiry,
+        model,
+        initial.get('tokenizer'),
+        initial.get('input_shape'),
+        initial.get('label_encoder'),
+        initial.get('responses')
+    )
 
-        conversation = Conversation(
-            token=token,
-            sequence=[Sequence(
-                inquiry=data.inquiry,
-                response=response.get("response"),
-                createdAt=datetime.now()
-            )]
-        )
+    conversation = Conversation(
+        token=token,
+        sequence=[Sequence(
+            inquiry=data.inquiry,
+            response=response.get("response"),
+            createdAt=datetime.now()
+        )]
+    )
 
-        await conversation.create()
-        inquiry = Inquiry(token=token, inquiry=data.inquiry,
-                          tag=response.get("tag"), version=data.kbs_version)
-        await inquiry.insert()
-        intent = await Intent.find_one(Intent.tag == response.get("tag"))
-        intent.frequency = intent.frequency + 1
-        await intent.save()
+    await conversation.create()
+    inquiry = Inquiry(token=token, inquiry=data.inquiry,
+                      tag=response.get("tag"), version=data.kbs_version)
+    await inquiry.insert()
+    intent = await Intent.find_one(Intent.tag == response.get("tag"))
+    intent.frequency = intent.frequency + 1
+    await intent.save()
 
-        return conversation
-    except:
-        raise HTTPException(
-            status_code=503,
-            detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Could you please try asking again? Thank you."
-        )
+    return conversation
+    # except:
+    #     raise HTTPException(
+    #         status_code=503,
+    #         detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Could you please try asking again? Thank you."
+    #     )
 
 
 @conversation.patch('/', status_code=status.HTTP_200_OK)

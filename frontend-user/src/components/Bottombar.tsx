@@ -36,7 +36,7 @@ const Bottombar = () => {
       return;
     }
 
-    const temp = { inquiry: value, kbs_version: version};
+    const temp = { inquiry: value, kbs_version: version };
 
     if (!getCookie("ucnian_guidebot_token")) {
       createConversation(temp);

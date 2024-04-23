@@ -17,7 +17,7 @@ import {
   SelectLabel,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from "@/components/ui/select";
 import useFetchVersions from "@/hooks/useFetchVersions";
 
 const Sidebar = () => {
@@ -44,7 +44,7 @@ const Sidebar = () => {
     setInquiry(value);
   };
 
-  const handleVersionSelect = (version: string) => setVersion(version)
+  const handleVersionSelect = (version: string) => setVersion(version);
 
   return (
     <Card className="hidden md:block rounded-none border-none max-w-[310px]">
@@ -81,14 +81,22 @@ const Sidebar = () => {
               </SelectTrigger>
               <SelectContent className="bg-[#214E87]">
                 <SelectGroup>
-                  <SelectLabel className="text-white">UCGB Versions</SelectLabel>
-                  {
-                    versions && versions.available_versions.map((item: any) => {
+                  <SelectLabel className="text-white">
+                    UCGB Versions
+                  </SelectLabel>
+                  {versions &&
+                    versions.available_versions.map((item: any) => {
                       return (
-                        <SelectItem className="text-white" value={item} key={item} onClick={() => handleVersionSelect(item)}>UCGB {item}</SelectItem>
-                      )
-                    })
-                  }
+                        <SelectItem
+                          className="text-white"
+                          value={item}
+                          key={item}
+                          onClick={() => handleVersionSelect(item)}
+                        >
+                          UCGB {item}
+                        </SelectItem>
+                      );
+                    })}
                 </SelectGroup>
               </SelectContent>
             </Select>

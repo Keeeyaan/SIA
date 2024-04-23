@@ -9,7 +9,7 @@ interface IVersions {
 }
 
 export const getVersions = async () => {
-  const response = await axios.get<IVersions>('model/');
+  const response = await axios.get<IVersions>("model/");
 
   return response.data;
-}
+};

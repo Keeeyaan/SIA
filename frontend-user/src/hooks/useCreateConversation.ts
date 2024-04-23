@@ -9,7 +9,7 @@ import { useStore } from "@/store";
 export const useCreateConversation = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { inquiry, setInquiry } = useStore();
+  const { setInquiry } = useStore();
 
   const mutation = useMutation({
     mutationKey: ["conversation"],
@@ -19,9 +19,6 @@ export const useCreateConversation = () => {
         days: 30,
         Secure: true,
       });
-
-      toast({ title: "Conversation Created." });
-
       queryClient.invalidateQueries({
         queryKey: ["conversation"],
       });

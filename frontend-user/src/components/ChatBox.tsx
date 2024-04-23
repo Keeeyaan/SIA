@@ -1,11 +1,12 @@
+import { useRef, useState } from "react";
+import { Copy, Loader2, MessageSquareText, X } from "lucide-react";
+import ReactMarkDown from "react-markdown";
+
+import useCreateFeedback from "@/hooks/useCreateFeedback";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Card, CardContent, CardFooter, CardHeader } from "./ui/card";
 import Typewriter from "./Typewriter";
-import ReactMarkDown from "react-markdown";
-import { Copy, Loader2, MessageSquareText, X } from "lucide-react";
-import { useRef, useState } from "react";
 import { Button } from "./ui/button";
-import useCreateFeedback from "@/hooks/useCreateFeedback";
 import { Textarea } from "./ui/textarea";
 import { toast } from "./ui/use-toast";
 
@@ -46,7 +47,6 @@ const ChatBox = ({
     };
 
     createFeedback(feedback);
-
     setOpen(false);
   };
 
@@ -59,7 +59,7 @@ const ChatBox = ({
   };
 
   return (
-    <div className="">
+    <>
       {type === "inquiry" ? (
         <div className="flex flex-row gap-5">
           <Avatar>
@@ -96,21 +96,6 @@ const ChatBox = ({
                     <ReactMarkDown
                       children={data.response}
                       className="markdown text-sm leading-relaxed"
-                      allowedElements={[
-                        "p",
-                        "br",
-                        "strong",
-                        "em",
-                        "h1",
-                        "h2",
-                        "h3",
-                        "h4",
-                        "h5",
-                        "h6",
-                        "ul",
-                        "ol",
-                        "li",
-                      ]}
                     />
                   )}
                 </CardHeader>
@@ -126,30 +111,35 @@ const ChatBox = ({
                   className="opacity-50 hover:opacity-100 cursor-default hover:cursor-pointer"
                   size={17}
                   strokeWidth={3}
-                  onClick={() => setOpen(true)}
+                  onClick={() => setOpen((state) => !state)}
                 />
               </div>
               {open && (
-                <Card className="mt-5">
+                <Card className="mt-3 bg-yellow-50">
                   <form onSubmit={onSubmitHandler}>
-                    <CardHeader className="flex flex-row items-center justify-between">
-                      <h1 className="text-sm font-medium">Provide Feedback</h1>
-                      <X
-                        className="cursor-default hover:cursor-pointer"
-                        size={15}
-                        onClick={() => setOpen(false)}
-                      />
+                    <CardHeader className="px-4 pt-4 pb-2 flex flex-row items-center justify-between">
+                      <div className="flex w-full items-center justify-between">
+                        <h1 className="text-sm font-medium">
+                          Provide Feedback
+                        </h1>
+                        <X
+                          className="cursor-default hover:cursor-pointer"
+                          size={15}
+                          onClick={() => setOpen(false)}
+                        />
+                      </div>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="px-4 pb-2">
                       <Textarea
                         ref={feedbackRef}
-                        className="resize-none"
+                        className="resize-none text-sm"
                         placeholder="Input your feedback here"
                         disabled={createIsPending}
+                        rows={1}
                       />
                     </CardContent>
-                    <CardFooter className="flex justify-end">
-                      <Button type="submit" variant="outline">
+                    <CardFooter className="px-4 pb-4 flex justify-end">
+                      <Button type="submit" variant="outline" size="sm">
                         {createIsPending ? (
                           <Loader2 className="animate-spin" />
                         ) : (
@@ -164,7 +154,7 @@ const ChatBox = ({
           </div>
         </div>
       )}
-    </div>
+    </>
   );
 };
 

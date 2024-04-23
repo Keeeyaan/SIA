@@ -5,9 +5,16 @@ import { Card, CardHeader } from "./ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { useStore } from "@/store";
 import Topbar from "./Topbar";
+import useFetchVersions from "@/hooks/useFetchVersions";
+import { useEffect } from "react";
 
 const Conversation = ({ convo }: { convo: IConversation }) => {
-  const { inquiry } = useStore();
+  const { inquiry, setVersion } = useStore();
+  const { data: versions } = useFetchVersions();
+
+  useEffect(() => {
+    setVersion(versions?.available_versions[0] || "")
+  }, [versions])
 
   return (
     <div className="h-full w-full">

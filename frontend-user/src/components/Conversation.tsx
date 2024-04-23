@@ -1,8 +1,8 @@
 import { useRef, useEffect } from "react";
-
 import { IConversation } from "@/api/conversation";
 import ChatBox from "./ChatBox";
 import Topbar from "./Topbar";
+import useFetchVersions from "@/hooks/useFetchVersions";
 
 const Conversation = ({ convo }: { convo: IConversation }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -11,6 +11,13 @@ const Conversation = ({ convo }: { convo: IConversation }) => {
     ref.current?.scrollIntoView({ behavior: "smooth" });
     ref.current?.scrollTo(0, ref.current.scrollHeight);
   }, [convo]);
+
+  const { inquiry, setVersion } = useStore();
+  const { data: versions } = useFetchVersions();
+
+  useEffect(() => {
+    setVersion(versions?.available_versions[0] || "");
+  }, [versions]);
 
   return (
     <div className="h-full w-full">

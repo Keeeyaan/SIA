@@ -69,8 +69,8 @@ def create_model(vocabulary_size, input_shape, output_length):
 
 def fit_model(model, x_train, y_train):
     early_stopping = EarlyStopping(
-        monitor="loss", patience=10, restore_best_weights=True)
-    model.fit(x_train, y_train, epochs=1000,
+        monitor="loss", patience=3, restore_best_weights=True)
+    model.fit(x_train, y_train, epochs=100,
               verbose=1, callbacks=[early_stopping])
 
     return model

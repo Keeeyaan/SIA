@@ -3,6 +3,7 @@ import { IConversation } from "@/api/conversation";
 import ChatBox from "./ChatBox";
 import Topbar from "./Topbar";
 import useFetchVersions from "@/hooks/useFetchVersions";
+import { useStore } from "@/store";
 
 const Conversation = ({ convo }: { convo: IConversation }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -12,7 +13,7 @@ const Conversation = ({ convo }: { convo: IConversation }) => {
     ref.current?.scrollTo(0, ref.current.scrollHeight);
   }, [convo]);
 
-  const { inquiry, setVersion } = useStore();
+  const { setVersion } = useStore();
   const { data: versions } = useFetchVersions();
 
   useEffect(() => {

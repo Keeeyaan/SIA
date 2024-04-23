@@ -10,7 +10,7 @@ import { useStore } from "@/store";
 
 const Bottombar = () => {
   const inquiryRef = useRef<HTMLInputElement>(null);
-  const { setInquiry } = useStore();
+  const { setInquiry, version } = useStore();
 
   const { mutate: createConversation, isPending: createIsPending } =
     useCreateConversation();
@@ -28,7 +28,7 @@ const Bottombar = () => {
     setInquiry(inquiry);
     const cookie = getCookie("ucnian_guidebot_token");
 
-    const data = { inquiry, kbs_version: "1.0" };
+    const data = { inquiry, kbs_version: version };
 
     if (!cookie) {
       createConversation(data);

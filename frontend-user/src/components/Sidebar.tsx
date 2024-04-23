@@ -55,7 +55,7 @@ const Sidebar = () => {
           </h1>
           <div className="flex flex-col mt-10 space-y-5 text-sm font-medium">
             {intents &&
-              intents.map((item: any) => {
+              intents.map((item) => {
                 return (
                   <Button
                     key={item._id + item.patterns}

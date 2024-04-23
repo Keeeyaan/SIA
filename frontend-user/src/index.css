@@ -84,5 +84,16 @@
   font-family: "Poppins", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   scroll-behavior: smooth;
   text-decoration: none;
-  list-style: none;
+}
+
+.markdown > * {
+  all: revert;
+}
+
+.markdown > *:first-child {
+  margin: 0 !important;
+}
+
+.markdown > *:last-child {
+  margin: 0 !important;
 }

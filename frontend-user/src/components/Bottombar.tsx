@@ -1,61 +1,48 @@
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { Loader2, Send } from "lucide-react";
+import { getCookie } from "react-use-cookie";
 
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
-
-import { getCookie } from "react-use-cookie";
-
 import useCreateConversation from "@/hooks/useCreateConversation";
 import useUpdateConversation from "@/hooks/useUpdateConversation";
 import { useStore } from "@/store";
 
 const Bottombar = () => {
   const inquiryRef = useRef<HTMLInputElement>(null);
+  const { setInquiry, version } = useStore();
 
   const { mutate: createConversation, isPending: createIsPending } =
     useCreateConversation();
   const { mutate: updateConversation, isPending: updateIsPending } =
     useUpdateConversation();
 
-  const { setInquiry, FAQ, version } = useStore();
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const inquiry = inquiryRef.current?.value.trim();
 
-  useEffect(() => {
-    handleFormSubmission();
-  }, [FAQ, version]);
-
-  const handleFormSubmission = () => {
-    let value = "";
-
-    inquiryRef.current?.value && setInquiry(inquiryRef.current?.value);
-
-    if (inquiryRef.current?.value) value = inquiryRef.current.value;
-    if (FAQ) value = FAQ;
-
-    if (!value) {
+    if (inquiry === "" || !inquiry) {
       return;
     }
 
-    const temp = { inquiry: value, kbs_version: version };
+    setInquiry(inquiry);
+    const cookie = getCookie("ucnian_guidebot_token");
 
-    if (!getCookie("ucnian_guidebot_token")) {
-      createConversation(temp);
+    // const data = { inquiry, kbs_version: "1.0" };
 
-      if (inquiryRef.current) inquiryRef.current.value = "";
+    const data = { inquiry, kbs_version: version };
+
+    if (!cookie) {
+      createConversation(data);
+      inquiryRef.current && (inquiryRef.current.value = "");
     } else {
       updateConversation({
-        ...temp,
-        token: getCookie("ucnian_guidebot_token"),
+        ...data,
+        token: cookie,
       });
 
       if (inquiryRef.current) inquiryRef.current.value = "";
     }
-  };
-
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    inquiryRef.current?.value && setInquiry(inquiryRef.current?.value);
-    handleFormSubmission();
   };
 
   return (
@@ -69,6 +56,7 @@ const Bottombar = () => {
             ref={inquiryRef}
             className="lg:w-[700px] rounded-full border-none md:h-12"
             placeholder="Ask your questions here..."
+            disabled={createIsPending || updateIsPending}
           />
           <Button
             type="submit"

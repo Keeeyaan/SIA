@@ -13,8 +13,8 @@ const Conversation = ({ convo }: { convo: IConversation }) => {
   const { data: versions } = useFetchVersions();
 
   useEffect(() => {
-    setVersion(versions?.available_versions[0] || "")
-  }, [versions])
+    setVersion(versions?.available_versions[0] || "");
+  }, [versions]);
 
   return (
     <div className="h-full w-full">

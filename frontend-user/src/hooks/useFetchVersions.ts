@@ -7,6 +7,6 @@ const useFetchVersions = () => {
     queryKey: ["versions"],
     queryFn: getVersions,
   });
-}
+};
 
 export default useFetchVersions;

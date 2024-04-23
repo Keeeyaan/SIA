@@ -8,11 +8,11 @@ from keras.callbacks import EarlyStopping
 from keras.optimizers import Adam
 from keras.utils import pad_sequences
 from keras.models import Sequential
+from keras import regularizers
 from tensorflow.keras.preprocessing.text import Tokenizer
 
 
 nltk.download('vader_lexicon')
-
 
 def init(data: dict) -> dict:
     tags = []
@@ -52,15 +52,24 @@ def init(data: dict) -> dict:
 
 
 def create_model(vocabulary_size, input_shape, output_length):
+    # model = Sequential()
+    # model.add(Embedding(vocabulary_size + 1, 200, input_length=input_shape))
+    # model.add(Bidirectional(LSTM(64, return_sequences=True)))
+    # model.add(Bidirectional(LSTM(64)))
+    # model.add(Dense(output_length, activation='softmax'))
+
+    # model.compile(loss="sparse_categorical_crossentropy", optimizer=Adam(learning_rate=0.001), metrics=['accuracy'])
+
+    # model.summary()
+
     model = Sequential()
     model.add(Embedding(vocabulary_size + 1, 200, input_length=input_shape))
-    model.add(Bidirectional(
-        LSTM(64, return_sequences=True)))
-    model.add(Bidirectional(LSTM(64)))
+    model.add(Bidirectional(LSTM(128, return_sequences=True, dropout=0.2, recurrent_dropout=0.2, kernel_regularizer=regularizers.l2(0.01))))
+    model.add(Bidirectional(LSTM(128, dropout=0.2, recurrent_dropout=0.2, kernel_regularizer=regularizers.l2(0.01))))
+    model.add(Dense(64, activation='relu', kernel_regularizer=regularizers.l2(0.01)))
     model.add(Dense(output_length, activation='softmax'))
 
-    model.compile(loss="sparse_categorical_crossentropy",
-                  optimizer=Adam(learning_rate=0.001), metrics=['accuracy'])
+    model.compile(loss="sparse_categorical_crossentropy",optimizer=Adam(learning_rate=0.001), metrics=['accuracy'])
 
     model.summary()
 
@@ -70,8 +79,10 @@ def create_model(vocabulary_size, input_shape, output_length):
 def fit_model(model, x_train, y_train):
     early_stopping = EarlyStopping(
         monitor="loss", patience=3, restore_best_weights=True)
+    # model.fit(x_train, y_train, epochs=100,
+    #           verbose=1, callbacks=[early_stopping])
     model.fit(x_train, y_train, epochs=100,
-              verbose=1, callbacks=[early_stopping])
+              verbose=1)
 
     return model
 

@@ -28,8 +28,6 @@ const Bottombar = () => {
     setInquiry(inquiry);
     const cookie = getCookie("ucnian_guidebot_token");
 
-    // const data = { inquiry, kbs_version: "1.0" };
-
     const data = { inquiry, kbs_version: version };
 
     if (!cookie) {

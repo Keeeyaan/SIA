@@ -1,5 +1,6 @@
 import ReactMarkDown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import rehypeRaw from "rehype-raw";
 
 import {
   Table,
@@ -62,7 +63,7 @@ const TablePTRP = ({
                       item
                     ) : (
                       <ReactMarkDown
-                        rehypePlugins={[remarkGfm]}
+                        rehypePlugins={[remarkGfm, rehypeRaw]}
                         className="markdown"
                         children={item}
                       />

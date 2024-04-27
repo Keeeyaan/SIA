@@ -1,17 +1,14 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { setCookie } from "react-use-cookie";
 
 import { useToast } from "@/components/ui/use-toast";
-
 import { createConversation } from "@/api/conversation";
-import { setCookie } from "react-use-cookie";
-import { useStore } from "@/store";
 
 export const useCreateConversation = () => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
-  const { setInquiry } = useStore();
 
-  const mutation = useMutation({
+  return useMutation({
     mutationKey: ["conversation"],
     mutationFn: createConversation,
     onSuccess: (data) => {
@@ -22,8 +19,6 @@ export const useCreateConversation = () => {
       queryClient.invalidateQueries({
         queryKey: ["conversation"],
       });
-
-      setInquiry("");
     },
     // eslint-disable-next-line  @typescript-eslint/no-explicit-any
     onError: (error: any) => {
@@ -33,13 +28,6 @@ export const useCreateConversation = () => {
       });
     },
   });
-
-  return {
-    mutate: mutation.mutate,
-    data: mutation.data,
-    isPending: mutation.status === "pending",
-    error: mutation.error,
-  };
 };
 
 export default useCreateConversation;

@@ -9,9 +9,10 @@ os.environ['TF_ENABLE_ONEDNN_OPTS']
 
 
 def load_model(version: str):
-    current_working_directory = os.path.dirname(os.path.abspath(__file__))
+    bot_models_directory = os.path.abspath(os.path.join(
+        os.path.dirname(os.path.dirname(__file__)), "..", "bot_models"))
 
-    return tf.keras.models.load_model(f"{current_working_directory}/bot_models/version_{version}.keras")
+    return tf.keras.models.load_model(f"{bot_models_directory}/version_{version}.keras")
 
 
 def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses):
@@ -38,3 +39,21 @@ def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses):
     response_tag = le.inverse_transform([predicted_index])[0]
 
     return {"response": random.choice(responses[response_tag]), "tag": response_tag}
+
+
+def get_models():
+    bot_models_directory = os.path.abspath(os.path.join(os.path.dirname(
+        os.path.dirname(os.path.dirname(__file__))), "bot_models"))
+
+    if not os.path.exists(bot_models_directory):
+        os.makedirs(bot_models_directory)
+
+    models = []
+
+    if len(os.listdir(bot_models_directory)) > 0:
+        for file in os.listdir(bot_models_directory):
+            if file.endswith('.keras'):
+                filename, _ = os.path.splitext(file)
+                models.append(filename)
+
+    return models

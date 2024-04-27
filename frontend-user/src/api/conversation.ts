@@ -16,18 +16,6 @@ export interface IConversation {
   createdAt: string;
 }
 
-interface PostConversation {
-  token: string;
-  inquiry: string;
-  kbs_version: string;
-}
-
-interface UpdateConversation {
-  token: string;
-  inquiry: string;
-  kbs_version: string;
-}
-
 export const getConversation = async (token: string) => {
   if (token === "") {
     return {
@@ -41,15 +29,15 @@ export const getConversation = async (token: string) => {
   return response.data;
 };
 
-export const createConversation = async (data: {
-  inquiry: string;
-  kbs_version: string;
-}) => {
-  const response = await axios.post<PostConversation>(`conversation/`, data);
+export const createConversation = async (data: { inquiry: string }) => {
+  const response = await axios.post<IConversation>(`conversation/`, data);
   return response.data;
 };
 
-export const updateConversation = async (data: UpdateConversation) => {
-  const response = await axios.patch<UpdateConversation>(`conversation/`, data);
+export const updateConversation = async (data: {
+  inquiry: string;
+  token: string;
+}) => {
+  const response = await axios.patch<IConversation>(`conversation/`, data);
   return response;
 };

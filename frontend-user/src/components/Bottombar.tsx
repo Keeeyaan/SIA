@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Loader2, Send } from "lucide-react";
 import { getCookie } from "react-use-cookie";
 
@@ -6,14 +6,23 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import useCreateConversation from "@/hooks/useCreateConversation";
 import useUpdateConversation from "@/hooks/useUpdateConversation";
+import { useStore } from "@/store";
 
 const Bottombar = () => {
   const inquiryRef = useRef<HTMLInputElement>(null);
+  const { FAQ } = useStore();
 
   const { mutate: createConversation, isPending: createIsPending } =
     useCreateConversation();
   const { mutate: updateConversation, isPending: updateIsPending } =
     useUpdateConversation();
+
+  useEffect(() => {
+    // Update input value when FAQ changes
+    if (inquiryRef.current && inquiryRef.current.value !== FAQ) {
+      inquiryRef.current.value = FAQ;
+    }
+  }, [FAQ]);
 
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();

@@ -6,11 +6,9 @@ import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import useCreateConversation from "@/hooks/useCreateConversation";
 import useUpdateConversation from "@/hooks/useUpdateConversation";
-import { useStore } from "@/store";
 
 const Bottombar = () => {
   const inquiryRef = useRef<HTMLInputElement>(null);
-  const { setInquiry, version } = useStore();
 
   const { mutate: createConversation, isPending: createIsPending } =
     useCreateConversation();
@@ -25,10 +23,9 @@ const Bottombar = () => {
       return;
     }
 
-    setInquiry(inquiry);
     const cookie = getCookie("ucnian_guidebot_token");
 
-    const data = { inquiry, kbs_version: version };
+    const data = { inquiry };
 
     if (!cookie) {
       createConversation(data);

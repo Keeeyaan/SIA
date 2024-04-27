@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import ReactMarkDown from "react-markdown";
 import rehypeRaw from "rehype-raw";
 import remarkGfm from "remark-gfm";
+import rehypeExternalLinks from "rehype-external-links";
 
 const Typewriter = ({
   text,
@@ -43,7 +44,11 @@ const Typewriter = ({
         </div>
       ) : (
         <ReactMarkDown
-          rehypePlugins={[remarkGfm, rehypeRaw]}
+          rehypePlugins={[
+            remarkGfm,
+            rehypeRaw,
+            [rehypeExternalLinks, { target: "_blank" }],
+          ]}
           children={text}
           className="markdown text-sm leading-relaxed"
         />

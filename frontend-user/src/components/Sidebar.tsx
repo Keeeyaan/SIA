@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useQueryClient } from "@tanstack/react-query";
-import { Sun, Bug, Trash2, HelpCircle } from "lucide-react";
+import { Bug, Trash2, HelpCircle, Moon } from "lucide-react";
 import { setCookie } from "react-use-cookie";
 
 import { Card, CardFooter, CardHeader } from "./ui/card";
@@ -80,8 +80,8 @@ const Sidebar = () => {
               variant="ghost"
               size="sm"
             >
-              <Sun size={18} className="mr-4 flex-shrink-0" />
-              Switch to light mode
+              <Moon size={18} className="mr-4 flex-shrink-0" />
+              Switch to dark mode
             </Button>
             <Button
               disabled

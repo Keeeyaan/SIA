@@ -3,6 +3,7 @@ from fastapi.security import HTTPAuthorizationCredentials
 from bson import ObjectId
 from typing import List
 
+from src.models.knowledge_base import KnowledgeBase
 from src.models.inquiry import Inquiry
 from src.models.intent import Intent
 from src.models.conversation import Conversation, Sequence, UpdateConversation, PostConversation
@@ -36,66 +37,61 @@ async def get_conversation(token: str) -> Conversation:
 
 @conversation.post('/', status_code=status.HTTP_201_CREATED, response_model=Conversation)
 async def post_conversation(data: PostConversation) -> Conversation:
-    # access_token_expires = timedelta(weeks=int(ACCESS_TOKEN_EXPIRES_WEEKS))
-
-    # token = create_access_token(
-    #     {"sub": str(uuid4())},
-    #     expires_delta=access_token_expires
-    # )
-
     token = str(uuid4())
 
-    kbs = await KnowledgeBase.find_one(KnowledgeBase.version == data.kbs_version)
+    try:
+        kbs = await KnowledgeBase.find().sort([("created_at", -1)]).limit(1).to_list()
 
-    initial = init({"intents": kbs.intents})
+        initial = init({"intents": kbs[0].intents})
 
-    # try:
-    model = load_model(data.kbs_version)
+        model = load_model(kbs[0].version)
 
-    response = chatbot_respond(
-        data.inquiry,
-        model,
-        initial.get('tokenizer'),
-        initial.get('input_shape'),
-        initial.get('label_encoder'),
-        initial.get('responses')
-    )
+        response = chatbot_respond(
+            data.inquiry,
+            model,
+            initial.get('tokenizer'),
+            initial.get('input_shape'),
+            initial.get('label_encoder'),
+            initial.get('responses')
+        )
 
-    conversation = Conversation(
-        token=token,
-        sequence=[Sequence(
-            inquiry=data.inquiry,
-            response=response.get("response"),
-            createdAt=datetime.now()
-        )]
-    )
+        conversation = Conversation(
+            token=token,
+            sequence=[Sequence(
+                inquiry=data.inquiry,
+                response=response.get("response"),
+                createdAt=datetime.now()
+            )]
+        )
 
-    await conversation.create()
-    inquiry = Inquiry(token=token, inquiry=data.inquiry,
-                      tag=response.get("tag"), version=data.kbs_version)
-    await inquiry.insert()
-    intent = await Intent.find_one(Intent.tag == response.get("tag"))
-    intent.frequency = intent.frequency + 1
-    await intent.save()
+        await conversation.create()
+        inquiry = Inquiry(token=token, inquiry=data.inquiry,
+                          tag=response.get("tag"), version=kbs[0].version)
+        await inquiry.insert()
 
-    return conversation
-    # except:
-    #     raise HTTPException(
-    #         status_code=503,
-    #         detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Could you please try asking again? Thank you."
-    #     )
+        intent = await Intent.find_one(Intent.tag == response.get("tag"))
+        intent.frequency = intent.frequency + 1
+        await intent.save()
+
+        return conversation
+
+    except:
+        raise HTTPException(
+            status_code=503,
+            detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Please try asking again later? Thank you."
+        )
 
 
 @conversation.patch('/', status_code=status.HTTP_200_OK)
 async def update_conversation(data: UpdateConversation) -> dict:
     conversation = await Conversation.find_one(Conversation.token == data.token)
 
-    kbs = await KnowledgeBase.find_one(KnowledgeBase.version == data.kbs_version)
-
-    initial = init({'intents': kbs.intents})
-
     try:
-        model = load_model(data.kbs_version)
+        kbs = await KnowledgeBase.find().sort([("created_at", -1)]).limit(1).to_list()
+
+        initial = init({'intents': kbs[0].intents})
+
+        model = load_model(kbs[0].version)
 
         response = chatbot_respond(
             data.inquiry,
@@ -116,11 +112,13 @@ async def update_conversation(data: UpdateConversation) -> dict:
 
         await conversation.save()
         inquiry = Inquiry(token=data.token, inquiry=data.inquiry,
-                          tag=response.get("tag"), version=data.kbs_version)
+                          tag=response.get("tag"), version=kbs[0].version)
         await inquiry.insert()
+
         intent = await Intent.find_one(Intent.tag == response.get("tag"))
         intent.frequency = intent.frequency + 1
         await intent.save()
+
         return {"detail": conversation}
     except:
         raise HTTPException(

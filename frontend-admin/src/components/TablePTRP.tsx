@@ -1,6 +1,7 @@
 import ReactMarkDown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeRaw from "rehype-raw";
+import rehypeExternalLinks from "rehype-external-links";
 
 import {
   Table,
@@ -63,7 +64,11 @@ const TablePTRP = ({
                       item
                     ) : (
                       <ReactMarkDown
-                        rehypePlugins={[remarkGfm, rehypeRaw]}
+                        rehypePlugins={[
+                          remarkGfm,
+                          rehypeRaw,
+                          [rehypeExternalLinks, { target: "_blank" }],
+                        ]}
                         className="markdown"
                         children={item}
                       />

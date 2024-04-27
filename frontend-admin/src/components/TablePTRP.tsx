@@ -50,7 +50,7 @@ const TablePTRP = ({
             <TableRow>
               <TableHead>ID</TableHead>
               <TableHead>{itemHead}</TableHead>
-              <TableHead>Actions</TableHead>
+              {!noAction && <TableHead>Actions</TableHead>}
             </TableRow>
           </TableHeader>
           <TableBody>

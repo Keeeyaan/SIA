@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 import ReactMarkDown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 
 const Typewriter = ({
   text,
@@ -41,6 +43,7 @@ const Typewriter = ({
         </div>
       ) : (
         <ReactMarkDown
+          rehypePlugins={[remarkGfm, rehypeRaw]}
           children={text}
           className="markdown text-sm leading-relaxed"
         />

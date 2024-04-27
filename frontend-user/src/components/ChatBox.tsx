@@ -1,6 +1,8 @@
 import { useRef, useState } from "react";
 import { Copy, Loader2, MessageSquareText, X } from "lucide-react";
 import ReactMarkDown from "react-markdown";
+import rehypeRaw from "rehype-raw";
+import remarkGfm from "remark-gfm";
 
 import useCreateFeedback from "@/hooks/useCreateFeedback";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
@@ -94,6 +96,7 @@ const ChatBox = ({
                     />
                   ) : (
                     <ReactMarkDown
+                      rehypePlugins={[remarkGfm, rehypeRaw]}
                       children={data.response}
                       className="markdown text-sm leading-relaxed"
                     />

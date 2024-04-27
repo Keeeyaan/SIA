@@ -100,13 +100,14 @@ def fit_model(model, x_train, y_train):
 
 
 def save_model(model, filename, extension):
-    current_working_directory = os.path.abspath(os.path.dirname(__file__))
+    bot_models_directory = os.path.abspath(os.path.join(
+        os.path.dirname(os.path.dirname(__file__)), "..", "bot_models"))
 
-    if not os.path.exists(f"{current_working_directory}/bot_models"):
-        os.makedirs(f"{current_working_directory}/bot_models")
+    if not os.path.exists(bot_models_directory):
+        os.makedirs(bot_models_directory)
 
     model.save(
-        f"{current_working_directory}/bot_models/{filename}.{extension}")
+        f"{bot_models_directory}/{filename}.{extension}")
 
 
 def analyze_sentiment(text: str):

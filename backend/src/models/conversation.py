@@ -48,13 +48,11 @@ class Conversation(Document):
 
 class PostConversation(BaseModel):
     inquiry: str
-    kbs_version: str
 
     class Config:
         json_schema_extra = {
             "example": {
                 "inquiry": "Hi",
-                "kbs_version": "1.0"
             }
         }
 
@@ -62,13 +60,11 @@ class PostConversation(BaseModel):
 class UpdateConversation(BaseModel):
     token: str
     inquiry: str
-    kbs_version: str
 
     class Config:
         json_schema_extra = {
             "example": {
                 "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJ0ZXN0dXNlckB0ZXN0LmNvbSIsImV4cCI6MTcxMjcxMzA4MX0.wiqf8zrLFfdlwkdMR3Km2Z6qcmEb48StitYM5Yg8zEg",
                 "inquiry": "Hi",
-                "kbs_version": "1.0"
             }
         }

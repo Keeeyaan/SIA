@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import ReactMarkDown from "react-markdown";
 
 const Typewriter = ({
   text,
@@ -24,19 +25,27 @@ const Typewriter = ({
       setCurrentIndex(0);
       setCurrentText("");
     }
-
     return () => clearTimeout(timeout);
   }, [currentIndex, delay, infinite, text]);
 
   return (
-    <div className="text-sm leading-relaxed">
-      {currentText.split("\n").map((line, index) => (
-        <p key={index}>
-          {line}
-          {index < currentText.split("\n").length - 1 && <br />}
-        </p>
-      ))}
-    </div>
+    <>
+      {currentIndex !== text.length ? (
+        <div className="text-sm leading-relaxed">
+          {currentText.split("\n").map((line, index) => (
+            <p key={index}>
+              {line}
+              {index < currentText.split("\n").length - 1 && <br />}
+            </p>
+          ))}
+        </div>
+      ) : (
+        <ReactMarkDown
+          children={text}
+          className="markdown text-sm leading-relaxed"
+        />
+      )}
+    </>
   );
 };
 

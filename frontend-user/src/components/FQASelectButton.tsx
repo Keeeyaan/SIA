@@ -9,21 +9,24 @@ import {
 
 const FQASelectButton = ({
   className,
-  FQA,
-  setFQA,
+  FQACategory,
+  setFQACategory,
 }: {
   className?: string;
-  FQA: string;
-  setFQA: React.Dispatch<React.SetStateAction<string>>;
+  FQACategory: string;
+  setFQACategory: React.Dispatch<React.SetStateAction<string>>;
 }) => {
   return (
     <div className={`${className}`}>
       <Select
-        defaultValue={FQA}
-        onValueChange={(value: string) => setFQA(value)}
+        defaultValue={FQACategory}
+        onValueChange={(value: string) => setFQACategory(value)}
       >
         <SelectTrigger className="bg-transparent border border-[#214E87] py-5 font-medium">
-          <SelectValue placeholder="Select FQA" defaultValue={FQA} />
+          <SelectValue
+            placeholder="Select FQA Category"
+            defaultValue={FQACategory}
+          />
         </SelectTrigger>
         <SelectContent
           onCloseAutoFocus={(e) => e.preventDefault()}

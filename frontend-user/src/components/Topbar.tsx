@@ -1,22 +1,38 @@
 import { useQueryClient } from "@tanstack/react-query";
-import { Menu } from "lucide-react";
-import { Sun, Bug, Trash2, HelpCircle } from "lucide-react";
+import { Menu, Moon } from "lucide-react";
+import { Bug, Trash2, HelpCircle } from "lucide-react";
 import { setCookie } from "react-use-cookie";
 
 import { useStore } from "@/store";
 import { cn } from "@/lib/utils";
-import useFetchIntents from "@/hooks/useFetchIntents";
 import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
 import { CardFooter, CardHeader } from "./ui/card";
 import { Button } from "./ui/button";
 import { toast } from "./ui/use-toast";
 import { Separator } from "./ui/separator";
+import FQASelectButton from "./FQASelectButton";
+import { useState } from "react";
+
+const FAQs = [
+  {
+    type: "general",
+    fqas: ["What academic programs does University of Cebu Main Campus offer?"],
+  },
+  {
+    type: "ccs",
+    fqas: [
+      "Who is the dean of CCS department?",
+      "How much is the tuition for BSIT?",
+      "How much is the tuition for Computer Science?",
+    ],
+  },
+];
 
 const Topbar = ({ className }: { className?: string }) => {
-  const { data: intents } = useFetchIntents();
-
+  const [FQACategory, setFQACategory] = useState("general");
+  const [sheetOpen, setSheetOpen] = useState(false);
   const queryClient = useQueryClient();
-  const { setFAQ, setInquiry } = useStore();
+  const { setFAQ } = useStore();
 
   const handleClearConversation = () => {
     setCookie("ucnian_guidebot_token", "");
@@ -30,10 +46,6 @@ const Topbar = ({ className }: { className?: string }) => {
     });
   };
 
-  const handleFAQ = (value: string) => {
-    setFAQ(value);
-    setInquiry(value);
-  };
   return (
     <div
       className={cn(
@@ -41,7 +53,7 @@ const Topbar = ({ className }: { className?: string }) => {
         "sticky z-40 top-0 block md:hidden bg-[#19375f] p-2"
       )}
     >
-      <Sheet>
+      <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
         <SheetTrigger asChild>
           <Button variant="ghost" className="text-white" size="icon">
             <Menu />
@@ -51,27 +63,34 @@ const Topbar = ({ className }: { className?: string }) => {
           side="left"
           className="p-4 bg-gradient-to-t from-yellow-200 to-yellow-100 "
         >
-          <SheetHeader>
+          <SheetHeader className="flex flex-col justify-between h-full">
             <CardHeader className="p-0 text-center">
-              <h1 className="mt-10 mb-2 uppercase text-white p-2 font-semibold bg-[#214E87]">
+              <h1 className="mt-8 mb-2 uppercase text-white p-2 font-semibold bg-[#214E87]">
                 Frequently Asked Questions
               </h1>
+              <FQASelectButton
+                className="pb-4"
+                FQACategory={FQACategory}
+                setFQACategory={setFQACategory}
+              />
               <div className="flex flex-col space-y-1">
-                {intents &&
-                  intents.map((item) => {
-                    return (
-                      <Button
-                        key={item._id + item.patterns}
-                        className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-yellow-100"
-                        variant="ghost"
-                        size="sm"
-                        onClick={() => handleFAQ(item.patterns)}
-                      >
-                        <HelpCircle size={18} className="mr-4 flex-shrink-0" />
-                        {item.patterns}
-                      </Button>
-                    );
-                  })}
+                {FAQs.find((faq) => faq.type === FQACategory)?.fqas.map(
+                  (item, index) => (
+                    <Button
+                      key={index}
+                      className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-yellow-50"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => {
+                        setSheetOpen(false);
+                        setFAQ(item);
+                      }}
+                    >
+                      <HelpCircle size={18} className="mr-4 flex-shrink-0" />
+                      {item}
+                    </Button>
+                  )
+                )}
               </div>
             </CardHeader>
             <div className="space-y-3 w-full">
@@ -83,8 +102,8 @@ const Topbar = ({ className }: { className?: string }) => {
                   variant="ghost"
                   size="sm"
                 >
-                  <Sun size={18} className="mr-4 flex-shrink-0" />
-                  Switch to light mode
+                  <Moon size={18} className="mr-4 flex-shrink-0" />
+                  Switch to dark mode
                 </Button>
                 <Button
                   disabled

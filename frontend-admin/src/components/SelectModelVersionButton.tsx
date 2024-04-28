@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Bot, Check } from "lucide-react";
+import { BrainCog, Check } from "lucide-react";
 
 import {
   Command,
@@ -48,8 +48,7 @@ const SelectModelVersionButton = ({
         >
           {kbs?.find((model) => model.version === value)?.version ||
             "Select Knowledge Base Version"}
-
-          <Bot className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+          <BrainCog className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
       <PopoverContent className="h-[200px] w-[200px] p-0" align="start">

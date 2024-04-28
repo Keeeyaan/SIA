@@ -12,6 +12,7 @@ import {
   Account,
   Intents,
   Model,
+  KnowledgeBase,
 } from "./pages";
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
           {
             path: "/model",
             element: <Model />,
+          },
+          {
+            path: "/kbs",
+            element: <KnowledgeBase />,
           },
           {
             path: "/intents",

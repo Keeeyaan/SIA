@@ -18,7 +18,7 @@ const Intents = () => {
   const { data: PTRP, isLoading: isLoadingPTRP } = useFetchPTandRPByTag(value);
 
   return (
-    <Wrapper norMargin>
+    <Wrapper norMargin title="Intents">
       <CreateIntentButton />
       <SelectTagButton
         intents={intents}

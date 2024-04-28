@@ -71,7 +71,7 @@ const ChatBox = ({
           </Avatar>
           <div className="space-y-1">
             <h1 className="font-medium text-white">You</h1>
-            <Card className="bg-yellow-200 border-none w-auto rounded-tl-none">
+            <Card className="bg-gradient-to-tl bg-opacity-90 border-none w-auto rounded-tl-none">
               <CardHeader className="p-4">
                 <p className="text-sm font-medium">{data.inquiry}</p>
               </CardHeader>
@@ -87,7 +87,7 @@ const ChatBox = ({
             </Avatar>
             <div>
               <h1 className="font-medium mb-1 text-white">UCnian Guide Bot</h1>
-              <Card className="mb-2 rounded-tl-none border-none bg-yellow-100">
+              <Card className="mb-2 rounded-tl-none border-none bg-opacity-90">
                 <CardHeader className="p-4">
                   {current_index == length - 1 ? (
                     <Typewriter
@@ -123,7 +123,7 @@ const ChatBox = ({
                 />
               </div>
               {open && (
-                <Card className="mt-3 bg-yellow-50">
+                <Card className="mt-3 bg-opacity-90">
                   <form onSubmit={onSubmitHandler}>
                     <CardHeader className="px-4 pt-4 pb-2 flex flex-row items-center justify-between">
                       <div className="flex w-full items-center justify-between">

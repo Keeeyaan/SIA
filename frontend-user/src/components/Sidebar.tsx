@@ -44,7 +44,7 @@ const Sidebar = () => {
 
   return (
     <Card className="hidden md:block rounded-none border-none max-w-[310px]">
-      <div className="w-full flex h-screen flex-col justify-between bg-gradient-to-b from-yellow-200 via-yellow-100 to-yellow-50">
+      <div className="w-full flex h-screen flex-col justify-between bg-white ">
         <CardHeader className="p-5 text-center text-slate-800">
           <h1 className="mb-2 uppercase text-white p-2 font-semibold bg-[#214E87]">
             Frequently Asked Questions
@@ -59,7 +59,7 @@ const Sidebar = () => {
               (item, index) => (
                 <Button
                   key={index}
-                  className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-yellow-50"
+                  className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-blue-50"
                   variant="ghost"
                   size="sm"
                   onClick={() => setFAQ(item)}
@@ -76,7 +76,7 @@ const Sidebar = () => {
           <CardFooter className="block space-y-1">
             <Button
               disabled
-              className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-yellow-100"
+              className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-blue-50"
               variant="ghost"
               size="sm"
             >
@@ -85,7 +85,7 @@ const Sidebar = () => {
             </Button>
             <Button
               disabled
-              className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-yellow-100"
+              className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-blue-50"
               variant="ghost"
               size="sm"
             >
@@ -93,7 +93,7 @@ const Sidebar = () => {
               Report any issue
             </Button>
             <Button
-              className="flex justify-start text-[13px] w-full text-wrap text-start text-slate-800 py-6 hover:bg-yellow-100"
+              className="flex justify-start text-[13px] w-full text-wrap text-start text-slate-800 py-6 hover:bg-blue-50"
               variant="ghost"
               size="sm"
               onClick={handleClearConversation}

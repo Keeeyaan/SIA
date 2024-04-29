@@ -11,7 +11,7 @@ from src.models.knowledge_base import KnowledgeBase
 from src.utils.user import get_current_user, create_access_token, not_found
 from src.utils.user import ACCESS_TOKEN_EXPIRES_WEEKS
 
-from src.utils.model import load_model, chatbot_respond
+from src.utils.model import load_model, chatbot_respond, get_models
 from src.utils.train import init
 
 from datetime import datetime, timedelta
@@ -40,11 +40,19 @@ async def post_conversation(data: PostConversation) -> Conversation:
     token = str(uuid4())
 
     try:
-        kbs = await KnowledgeBase.find().sort([("created_at", -1)]).limit(1).to_list()
+        models = get_models()
+        if len(models) <= 0:
+            raise HTTPException(
+                status_code=503,
+                detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Please try asking again later? Thank you."
+            )
 
-        initial = init({"intents": kbs[0].intents})
+        # kbs = await KnowledgeBase.find().sort([("created_at", -1)]).limit(1).to_list()
+        kbs = await KnowledgeBase.find_one(KnowledgeBase.version == ''.join(models[0].split('_')[1]))
 
-        model = load_model(kbs[0].version)
+        initial = init({"intents": kbs.intents})
+
+        model = load_model(kbs.version)
 
         response = chatbot_respond(
             data.inquiry,
@@ -66,7 +74,7 @@ async def post_conversation(data: PostConversation) -> Conversation:
 
         await conversation.create()
         inquiry = Inquiry(token=token, inquiry=data.inquiry,
-                          tag=response.get("tag"), version=kbs[0].version)
+                          tag=response.get("tag"), version=kbs.version)
         await inquiry.insert()
 
         intent = await Intent.find_one(Intent.tag == response.get("tag"))
@@ -87,11 +95,19 @@ async def update_conversation(data: UpdateConversation) -> dict:
     conversation = await Conversation.find_one(Conversation.token == data.token)
 
     try:
-        kbs = await KnowledgeBase.find().sort([("created_at", -1)]).limit(1).to_list()
+        models = get_models()
+        if len(models) <= 0:
+            raise HTTPException(
+                status_code=503,
+                detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Please try asking again later? Thank you."
+            )
 
-        initial = init({'intents': kbs[0].intents})
+        # kbs = await KnowledgeBase.find().sort([("created_at", -1)]).limit(1).to_list()
+        kbs = await KnowledgeBase.find_one(KnowledgeBase.version == ''.join(models[0].split('_')[1]))
 
-        model = load_model(kbs[0].version)
+        initial = init({'intents': kbs.intents})
+
+        model = load_model(kbs.version)
 
         response = chatbot_respond(
             data.inquiry,
@@ -112,7 +128,7 @@ async def update_conversation(data: UpdateConversation) -> dict:
 
         await conversation.save()
         inquiry = Inquiry(token=data.token, inquiry=data.inquiry,
-                          tag=response.get("tag"), version=kbs[0].version)
+                          tag=response.get("tag"), version=kbs.version)
         await inquiry.insert()
 
         intent = await Intent.find_one(Intent.tag == response.get("tag"))

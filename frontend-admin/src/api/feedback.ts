@@ -3,10 +3,9 @@ import { IGenericResponse } from "./intents";
 
 export interface IGetAllFeedbackResponse {
   _id: string;
-  sequence: [];
+  sequence: { inquiry: string; response: string; createdAt: string };
   comment: string;
   sentiment: string;
-  version?: string;
   created_at: Date;
 }
 

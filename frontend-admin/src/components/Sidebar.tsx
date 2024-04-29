@@ -1,6 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
 import {
-  BookText,
   Bot,
   BrainCog,
   CircleUser,
@@ -40,12 +39,6 @@ const SmallSB = ({ pathname }: { pathname: string }) => {
             className={`${buttonVariants({ variant: `${pathname === "/kbs" ? "secondary" : "ghost"}`, size: "lg" })} w-full rounded-none`}
           >
             <BrainCog />
-          </Link>
-          <Link
-            to="/intents"
-            className={`${buttonVariants({ variant: `${pathname === "/intents" ? "secondary" : "ghost"}`, size: "lg" })} w-full rounded-none`}
-          >
-            <BookText />
           </Link>
           <Link
             to="/inquiries"
@@ -107,15 +100,6 @@ const BigSB = ({ pathname }: { pathname: string }) => {
             <span className="flex items-center gap-4 w-full">
               <BrainCog />
               Knowledge Base
-            </span>
-          </Link>
-          <Link
-            to="/intents"
-            className={`${buttonVariants({ variant: `${pathname === "/intents" ? "secondary" : "ghost"}`, size: "lg" })} w-full rounded-none`}
-          >
-            <span className="flex items-center gap-4 w-full">
-              <BookText />
-              Intents
             </span>
           </Link>
           <Link

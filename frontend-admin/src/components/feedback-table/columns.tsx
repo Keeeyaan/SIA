@@ -4,7 +4,7 @@ import FeedbackTableAction from "./FeedbackTableAction";
 
 interface IFeedback {
   _id: string;
-  sequence: [];
+  sequence: { inquiry: string; response: string; createdAt: string };
   comment: string;
   sentiment: string;
   created_at: Date;
@@ -14,6 +14,14 @@ export const columns: ColumnDef<IFeedback>[] = [
   {
     accessorKey: "_id",
     header: "ID",
+  },
+  {
+    accessorKey: "sequence.inquiry",
+    header: "Inquiry",
+  },
+  {
+    accessorKey: "sequence.response",
+    header: "Response",
   },
   {
     accessorKey: "comment",

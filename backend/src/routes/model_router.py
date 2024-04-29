@@ -33,7 +33,7 @@ async def get_models():
 
 
 @model.post('/', status_code=status.HTTP_200_OK)
-async def create_model(data: TrainModel, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
+async def create_model_api(data: TrainModel, current_user: HTTPAuthorizationCredentials = Depends(get_current_user)) -> dict:
     kbs = await KnowledgeBase.find_one(KnowledgeBase.version == data.kbs_version)
 
     initial = init({"intents": kbs.intents})

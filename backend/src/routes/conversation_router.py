@@ -8,13 +8,12 @@ from src.models.inquiry import Inquiry
 from src.models.intent import Intent
 from src.models.conversation import Conversation, Sequence, UpdateConversation, PostConversation
 from src.models.knowledge_base import KnowledgeBase
-from src.utils.user import get_current_user, create_access_token, not_found
-from src.utils.user import ACCESS_TOKEN_EXPIRES_WEEKS
+from src.utils.user import get_current_user, not_found
 
 from src.utils.model import load_model, chatbot_respond, get_models
 from src.utils.train import init
 
-from datetime import datetime, timedelta
+from datetime import datetime
 from uuid import uuid4
 
 conversation = APIRouter()
@@ -47,7 +46,6 @@ async def post_conversation(data: PostConversation) -> Conversation:
                 detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Please try asking again later? Thank you."
             )
 
-        # kbs = await KnowledgeBase.find().sort([("created_at", -1)]).limit(1).to_list()
         kbs = await KnowledgeBase.find_one(KnowledgeBase.version == ''.join(models[0].split('_')[1]))
 
         initial = init({"intents": kbs.intents})
@@ -60,7 +58,8 @@ async def post_conversation(data: PostConversation) -> Conversation:
             initial.get('tokenizer'),
             initial.get('input_shape'),
             initial.get('label_encoder'),
-            initial.get('responses')
+            initial.get('responses'),
+            {"intents": kbs.intents}
         )
 
         conversation = Conversation(
@@ -102,7 +101,6 @@ async def update_conversation(data: UpdateConversation) -> dict:
                 detail="I'm sorry, it seems that I was not able to process your request properly. There seems to be an issue with the system at the moment, which is preventing me from processing your request. Please try asking again later? Thank you."
             )
 
-        # kbs = await KnowledgeBase.find().sort([("created_at", -1)]).limit(1).to_list()
         kbs = await KnowledgeBase.find_one(KnowledgeBase.version == ''.join(models[0].split('_')[1]))
 
         initial = init({'intents': kbs.intents})
@@ -115,7 +113,8 @@ async def update_conversation(data: UpdateConversation) -> dict:
             initial.get('tokenizer'),
             initial.get('input_shape'),
             initial.get('label_encoder'),
-            initial.get('responses')
+            initial.get('responses'),
+            {"intents": kbs.intents}
         )
 
         conversation.sequence.append(

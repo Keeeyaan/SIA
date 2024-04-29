@@ -12,14 +12,14 @@ import AddPatternButton from "@/components/AddPatternButton";
 import AddResponseButton from "@/components/AddResponseButton";
 import CreateKnowledgeBaseButton from "@/components/CreateKnowledgeBase";
 
-const Intents = () => {
+const KnowledgeBase = () => {
   const [value, setValue] = useState("");
 
   const { data: intents, isLoading } = useFetchIntents();
   const { data: PTRP, isLoading: isLoadingPTRP } = useFetchPTandRPByTag(value);
 
   return (
-    <Wrapper norMargin title="Intents">
+    <Wrapper norMargin title="Knowledge Base">
       <div className="mb-4 flex justify-between items-center">
         <div>
           <CreateIntentButton />
@@ -68,4 +68,4 @@ const Intents = () => {
   );
 };
 
-export default Intents;
+export default KnowledgeBase;

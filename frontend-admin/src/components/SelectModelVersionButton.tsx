@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { BrainCog, Check } from "lucide-react";
+import { BrainCog, Check, Loader2, X } from "lucide-react";
 
 import {
   Command,
@@ -9,6 +9,17 @@ import {
   CommandItem,
 } from "@/components/ui/command";
 import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog";
+import {
   Popover,
   PopoverContent,
   PopoverTrigger,
@@ -17,6 +28,7 @@ import { Button } from "./ui/button";
 import { IGetKnowledgeBaseResponse } from "@/api/kbs";
 import { cn } from "@/lib/utils";
 import { IGetIntentsResponse } from "@/api/intents";
+import { useDeleteKnowledgeBase } from "@/hooks/useDeleteKnowledgeBaseVersion";
 
 const SelectModelVersionButton = ({
   kbs,
@@ -36,6 +48,9 @@ const SelectModelVersionButton = ({
   >;
 }) => {
   const [open, setOpen] = useState(false);
+
+  const { mutate: deleteKnowledgeBaseVersion, isPending } =
+    useDeleteKnowledgeBase();
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -87,6 +102,30 @@ const SelectModelVersionButton = ({
                     />
                     {model.version}
                   </CommandItem>
+                  <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                      <Button variant="ghost" size="sm">
+                        <X size={15} />
+                      </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                      <AlertDialogHeader>
+                        <AlertDialogTitle>Are you sure?</AlertDialogTitle>
+                        <AlertDialogDescription>
+                          This action cannot be undone. This will permanently
+                          remove the knowledge base version on the database.
+                        </AlertDialogDescription>
+                      </AlertDialogHeader>
+                      <AlertDialogFooter>
+                        <AlertDialogCancel>Cancel</AlertDialogCancel>
+                        <AlertDialogAction
+                          onClick={() => deleteKnowledgeBaseVersion(model._id)}
+                        >
+                          {isPending ? <Loader2 /> : "Continue"}
+                        </AlertDialogAction>
+                      </AlertDialogFooter>
+                    </AlertDialogContent>
+                  </AlertDialog>
                 </div>
               ))
             )}

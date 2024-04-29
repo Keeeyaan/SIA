@@ -44,7 +44,7 @@ const Dashboard = () => {
     <Wrapper norMargin title="Dashboard">
       <div className="flex items-center gap-4 mb-4">
         <StatCard
-          title="Models"
+          title="Knowledge Base"
           value={stats?.models}
           icon={<Bot size={32} />}
           color="bg-blue-500"

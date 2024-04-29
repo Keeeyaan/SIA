@@ -1,19 +1,21 @@
-import os
 from nltk.sentiment.vader import SentimentIntensityAnalyzer
-import nltk
+from nltk import download
+
+from os.path import abspath, join, dirname, exists
+from os import makedirs
 
 from sklearn.preprocessing import LabelEncoder
+
 from keras.layers import Embedding, LSTM, Dense, Bidirectional
 from keras.callbacks import EarlyStopping
 from keras.optimizers import Adam
 from keras.utils import pad_sequences
 from keras.models import Sequential
-from keras import regularizers
+
 from tensorflow.keras.preprocessing.text import Tokenizer
 from tensorflow.keras.layers import Dropout
 
-nltk.download('vader_lexicon')
-
+download('vader_lexicon')
 
 def init(data: dict) -> dict:
     tags = []
@@ -63,17 +65,6 @@ def create_model(vocabulary_size, input_shape, output_length):
 
     # model.summary()
 
-    # model = Sequential()
-    # model.add(Embedding(vocabulary_size + 1, 200, input_length=input_shape))
-    # model.add(Bidirectional(LSTM(128, return_sequences=True, dropout=0.2, recurrent_dropout=0.2, kernel_regularizer=regularizers.l2(0.01))))
-    # model.add(Bidirectional(LSTM(128, dropout=0.2, recurrent_dropout=0.2, kernel_regularizer=regularizers.l2(0.01))))
-    # model.add(Dense(64, activation='relu', kernel_regularizer=regularizers.l2(0.01)))
-    # model.add(Dense(output_length, activation='softmax'))
-
-    # model.compile(loss="sparse_categorical_crossentropy",optimizer=Adam(learning_rate=0.001), metrics=['accuracy'])
-
-    # model.summary()
-
     model = Sequential()
     model.add(Embedding(vocabulary_size + 1, 200, input_length=input_shape))
     model.add(Bidirectional(LSTM(32, return_sequences=True)))
@@ -91,7 +82,7 @@ def create_model(vocabulary_size, input_shape, output_length):
 
 def fit_model(model, x_train, y_train):
     early_stopping = EarlyStopping(
-        monitor="loss", patience=10, restore_best_weights=True)
+        monitor="accuracy", patience=3, restore_best_weights=True)
 
     model.fit(x_train, y_train, epochs=100,
               verbose=1, callbacks=[early_stopping])
@@ -100,11 +91,11 @@ def fit_model(model, x_train, y_train):
 
 
 def save_model(model, filename, extension):
-    bot_models_directory = os.path.abspath(os.path.join(
-        os.path.dirname(os.path.dirname(__file__)), "..", "bot_models"))
+    bot_models_directory = abspath(join(
+        dirname(dirname(__file__)), "..", "bot_models"))
 
-    if not os.path.exists(bot_models_directory):
-        os.makedirs(bot_models_directory)
+    if not exists(bot_models_directory):
+        makedirs(bot_models_directory)
 
     model.save(
         f"{bot_models_directory}/{filename}.{extension}")

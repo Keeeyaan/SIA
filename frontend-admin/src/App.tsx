@@ -10,7 +10,6 @@ import {
   Inquiries,
   Feedback,
   Account,
-  Intents,
   Model,
   KnowledgeBase,
 } from "./pages";
@@ -39,10 +38,6 @@ const router = createBrowserRouter([
           {
             path: "/kbs",
             element: <KnowledgeBase />,
-          },
-          {
-            path: "/intents",
-            element: <Intents />,
           },
           {
             path: "/inquiries",

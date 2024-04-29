@@ -21,7 +21,7 @@ const CreateModelButton = () => {
   return (
     <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm">
+        <Button className="bg-[#214E87] hover:bg-[#3f6ca7]">
           Create Model <Bot className="ml-2 h-4 w-4 shrink-0 opacity-50" />
         </Button>
       </DialogTrigger>

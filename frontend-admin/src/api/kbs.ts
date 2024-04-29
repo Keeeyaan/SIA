@@ -21,7 +21,7 @@ export const createKnowledgeBase = async (data: { version: string }) => {
   return response.data;
 };
 
-export const deleteKnowledgeBase = async () => {
-  const response = await axiosPrivate.delete<IGenericResponse>(`kbs/`);
+export const deleteKnowledgeBase = async (id: string) => {
+  const response = await axiosPrivate.delete<IGenericResponse>(`kbs/${id}`);
   return response.data;
 };

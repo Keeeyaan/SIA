@@ -1,21 +1,73 @@
+from sklearn.metrics.pairwise import cosine_similarity
+from sklearn.feature_extraction.text import TfidfVectorizer
+
 from keras.utils import pad_sequences
+
 import tensorflow as tf
 import numpy as np
 import random
 import string
-import os
 
-os.environ['TF_ENABLE_ONEDNN_OPTS']
+from os import environ, makedirs, listdir
+from os.path import abspath, join, dirname, exists, splitext
+
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+from nltk import download
+
+from re import compile, sub, IGNORECASE
+
+environ['TF_ENABLE_ONEDNN_OPTS']
+download('stopwords')
+download('punkt')
+
+
+def out_of_scope_detector(inquiry: str, data: dict, threshold:float=0.6):
+    # Combine patterns into a single list
+    pattern_texts = []
+
+    for intent in data.get('intents'):
+        for lines in intent.patterns:
+            pattern_texts.append(lines)
+
+    # Vectorize patterns and input query
+    vectorizer = TfidfVectorizer()
+    pattern_vectors = vectorizer.fit_transform(pattern_texts)
+    query_vector = vectorizer.transform([inquiry])
+
+    # Calculate cosine similarity between query and patterns
+    similarities = cosine_similarity(query_vector, pattern_vectors)
+
+    # Check if maximum similarity is below threshold
+    if np.max(similarities) < threshold: return True
+    else: return False
+
+
+def remove_stop_words(inquiry: str) -> str:
+    words = word_tokenize(inquiry)
+
+    stop_words = set(stopwords.words('english'))
+
+    filtered_words = [word for word in words if word.lower() not in stop_words]
+
+    return " ".join(filtered_words)
 
 
 def load_model(version: str):
-    bot_models_directory = os.path.abspath(os.path.join(
-        os.path.dirname(os.path.dirname(__file__)), "..", "bot_models"))
+    bot_models_directory = abspath(join(
+        dirname(dirname(__file__)), "..", "bot_models"))
 
     return tf.keras.models.load_model(f"{bot_models_directory}/version_{version}.keras")
 
 
-def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses):
+def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses, intents):
+    regex_pattern = compile(r'\b(?:University of Cebu)\b', flags=IGNORECASE)
+    
+    new_inquiry = sub(regex_pattern, 'uc', inquiry)
+
+    if out_of_scope_detector(remove_stop_words(new_inquiry), intents) == True:
+        return {"response": "I'm sorry your question seems to be out of my scope. I may not be able to answer that right now.", "tag": "oos"}
+    
     texts_p = []
     prediction_input = inquiry
 
@@ -42,18 +94,18 @@ def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses):
 
 
 def get_models():
-    bot_models_directory = os.path.abspath(os.path.join(os.path.dirname(
-        os.path.dirname(os.path.dirname(__file__))), "bot_models"))
+    bot_models_directory = abspath(join(dirname(
+        dirname(dirname(__file__))), "bot_models"))
 
-    if not os.path.exists(bot_models_directory):
-        os.makedirs(bot_models_directory)
+    if not exists(bot_models_directory):
+        makedirs(bot_models_directory)
 
     models = []
 
-    if len(os.listdir(bot_models_directory)) > 0:
-        for file in os.listdir(bot_models_directory):
+    if len(listdir(bot_models_directory)) > 0:
+        for file in listdir(bot_models_directory):
             if file.endswith('.keras'):
-                filename, _ = os.path.splitext(file)
+                filename, _ = splitext(file)
                 models.append(filename)
 
     return models

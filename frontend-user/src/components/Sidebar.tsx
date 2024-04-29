@@ -13,14 +13,22 @@ import { useStore } from "@/store";
 const FAQs = [
   {
     type: "general",
-    fqas: ["What academic programs does University of Cebu Main Campus offer?"],
+    fqas: [
+      "What academic programs does University of Cebu Main Campus offer?",
+      "How can i pay my tuition online?",
+      "What are the requirements to enroll in UC?",
+      "How can i get a student ID?",
+      "How can i check my grades?",
+      "How can i view my outstanding balance?",
+    ],
   },
   {
     type: "ccs",
     fqas: [
       "Who is the dean of CCS department?",
       "How much is the tuition for BSIT?",
-      "How much is the tuition for Computer Science?",
+      "How much is the tuition for BSCS?",
+      "What are the names of the faculty members in the CCS department?",
     ],
   },
 ];

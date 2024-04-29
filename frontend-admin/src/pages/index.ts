@@ -4,7 +4,6 @@ export { default as DashboardLayout } from "./DashboardLayout";
 export { default as Dashboard } from "./Dashboard";
 export { default as Model } from "./Model";
 export { default as KnowledgeBase } from "./KnowledgeBase";
-export { default as Intents } from "./Intents";
 export { default as Inquiries } from "./Inquiries";
 export { default as Feedback } from "./Feedback";
 export { default as Account } from "./Account";

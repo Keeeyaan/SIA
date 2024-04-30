@@ -16,14 +16,22 @@ import { useState } from "react";
 const FAQs = [
   {
     type: "general",
-    fqas: ["What academic programs does University of Cebu Main Campus offer?"],
+    fqas: [
+      "What academic programs does University of Cebu Main Campus offer?",
+      "How can i pay my tuition online?",
+      "What are the requirements to enroll in UC?",
+      "How can i get a student ID?",
+      "How can i check my grades?",
+      "How can i view my outstanding balance?",
+    ],
   },
   {
     type: "ccs",
     fqas: [
       "Who is the dean of CCS department?",
       "How much is the tuition for BSIT?",
-      "How much is the tuition for Computer Science?",
+      "How much is the tuition for BSCS?",
+      "What are the names of the faculty members in the CCS department?",
     ],
   },
 ];
@@ -59,12 +67,9 @@ const Topbar = ({ className }: { className?: string }) => {
             <Menu />
           </Button>
         </SheetTrigger>
-        <SheetContent
-          side="left"
-          className="p-4 bg-gradient-to-t from-yellow-200 to-yellow-100 "
-        >
+        <SheetContent side="left" className="p-0">
           <SheetHeader className="flex flex-col justify-between h-full">
-            <CardHeader className="p-0 text-center">
+            <CardHeader className="p-4 text-center">
               <h1 className="mt-8 mb-2 uppercase text-white p-2 font-semibold bg-[#214E87]">
                 Frequently Asked Questions
               </h1>
@@ -78,7 +83,7 @@ const Topbar = ({ className }: { className?: string }) => {
                   (item, index) => (
                     <Button
                       key={index}
-                      className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-yellow-50"
+                      className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-blue-50"
                       variant="ghost"
                       size="sm"
                       onClick={() => {
@@ -95,10 +100,10 @@ const Topbar = ({ className }: { className?: string }) => {
             </CardHeader>
             <div className="space-y-3 w-full">
               <Separator className="bg-slate-900" />
-              <CardFooter className="p-0 block space-y-1">
+              <CardFooter className="p-4 block space-y-1">
                 <Button
                   disabled
-                  className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-yellow-100"
+                  className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-blue-50"
                   variant="ghost"
                   size="sm"
                 >
@@ -107,7 +112,7 @@ const Topbar = ({ className }: { className?: string }) => {
                 </Button>
                 <Button
                   disabled
-                  className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-yellow-100"
+                  className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-blue-50"
                   variant="ghost"
                   size="sm"
                 >
@@ -115,13 +120,13 @@ const Topbar = ({ className }: { className?: string }) => {
                   Report any issue
                 </Button>
                 <Button
-                  className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-yellow-100"
+                  className="flex justify-start w-full text-wrap text-start text-[13px] text-slate-800 py-6 hover:bg-blue-50"
                   variant="ghost"
                   size="sm"
                   onClick={handleClearConversation}
                 >
                   <Trash2 size={18} className=" mr-4 flex-shrink-0" />
-                  Clear Conversations
+                  Clear Conversation
                 </Button>
               </CardFooter>
             </div>

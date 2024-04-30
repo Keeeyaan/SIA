@@ -92,7 +92,7 @@ const ChatBox = ({
                   {current_index == length - 1 ? (
                     <Typewriter
                       text={data.response}
-                      delay={5}
+                      delay={10}
                       infinite={false}
                     />
                   ) : (

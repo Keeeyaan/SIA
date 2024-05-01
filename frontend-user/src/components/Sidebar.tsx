@@ -9,17 +9,22 @@ import { toast } from "./ui/use-toast";
 import { Separator } from "./ui/separator";
 import FQASelectButton from "./FQASelectButton";
 import { useStore } from "@/store";
+import { ScrollArea } from "./ui/scroll-area";
 
 const FAQs = [
   {
     type: "general",
     fqas: [
       "What academic programs does University of Cebu Main Campus offer?",
-      "How can i pay my tuition online?",
+      "How can I pay my tuition online?",
       "What are the requirements to enroll in UC?",
-      "How can i get a student ID?",
-      "How can i check my grades?",
-      "How can i view my outstanding balance?",
+      "How can I get a student ID?",
+      "How can I check my grades?",
+      "How can I view my outstanding balance?",
+      "Where can I see my enrollment status?",
+      "How do I access my course's prospectus?",
+      "How do I obtain a copy of my study load?",
+      "Can I still change my subjects after enrolling?",
     ],
   },
   {
@@ -29,6 +34,10 @@ const FAQs = [
       "How much is the tuition for BSIT?",
       "How much is the tuition for BSCS?",
       "What are the names of the faculty members in the CCS department?",
+      "Where can I find the ccs department?",
+      "What are the social media accounts for ccs?",
+      "what organizations does CCS department have?",
+      "Do CCS courses have an entrance exam?",
     ],
   },
 ];
@@ -62,22 +71,24 @@ const Sidebar = () => {
             FQACategory={FQACategory}
             setFQACategory={setFQACategory}
           />
-          <div className="flex flex-col space-y-2 text-sm font-medium">
-            {FAQs.find((faq) => faq.type === FQACategory)?.fqas.map(
-              (item, index) => (
-                <Button
-                  key={index}
-                  className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-blue-50"
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => setFAQ(item)}
-                >
-                  <HelpCircle size={18} className="mr-4 flex-shrink-0" />
-                  {item}
-                </Button>
-              )
-            )}
-          </div>
+            <div className="flex flex-col space-y-2 text-sm font-medium h-[60vh]">
+              <ScrollArea>
+                {FAQs.find((faq) => faq.type === FQACategory)?.fqas.map(
+                  (item, index) => (
+                    <Button
+                      key={index}
+                      className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-blue-50"
+                      variant="ghost"
+                      size="sm"
+                      onClick={() => setFAQ(item)}
+                    >
+                      <HelpCircle size={18} className="mr-4 flex-shrink-0" />
+                      {item}
+                    </Button>
+                  )
+                )}
+              </ScrollArea>
+            </div>
         </CardHeader>
         <div className="space-y-3 w-full">
           <Separator className="bg-slate-900" />

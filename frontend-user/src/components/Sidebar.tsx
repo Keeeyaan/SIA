@@ -71,24 +71,24 @@ const Sidebar = () => {
             FQACategory={FQACategory}
             setFQACategory={setFQACategory}
           />
-            <div className="flex flex-col space-y-2 text-sm font-medium h-[60vh]">
-              <ScrollArea>
-                {FAQs.find((faq) => faq.type === FQACategory)?.fqas.map(
-                  (item, index) => (
-                    <Button
-                      key={index}
-                      className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-blue-50"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => setFAQ(item)}
-                    >
-                      <HelpCircle size={18} className="mr-4 flex-shrink-0" />
-                      {item}
-                    </Button>
-                  )
-                )}
-              </ScrollArea>
-            </div>
+          <div className="flex flex-col space-y-2 text-sm font-medium h-[60vh]">
+            <ScrollArea>
+              {FAQs.find((faq) => faq.type === FQACategory)?.fqas.map(
+                (item, index) => (
+                  <Button
+                    key={index}
+                    className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-blue-50"
+                    variant="ghost"
+                    size="sm"
+                    onClick={() => setFAQ(item)}
+                  >
+                    <HelpCircle size={18} className="mr-4 flex-shrink-0" />
+                    {item}
+                  </Button>
+                )
+              )}
+            </ScrollArea>
+          </div>
         </CardHeader>
         <div className="space-y-3 w-full">
           <Separator className="bg-slate-900" />

@@ -12,6 +12,7 @@ import { toast } from "./ui/use-toast";
 import { Separator } from "./ui/separator";
 import FQASelectButton from "./FQASelectButton";
 import { useState } from "react";
+import { ScrollArea } from "./ui/scroll-area";
 
 const FAQs = [
   {
@@ -86,24 +87,26 @@ const Topbar = ({ className }: { className?: string }) => {
                 FQACategory={FQACategory}
                 setFQACategory={setFQACategory}
               />
-              <div className="flex flex-col space-y-1">
-                {FAQs.find((faq) => faq.type === FQACategory)?.fqas.map(
-                  (item, index) => (
-                    <Button
-                      key={index}
-                      className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-blue-50"
-                      variant="ghost"
-                      size="sm"
-                      onClick={() => {
-                        setSheetOpen(false);
-                        setFAQ(item);
-                      }}
-                    >
-                      <HelpCircle size={18} className="mr-4 flex-shrink-0" />
-                      {item}
-                    </Button>
-                  )
-                )}
+              <div className="flex flex-col space-y-1 h-[50vh]">
+                <ScrollArea>
+                  {FAQs.find((faq) => faq.type === FQACategory)?.fqas.map(
+                    (item, index) => (
+                      <Button
+                        key={index}
+                        className="flex justify-start items-center h-full w-full text-wrap text-start text-[13px] text-slate-800 py-3 hover:bg-blue-50"
+                        variant="ghost"
+                        size="sm"
+                        onClick={() => {
+                          setSheetOpen(false);
+                          setFAQ(item);
+                        }}
+                      >
+                        <HelpCircle size={18} className="mr-4 flex-shrink-0" />
+                        {item}
+                      </Button>
+                    )
+                  )}
+                </ScrollArea>
               </div>
             </CardHeader>
             <div className="space-y-3 w-full">

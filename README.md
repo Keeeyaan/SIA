@@ -41,10 +41,22 @@ The project is structured with separate frontend folders for both admin and user
     <kbd><img width="64" height="64"  src="https://avatars.githubusercontent.com/u/62949724?v=4"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<b>Kean Jieden Villaflor</b>&nbsp;&nbsp;
 </p>
 
+- Portfolio: [@Kean](https://keanvillaflor.com)
+- GitHub: [@Keeeyaan](https://github.com/Keeeyaan)
+- LinkedIn: [@Kean Jieden Villaflor](https://www.linkedin.com/in/kean-jieden-villaflor/)
+
+
 <p align="left">
     <kbd><img width="64" height="64"  src="https://avatars.githubusercontent.com/u/71744890?v=4"></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<b>Darelle Gochuico</b>&nbsp;&nbsp;
 </p>
 
+- Portfolio: [@Darelle](https://gochuicod.github.io/portfolio/)
+- GitHub: [@Gochuicod](https://github.com/gochuicod)
+- LinkedIn: [@Darelle Gochuico](https://www.linkedin.com/in/gochuicod)
+
 <p align="left">
     <kbd><img width="64" height="64"  src='https://avatars.githubusercontent.com/u/89641155?v=4'></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<b>Marbuen Arvie Abing</b>&nbsp;&nbsp;
 </p>
+
+- GitHub: [@zXisPH](https://github.com/zXisPH)
+- LinkedIn: [@Marbuen Arvie Abing](https://www.linkedin.com/in/marbuen-abing/)

@@ -60,3 +60,15 @@ The project is structured with separate frontend folders for both admin and user
 
 - GitHub: [@zXisPH](https://github.com/zXisPH)
 - LinkedIn: [@Marbuen Arvie Abing](https://www.linkedin.com/in/marbuen-abing/)
+
+<p align="left">
+    <kbd><img width="64" height="64"  src='https://avatars.githubusercontent.com/u/118608271?v=4'></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<b>Walter Carl Inoc</b>&nbsp;&nbsp;
+</p>
+
+- GitHub: [@InocWC](https://github.com/InocWC)
+  
+<p align="left">
+    <kbd><img width="64" height="64"  src='https://avatars.githubusercontent.com/u/139617036?v=4'></kbd>&nbsp;&nbsp;&nbsp;&nbsp;<b>Nelson Tormis</b>&nbsp;&nbsp;
+</p>
+
+- GitHub: [@NelsonTormis](https://github.com/NelsonTormis)

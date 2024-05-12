@@ -22,7 +22,7 @@ download('stopwords')
 download('punkt')
 
 
-def out_of_scope_detector(inquiry: str, data: dict, threshold:float=0.6):
+def out_of_scope_detector(inquiry: str, data: dict, threshold: float = 0.6):
     # Combine patterns into a single list
     pattern_texts = []
 
@@ -39,8 +39,10 @@ def out_of_scope_detector(inquiry: str, data: dict, threshold:float=0.6):
     similarities = cosine_similarity(query_vector, pattern_vectors)
 
     # Check if maximum similarity is below threshold
-    if np.max(similarities) < threshold: return True
-    else: return False
+    if np.max(similarities) < threshold:
+        return True
+    else:
+        return False
 
 
 def remove_stop_words(inquiry: str) -> str:
@@ -62,12 +64,12 @@ def load_model(version: str):
 
 def chatbot_respond(inquiry: str, model, tokenizer, input_shape, le, responses, intents):
     regex_pattern = compile(r'\b(?:University of Cebu)\b', flags=IGNORECASE)
-    
+
     new_inquiry = sub(regex_pattern, 'uc', inquiry)
 
     if out_of_scope_detector(remove_stop_words(new_inquiry), intents) == True:
-        return {"response": "I'm sorry your question seems to be out of my scope. I may not be able to answer that right now.", "tag": "oos"}
-    
+        return {"response": "I apologize, but it seems that your question falls outside the scope of my current capabilities. Could you rephrase your question or provide more details so I can better assist you?", "tag": "oos"}
+
     texts_p = []
     prediction_input = inquiry
 
